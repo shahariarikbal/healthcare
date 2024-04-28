@@ -29,6 +29,10 @@ Route::get('migrate', function (){
 
 Route::get('/', [LoginController::class, 'showAdminLoginForm']);
 
-Auth::routes();
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+  ]);
 
 Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
