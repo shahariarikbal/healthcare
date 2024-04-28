@@ -1,0 +1,228 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+:root {
+    --light-gray-color: #505050;
+    --pure-white-color: #ffffff;
+    --dark-blue-color: rgb(0, 13, 83);
+    --pastel-grey-color: #ccc;
+    --wheat-color: wheat;
+    --azure-color: #0f9cf3;
+}
+*{
+    font-family: "Open Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none !important;
+}
+.brand-name{
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 600;
+    white-space: nowrap;
+    margin: 0;
+    color: var(--pure-white-color);
+}
+.brand-sm-logo {
+    width: 55px;
+}
+.sidebar ul li,
+.sidebar ul li a {
+    color: var(--pure-white-color);
+
+}
+.menu-title {
+    margin-bottom: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wheat-color);
+}
+.nav .nav-item {
+    font-weight: 500;;
+}
+.menu-title{
+    padding-left: 10px;
+}
+.nav .nav-item a{
+    padding-left: 20px;
+}
+.nav .nav-item .nav-link:hover {
+    background-color: var(--pure-white-color);
+    color: var(--dark-blue-color);
+}
+.nav-item.profile {
+    right: 0;
+    position: fixed;
+}
+.btn-hambar {
+    padding-block: 0 !important;
+}
+.btn-hambar .bi-list {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.offcanvas.show {
+    background-color: var(--dark-blue-color);
+    width: 300px !important;
+}
+.offcanvas.show:not(.hiding){
+    min-height: 100vh;
+    position: unset !important;
+}
+.offcanvas-body {
+    overflow: auto;
+    padding: 0 !important;
+}
+.icon {
+    color: var(--light-gray-color);
+    font-size: 2rem;
+    padding: 0 10px;
+}
+.main-wrapper{
+    display: flex;
+}
+.wrapper {
+    flex: 1;
+    overflow-y: auto;
+}
+.main{
+    padding-inline: 14px;
+}
+.dropup .dropdown-menu > li {
+    padding: 3px 0;
+}
+.dropup .dropdown-menu > li:hover {
+    background-color: var(--wheat-color);
+}
+.page-directory > a,
+.copyright-text > a {
+    color: var(--light-gray-color);
+}
+.avater-sm {
+    height: 3rem;
+    width: 3rem;
+}
+.avatar-title {
+    background-color: var(--azure-color);
+    color: var(--pure-white-color);
+    display: flex;
+    font-weight: 500;
+    justify-content: center;
+    width: 100%;
+}
+
+/* table css start */
+
+.table_main{
+    background: var(--pure-white-color);
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+}
+
+@media only screen and (min-width: 1360px){
+.table_main{
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto; 
+    padding: 24px;
+}
+}
+.dataTables_filter {
+float: right;
+}
+
+@media only screen and (min-width: 768px) {
+.table {
+    table-layout: fixed;
+    max-width: 100% !important;
+}
+}
+
+.table td:nth-child(2) {
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.highlight {
+background: var(--wheat-color);
+}
+
+@media only screen and (max-width: 767px) {
+table,
+thead,
+tbody,
+th,
+td,
+tr {
+    display: block;
+}
+  
+thead tr,
+tfoot tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+td {
+    border: none;
+    border-bottom: 1px solid var(--pure-white-color);
+    position: relative;
+    padding-left: 50% !important;
+}
+
+td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+
+.table td:nth-child(1) {
+    background: var(--pastel-grey-color);
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+}
+
+/*
+Label the data
+*/
+td:nth-of-type(1):before {
+    content: "Name";
+}
+
+td:nth-of-type(2):before {
+    content: "Position";
+}
+
+td:nth-of-type(3):before {
+    content: "Office";
+}
+
+td:nth-of-type(4):before {
+    content: "Age";
+}
+
+td:nth-of-type(5):before {
+    content: "Start date";
+}
+
+td:nth-of-type(6):before {
+    content: "Salary";
+}
+
+.dataTables_length {
+    display: none;
+}
+}
+/* table css end */

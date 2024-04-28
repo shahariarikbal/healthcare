@@ -21,7 +21,13 @@
                   </div>
                   <div class="col-md-6 col-lg-7 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
-      
+                      <!---Session error message show--->
+                      @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                      @endif
+                      <!---Session error message show--->
                       <form method="POST" action="{{ route('receptionist.login') }}">
                         @csrf
                         <div class="d-flex align-items-center mb-3 pb-1">

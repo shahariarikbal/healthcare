@@ -15,23 +15,21 @@ class RedirectIfAuthenticated
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
+    public function handle(Request $request, Closure $next, $guards = null)
     {
-        $guards = empty($guards) ? ['web'] : $guards;
+        if ($guards == "web" && Auth::guard($guards)->check()) {
+            return redirect('/admin/dashboard');
+        }
+        if ($guards == "doctor" && Auth::guard($guards)->check()) {
+            return redirect('/doctor/dashboard');
+        }
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                switch ($guard) {
-                    case 'web':
-                        return redirect()->route('admin.dashboard'); // Redirect admin dashboard
-                    case 'doctor':
-                        return redirect()->route('doctor.dashboard'); // Redirect doctor dashboard
-                    case 'receptionist':
-                        return redirect()->route('receptionist.dashboard'); // Redirect receptionist dashboard
-                    case 'account':
-                        return redirect()->route('account.dashboard'); // Redirect account dashboard
-                }
-            }
+        if ($guards == "receptionist" && Auth::guard($guards)->check()) {
+            return redirect('/receptionist/dashboard');
+        }
+
+        if ($guards == "account" && Auth::guard($guards)->check()) {
+            return redirect('/account/dashboard');
         }
 
         return $next($request);

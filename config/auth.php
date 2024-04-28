@@ -84,19 +84,19 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'doctor' => [
+        'doctors' => [
             'driver' => 'eloquent',
-            'provider' => Doctor::class,
+            'model' => Doctor::class,
         ],
 
-        'receptionist' => [
+        'receptionists' => [
             'driver' => 'eloquent',
-            'provider' => Receptionist::class,
+            'model' => Receptionist::class,
         ],
 
-        'account' => [
+        'accounts' => [
             'driver' => 'eloquent',
-            'provider' => Account::class,
+            'model' => Account::class,
         ],
 
         // 'users' => [
