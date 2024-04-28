@@ -53,7 +53,10 @@
         
                             <button class="btn btn-dark btn-md" type="submit">Login</button>
                         </form>
-        
+                        <hr/>
+                        <a href="{{ route('receptionist.login') }}" class="btn btn-sm btn-info">Receptionist</a>
+                        <a href="{{ route('account.login') }}" class="btn btn-sm btn-primary">Account</a>
+                        <a href="{{ route('doctor.login') }}" class="btn btn-sm btn-danger">Doctor</a>
                         </div>
                     </div>
                     </div>
