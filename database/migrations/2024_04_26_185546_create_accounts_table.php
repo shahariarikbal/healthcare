@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->unique();
             $table->string('qualification');
+            $table->string('gender');
             $table->float('experience')->default(0);
             $table->string('avatar');
             $table->boolean('is_active')->default(true)->comment('1 for active, 0 for inactive');
