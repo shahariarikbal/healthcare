@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('appointments', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('doctor_id');
+            $table->date('appointment_date');
+            $table->longText('problem')->nullable();
+            $table->unsignedBigInteger('status')->comment('0 for Pending, 1 for Done, 2 for Reception, 3 for Accounts, 4 for Absent');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('appointments');
+    }
+};

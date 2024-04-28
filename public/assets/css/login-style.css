@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.login-bg-color{
+   background-color: #d43f5f;
+}
+
+.login-radius{
+   border-radius: 1rem;
+}
+
+.login-logo{
+   height: 70px;
+}
+
+.login-text{
+   font-size: 30px;
+   font-family: 'cursive';
+   font-weight: 600;
+}
+
+.img-fluid{
+   border-radius: 1rem 0 0 1rem;
+}
