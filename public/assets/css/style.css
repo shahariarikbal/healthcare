@@ -1,4 +1,3 @@
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 :root {
     --light-gray-color: #505050;
@@ -7,6 +6,12 @@
     --pastel-grey-color: #ccc;
     --wheat-color: wheat;
     --azure-color: #0f9cf3;
+    --gradient-color: linear-gradient(to right, #ff5f6d, #ffc371);
+    --footer-gradient-color: linear-gradient(to right, #f00997, #41fae1);
+    --card-total-appointment-gradient-color: linear-gradient(135deg, #0FF0B3 0%,#036ED9 100%);
+    --card-today-appointment-gradient-color: linear-gradient(135deg, #13f1fc 0%,#0470dc 100%);
+    --card-department-gradient-color: linear-gradient(135deg, #b1ea4d 0%,#459522 100%);
+    --card-doctors-gradient-color: linear-gradient(135deg, #F5515F 0%,#A1051D 100%);
 }
 *{
     font-family: "Open Sans", sans-serif;
@@ -17,6 +22,11 @@
 a {
     text-decoration: none !important;
 }
+
+.card p{
+    font-weight: 600;
+}
+
 .brand-name{
     text-transform: uppercase;
     font-size: 1.4rem;
@@ -35,9 +45,9 @@ a {
 }
 .menu-title {
     margin-bottom: 3px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
-    color: var(--wheat-color);
+    color: var(--pure-white-color);
 }
 .nav .nav-item {
     font-weight: 500;;
@@ -64,8 +74,8 @@ a {
     font-size: 1.4rem;
 }
 .offcanvas.show {
-    background-color: var(--dark-blue-color);
-    width: 300px !important;
+    background: var(--gradient-color);
+    width: 250px !important;
 }
 .offcanvas.show:not(.hiding){
     min-height: 100vh;
@@ -76,7 +86,6 @@ a {
     padding: 0 !important;
 }
 .icon {
-    color: var(--light-gray-color);
     font-size: 2rem;
     padding: 0 10px;
 }
@@ -105,12 +114,48 @@ a {
     width: 3rem;
 }
 .avatar-title {
-    background-color: var(--azure-color);
     color: var(--pure-white-color);
     display: flex;
     font-weight: 500;
     justify-content: center;
     width: 100%;
+}
+
+.bg-footer{
+    background: var(--footer-gradient-color);
+    color: white;
+}
+
+.dropup{
+    margin-left: 73px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.dropup img{
+    height: 35px;
+    width: 35px;
+}
+
+.dropup a{
+    color: black;
+    font-weight: 600;
+}
+
+.total-appointment{
+    background: var(--card-total-appointment-gradient-color);
+}
+
+.today-appointment{
+    background: var(--card-today-appointment-gradient-color);
+}
+
+.departments{
+    background: var(--card-department-gradient-color);
+}
+
+.doctors{
+    background: var(--card-doctors-gradient-color);
 }
 
 /* table css start */

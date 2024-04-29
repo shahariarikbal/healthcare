@@ -67,9 +67,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- <form action="" method="post">
-                    <i class="bi bi-box-arrow-in-right icon" title="logout"></i>
-                </form> -->
             </div>
         </div>
 
