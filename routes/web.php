@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
@@ -37,3 +38,7 @@ Auth::routes([
   ]);
 
 Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+
+//Department controller routes
+Route::get('/department/create', [DepartmentController::class, 'showDepartmentCreateForm'])->name('department.create');
+Route::get('/department/manage', [DepartmentController::class, 'manageDepartment'])->name('department.manage');

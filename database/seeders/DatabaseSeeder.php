@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             DoctorSeeder::class,
             AccountSeeder::class,
             ReceptionistSeeder::class,
-            SpecialistSeeder::class
+            DepartmentSeeder::class
         ]);
     }
 }

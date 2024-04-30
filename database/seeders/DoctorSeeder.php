@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\Specialist;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,7 +16,7 @@ class DoctorSeeder extends Seeder
     public function run(): void
     {
         Doctor::create([
-            'specialist_id' => Specialist::first()->id ?? 1,
+            'department_id' => Department::first()->id ?? 1,
             'first_name' => 'Abdur',
             'last_name' => 'Rahman',
             'email' => 'rahman@info.com',

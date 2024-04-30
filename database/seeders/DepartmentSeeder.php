@@ -2,18 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Specialist;
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
-class SpecialistSeeder extends Seeder
+class DepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $specialists = [
+        $departments = [
             'Neurologist',
             'Gynecologist',
             'Allergist',
@@ -22,9 +23,10 @@ class SpecialistSeeder extends Seeder
             'Psychiatrists'
         ];
 
-        foreach($specialists as $specialist){
-            Specialist::create([
-                'name' => $specialist
+        foreach($departments as $department){
+            Department::create([
+                'name' => $department,
+                'slug' => Str::slug($department)
             ]);
         }
         
