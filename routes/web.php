@@ -42,3 +42,7 @@ Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.da
 //Department controller routes
 Route::get('/department/create', [DepartmentController::class, 'showDepartmentCreateForm'])->name('department.create');
 Route::get('/department/manage', [DepartmentController::class, 'manageDepartment'])->name('department.manage');
+Route::post('/department/store', [DepartmentController::class, 'store'])->name('department.store');
+Route::get('/department/edit/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
+Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('department.update');
+Route::get('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
