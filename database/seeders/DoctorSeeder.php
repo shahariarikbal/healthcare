@@ -26,6 +26,8 @@ class DoctorSeeder extends Seeder
             'fee' => '500',
             'qualification' => 'FCPS, MBBS, FRCS',
             'experience' => '2.5',
+            'address' => 'Mirpur Pallabi, Dhaka Bangladesh',
+            'about' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis, sequi, ut veritatis sunt dolorum blanditiis omnis delectus at excepturi dolore, similique voluptatum ratione. Deleniti tempore, reiciendis dicta molestias facilis officiis.',
             'avatar' => url('/assets/images/avatar.png')
         ]);
     }

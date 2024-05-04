@@ -23,18 +23,12 @@ class DepartmentController extends Controller
     public function manageDepartment()
     {
         if (request()->ajax()) {
-            $data = Department::select('*')->orderBy('created_at', 'desc');
-            return Datatables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-                        $editUrl = route('department.edit', ['id' => $row->id]);
-                        $deleteUrl = route('department.delete', ['id' => $row->id]);
-                        $editBtn = '<a href="'.$editUrl.'" class="edit btn edit-btn"><i class="fa-regular fa-pen-to-square"></i></a>';
-                        $deleteBtn = '<a href="'.$deleteUrl.'" class="delete btn delete-btn" onclick="return confirm(&quot;Are you sure delete this department ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
-                        return $editBtn . ' ' . $deleteBtn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+            $data = $this->departments->getDataForDataTable();
+            $dataWithActions = $data->map(function ($row) {
+                $row->action = $this->departments->generateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithActions)->make(true);
         }
         return view('admin.pages.department.manage');
     }

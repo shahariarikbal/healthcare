@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('fee');
             $table->string('qualification');
             $table->float('experience')->default(0);
+            $table->text('address');
+            $table->longText('about')->nullable();
             $table->string('avatar');
             $table->boolean('is_active')->default(true)->comment('1 for active, 0 for inactive');
             $table->timestamps();

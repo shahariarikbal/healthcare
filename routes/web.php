@@ -37,12 +37,23 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
   ]);
 
-Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+  Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
-//Department controller routes
-Route::get('/department/create', [DepartmentController::class, 'showDepartmentCreateForm'])->name('department.create');
-Route::get('/department/manage', [DepartmentController::class, 'manageDepartment'])->name('department.manage');
-Route::post('/department/store', [DepartmentController::class, 'store'])->name('department.store');
-Route::get('/department/edit/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
-Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('department.update');
-Route::get('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+    //Department controller routes
+    Route::get('/department/create', [DepartmentController::class, 'showDepartmentCreateForm'])->name('department.create');
+    Route::get('/department/manage', [DepartmentController::class, 'manageDepartment'])->name('department.manage');
+    Route::post('/department/store', [DepartmentController::class, 'store'])->name('department.store');
+    Route::get('/department/edit/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
+    Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('department.update');
+    Route::get('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+
+    //Doctor CRUD route
+    Route::get('/doctor/create', [DoctorController::class, 'showDoctorAddForm'])->name('doctor.create');
+    Route::get('/doctor/manage', [DoctorController::class, 'doctorManage'])->name('doctor.manage');
+    Route::post('/doctor/store', [DoctorController::class, 'doctorStore'])->name('doctor.store');
+    Route::get('/doctor/edit/{id}', [DoctorController::class, 'doctorEdit'])->name('doctor.edit');
+    Route::post('/doctor/update/{id}', [DoctorController::class, 'doctorUpdate'])->name('doctor.update');
+    Route::get('/doctor/view/{id}', [DoctorController::class, 'doctorView'])->name('doctor.view');
+    Route::get('/doctor/delete/{id}', [DoctorController::class, 'doctorDelete'])->name('doctor.delete');
+    Route::get('/doctor/active/{id}', [DoctorController::class, 'doctorActive'])->name('doctor.active');
+    Route::get('/doctor/inactive/{id}', [DoctorController::class, 'doctorInactive'])->name('doctor.inactive');

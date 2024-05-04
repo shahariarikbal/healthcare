@@ -164,6 +164,19 @@ a {
     background: var(--card-doctors-gradient-color);
 }
 
+.avatar-size{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.avatar{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
 /* Button area start  */
          
 .btn-add {
@@ -264,31 +277,40 @@ a {
   }
 
   .edit-btn{
-    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
-    text-align: center;
-    text-transform: capitalize;
-    transition: 0.5s;
-    font-weight: 600;
-    background-size: 200% auto;
-    color: white;            
-    box-shadow: 0 0 20px #eee;
-    border-radius: 50%;
+    color: #12D8FA;
     height: 40px;
     width: 40px;
+    padding: 5px;
+  }
+
+  .view-btn{
+    color: #faa912;
+    height: 40px;
+    width: 40px;
+    padding: 5px;
   }
 
   .delete-btn{
-    background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
-    text-align: center;
-    text-transform: capitalize;
-    transition: 0.5s;
-    font-weight: 600;
-    background-size: 200% auto;
-    color: white;            
-    box-shadow: 0 0 20px #eee;
-    border-radius: 50%;
+    color: #DD2476;
     height: 40px;
     width: 40px;
+    padding: 5px;
+  }
+
+  .badge-active{
+    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
+    padding: 4px 8px;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .badge-inactive{
+    background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+    padding: 4px 8px;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
   }
  
  

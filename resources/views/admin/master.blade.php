@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin dashboard</title>
     @include('admin.includes.style')
+    {{-- @routes --}}
 </head>
 <body>
     <section class="main-wrapper">
@@ -31,6 +32,28 @@
     </section>
     @include('admin.includes.script')
     @stack('script')
+
+    <script>
+        //Image preview js code
+        function imageChange(e){
+        if (e.target.files[0]) {
+            let image = e.target.files[0];
+            if(image['type'] === 'image/jpeg' || image['type'] === 'image/png' || image['type'] === 'image/webp' || image['type'] === 'image/gif'){
+                let reader = new FileReader();
+                reader.onload = function ()
+                {
+                    let output = document.getElementById('imagePreview');
+                    output.src = reader.result;
+                    output.style.display = "block";
+                    output.style.width = "20%";
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }else{
+                alert('Please input e valid image.');
+            }
+        }
+    }
+    </script>
 
     @if(session('success'))
         <script>

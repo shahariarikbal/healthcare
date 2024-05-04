@@ -13,4 +13,10 @@ class Department extends Model
         'name',
         'slug'
     ];
+
+    /*** Relationship start ***/
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
 }

@@ -13,6 +13,12 @@ class Doctor extends Authenticatable
 
     protected $guarded = [];
 
+    /*** Relationship start ***/
+    public function department()
+    {
+        return $this->hasOne(Department::class, 'id', 'department_id');
+    }
+
     /*** Accessor start ***/
 
     public function getFullNameAttribute()
