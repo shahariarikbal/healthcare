@@ -6,6 +6,7 @@
     --pastel-grey-color: #ccc;
     --wheat-color: wheat;
     --azure-color: #0f9cf3;
+    --medical-blue-color: #1560BD;
     --gradient-color: linear-gradient(to right, #ff5f6d, #ffc371);
     --footer-gradient-color: linear-gradient(to right, #f00997, #41fae1);
     --header-gradient-color: linear-gradient(to right, #41fae1, #f00997);
@@ -75,7 +76,7 @@ a {
     font-size: 1.4rem;
 }
 .offcanvas.show {
-    background: var(--gradient-color);
+    background: var(--medical-blue-color);
     width: 250px !important;
 }
 .offcanvas.show:not(.hiding){
