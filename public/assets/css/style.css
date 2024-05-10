@@ -300,7 +300,7 @@ a {
 
   .badge-active{
     background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%);
-    padding: 4px 8px;
+    padding: 4px 20px;
     border-radius: 16px;
     color: white;
     font-weight: 600;
@@ -308,7 +308,7 @@ a {
 
   .badge-inactive{
     background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
-    padding: 4px 8px;
+    padding: 4px 15px;
     border-radius: 16px;
     color: white;
     font-weight: 600;
