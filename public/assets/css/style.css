@@ -313,6 +313,13 @@ a {
     font-weight: 600;
   }
  
+  .custom-font-size{
+    font-size: 14px;
+  }
+
+  .sl-width{
+    width: 10%;
+  }
  
  
 /* Button area end */

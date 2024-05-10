@@ -11,17 +11,18 @@
                           </a>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-data">
+                        <table class="table table-hover table-data custom-font-size">
                           <thead>
                               <tr>
-                                 <th class="table-sl">SL</th>
-                                 <th>Doctor</th>
+                                 <th class="sl-width">SL</th>
+                                 <th>Avatar</th>
+                                 <th>Name</th>
                                  <th>Phone</th>
                                  <th>Gender</th>
                                  <th>Exp</th>
                                  <th>Fee</th>
                                  <th>Status</th>
-                                 <th class="table-action">Action</th>
+                                 <th>Action</th>
                               </tr>
                          </thead>
                          <tbody>
@@ -51,25 +52,38 @@
                             return meta.row + 1;
                         }
                     },
+
+                    {
+                        data:null,
+                        name:'avatar',
+                        render: function (data, type, row){
+                            return '<img src="' + data.avatar + '" class="avatar">'
+                        }
+                    },
                     // Custom rendering function for the 'first_name' column
                     {
                         data: null,
                         name: 'full_name', // Change the name to 'full_name' to avoid confusion
                         render: function (data, type, row) {
                             // Customize the display format as needed
-                            return '<img src="' + data.avatar + '" class="avatar">' + 
-                                '<br>' +
-                                '<strong>' + data.first_name + ' ' + data.last_name + '</strong>' +
+                            
+                                return '<strong>' + data.first_name + ' ' + data.last_name + '</strong>' +
                                 '<p>' + data.department.name + '</p>'
                         }
                     },
-                    {data: 'phone', name: 'phone'},
+                    {
+                        data: null, 
+                        name: 'phone',
+                        render: function(data, type, row) {
+                            return '<p>' + data.phone +'</p>';
+                        }
+                    },
                     {data: 'gender', name: 'gender'},
                     {
                         data: 'experience',
                         name: 'experience',
                         render: function(data, type, row) {
-                            return data + ' years'; // Append "years" to the experience value
+                            return '<p>' + data + " years" +'</p>'; // Append "years" to the experience value
                         }
                     },
                     {
