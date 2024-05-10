@@ -48,7 +48,7 @@ class DoctorServices
 
     public function generateActionButtons($row)
     {
-          $viewUrl = route('doctor.edit', ['id' => $row->id]);
+          $viewUrl = route('doctor.view', ['id' => $row->id]);
           $editUrl = route('doctor.edit', ['id' => $row->id]);
           $deleteUrl = route('doctor.delete', ['id' => $row->id]);
 

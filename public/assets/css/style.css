@@ -321,6 +321,68 @@ a {
   .sl-width{
     width: 10%;
   }
+
+  .details-view-avatar{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 1px solid red;
+    padding: 5px;
+  }
+
+  .doctor-details {
+    display: flex; /* Display flex to arrange items horizontally */
+    align-items: center; /* Center items vertically */
+    position: relative;
+    left: 30%;
+    right: 50%;
+}
+
+.details-info span {
+    display: block; /* Display spans as block elements */
+    font-family: fantasy;
+}
+
+.details-info .name {
+    font-weight: bold; /* Make the name bold */
+}
+
+.doctor-other-details {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap; /* Allow columns to wrap to the next line */
+}
+
+.column {
+    width: calc(100% / 3); /* Each column takes up 1/3 of the container width */
+    padding: 0 10px; /* Add padding to create space between columns */
+}
+
+.column span{
+    text-align: justify;
+    font-family: fantasy;
+}
+
+.column-full{
+    width: 100%;
+}
+
+.column-full span{
+    text-align: justify;
+    font-family: fantasy;
+}
+
+.detail {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.view-card-shadow{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
  
  
 /* Button area end */

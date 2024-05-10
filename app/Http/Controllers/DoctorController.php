@@ -97,6 +97,12 @@ class DoctorController extends Controller
         return view('admin.pages.doctor.edit', compact('doctor', 'departments'));
     }
 
+    public function doctorView($id)
+    {
+        $doctor = Doctor::with('department')->find($id);
+        return view('admin.pages.doctor.view', compact('doctor'));
+    }
+
     public function doctorUpdate(DoctorUpdateRequest $request, $id)
     {
         $doctor = Doctor::find($id);
