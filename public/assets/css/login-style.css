@@ -4,7 +4,9 @@
 }
 
 .login-bg-color{
-   background-color: #d43f5f;
+   background-image: url('../images/bg-img.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
 }
 
 .login-radius{
@@ -23,4 +25,32 @@
 
 .img-fluid{
    border-radius: 1rem 0 0 1rem;
+}
+
+.login-btn{
+    width: 100%;
+    background: #1560BD;
+    color: white;
+    font-weight: 500;
+}
+
+.login-btn:hover{
+    width: 100%;
+    background: #1560BD;
+    color: white;
+    font-weight: 500;
+}
+
+form{
+   background: #dee6e8;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+/*** Temporary css ***/
+.others-login-panel{
+   margin-top: 20px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
 }
