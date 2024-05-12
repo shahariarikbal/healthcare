@@ -313,6 +313,10 @@ a {
     color: white;
     font-weight: 600;
   }
+
+  /* Button area end */
+
+  /* Others css start */
  
   .custom-font-size{
     font-size: 14px;
@@ -382,10 +386,37 @@ a {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
+.message-body{
+    height: 350px;
+    overflow: scroll;
+    justify-content: space-between;
+}
 
+.sent-messages {
+    flex: 1;
+    padding-right: 10px; /* Add spacing between sent and received messages */
+}
+
+.received-messages {
+    flex: 1;
+    padding-left: 10px; /* Add spacing between sent and received messages */
+}
+
+.message {
+    margin-bottom: 10px; /* Add vertical spacing between messages */
+}
+
+.sent-message {
+    text-align: left;
+}
+
+.received-message {
+    text-align: right;
+    margin-right: 10px;
+}
  
  
-/* Button area end */
+/* Others css end */
 
 /* table css start */
 

@@ -31,7 +31,6 @@
                           <ul class="submenu collapse">
                               <li><a class="nav-link" href="{{ route('doctor.create') }}">Add</a></li>
                               <li><a class="nav-link" href="{{ route('doctor.manage') }}">Manage </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">Messaging </a></li>
                           </ul>
                       </li>
                       <li class="nav-item has-submenu">
@@ -40,8 +39,8 @@
                                Patient  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">Add </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">Manage </a></li>
+                              <li><a class="nav-link" href="{{ route('patient.create') }}">Add </a></li>
+                              <li><a class="nav-link" href="{{ route('patient.manage') }}">Manage </a></li>
                           </ul>
                       </li>
                       <li class="nav-item has-submenu">
@@ -101,7 +100,7 @@
                               Messaging  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
+                              <li><a class="nav-link" href="{{ route('doctor.list') }}">Doctors </a></li>
                               <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
                               <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
                               <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>

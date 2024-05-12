@@ -15,7 +15,7 @@
             <div class="col col-xl-10">
               <div class="login-radius">
                 <div class="row g-0">
-                  <div class="col-md-5 d-flex align-items-center">
+                  <div class="col-lg-6 col-md-12 d-flex align-items-center">
                     <div class="card-body p-4 p-lg-5 text-black">
                       @if(session('error'))
                         <div class="alert alert-danger">
@@ -57,10 +57,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-7 d-none d-md-block">
-                    {{-- <img src="{{ asset('assets/images/account-bg-img.jpeg') }}"
-                      alt="login form" class="img-fluid" /> --}}
-                  </div>
+                  <div class="col-md-6 d-none d-md-block"></div>
                 </div>
               </div>
             </div>
