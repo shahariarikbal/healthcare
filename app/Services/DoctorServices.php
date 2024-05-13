@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Constants\Status;
 use App\Models\Doctor;
+use Illuminate\Support\Str;
 
 class DoctorServices
 {
@@ -15,6 +16,7 @@ class DoctorServices
                'department_id' => $request->department_id,
                'first_name' => $request->first_name,
                'last_name' => $request->last_name,
+               'slug' => Str::slug($request->first_name . ' ' . $request->last_name),
                'email' => $request->email,
                'password' => bcrypt($request->password),
                'phone' => $request->phone,
@@ -28,6 +30,8 @@ class DoctorServices
           ];
 
           $newDoctor = Doctor::create($data);
+
+          
      }
 
      //For Image store
@@ -48,9 +52,9 @@ class DoctorServices
 
     public function generateActionButtons($row)
     {
-          $viewUrl = route('doctor.view', ['id' => $row->id]);
-          $editUrl = route('doctor.edit', ['id' => $row->id]);
-          $deleteUrl = route('doctor.delete', ['id' => $row->id]);
+          $viewUrl = route('doctor.view', ['id' => $row->id,'slug' => $row->slug]);
+          $editUrl = route('doctor.edit', ['id' => $row->id,'slug' => $row->slug]);
+          $deleteUrl = route('doctor.delete', ['id' => $row->id,'slug' => $row->slug]);
 
           $viewBtn = '<a href="'.$viewUrl.'" class="view view-btn"><i class="fa-regular fa-eye"></i></a>';
           $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn"><i class="fa-regular fa-pen-to-square"></i></a>';

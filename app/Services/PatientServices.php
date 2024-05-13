@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Patient;
+use Str;
 
 class PatientServices
 {
@@ -11,6 +12,7 @@ class PatientServices
 
           $data = [
                'name' => $request->name,
+               'slug' => Str::slug($request->name),
                'email' => $request->email,
                'phone' => $request->phone,
                'address' => $request->address,
@@ -27,16 +29,15 @@ class PatientServices
 
     public function generateActionButtons($row)
     {
-          $viewUrl = route('patient.prescription', ['id' => $row->id]);
-          $editUrl = route('patient.edit', ['id' => $row->id]);
-          $deleteUrl = route('patient.delete', ['id' => $row->id]);
+          $viewUrl = route('patient.prescription', ['id' => $row->id,'slug' => $row->slug]);
+          $editUrl = route('patient.edit', ['id' => $row->id,'slug' => $row->slug]);
+          $deleteUrl = route('patient.delete', ['id' => $row->id,'slug' => $row->slug]);
 
           $viewBtn = '<a href="'.$viewUrl.'" class="view view-btn" title="Prescription view"><i class="fa-regular fa-eye"></i></a>';
           $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Patient edit"><i class="fa-regular fa-pen-to-square"></i></a>';
           $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="Patient delete" onclick="return confirm(&quot;Are you sure delete this doctor ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
 
           
-
           return $editBtn . ' ' . $viewBtn . ' ' . $deleteBtn;
      }
 

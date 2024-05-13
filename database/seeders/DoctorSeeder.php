@@ -19,6 +19,7 @@ class DoctorSeeder extends Seeder
             'department_id' => Department::first()->id ?? 1,
             'first_name' => 'Abdur',
             'last_name' => 'Rahman',
+            'slug' => 'abdur-rahman',
             'email' => 'rahman@info.com',
             'password' => bcrypt('12345678'),
             'phone' => '+8801309608232',

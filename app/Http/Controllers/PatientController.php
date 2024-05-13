@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PatientStoreRequest;
+use App\Http\Requests\PatientUpdateRequest;
+use App\Models\Patient;
 use App\Services\PatientServices;
 use Illuminate\Http\Request;
 
@@ -37,5 +39,31 @@ class PatientController extends Controller
     {
         $this->patientService->patientStore($request);
         return redirect()->route('patient.manage')->with('success', 'Patient has been created');
+    }
+
+    public function edit($id)
+    {
+        $patient = Patient::find($id);
+        return view('admin.pages.patient.edit', compact('patient'));
+    }
+
+    public function update(PatientUpdateRequest $request, $id)
+    {
+        $patient = Patient::find($id);
+        $this->patientService->patientUpdate($request, $patient);
+        return redirect()->route('patient.manage')->with('success', 'Patient has been updated');
+    }
+
+    public function prescription($id)
+    {
+        $patient = Patient::find($id);
+        return view('admin.pages.patient.prescription', compact('patient'));
+    }
+
+    public function delete($id)
+    {
+        $patient = Patient::find($id);
+        $patient->delete();
+        return redirect()->route('patient.manage')->with('success', 'Patient has been deleted');
     }
 }
