@@ -96,7 +96,7 @@ a {
 }
 .wrapper {
     flex: 1;
-    overflow-y: auto;
+    overflow: hidden;
 }
 .main{
     padding-inline: 14px;
