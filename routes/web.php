@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ReceptionistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,5 +93,32 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/inactive/{id}', [NurseController::class, 'inactive'])->name('nurse.inactive');
         Route::post('/update/{id}', [NurseController::class, 'update'])->name('nurse.update');
         Route::get('/delete/{id}', [NurseController::class, 'delete'])->name('nurse.delete');
+    });
+
+     //Receptionist routes
+     Route::group(['prefix' => 'reception'], function(){
+        Route::get('/create', [ReceptionistController::class, 'receptionCreate'])->name('reception.create');
+        Route::get('/manage', [ReceptionistController::class, 'receptionManage'])->name('reception.manage');
+        Route::post('/store', [ReceptionistController::class, 'receptionStore'])->name('reception.store');
+        Route::get('/edit/{id}/{slug}', [ReceptionistController::class, 'receptionEdit'])->name('reception.edit');
+        Route::get('/view/{id}/{slug}', [ReceptionistController::class, 'receptionView'])->name('reception.view');
+        Route::get('/active/{id}', [ReceptionistController::class, 'receptionActive'])->name('reception.active');
+        Route::get('/inactive/{id}', [ReceptionistController::class, 'receptionInactive'])->name('reception.inactive');
+        Route::post('/update/{id}', [ReceptionistController::class, 'receptionUpdate'])->name('reception.update');
+        Route::get('/delete/{id}', [ReceptionistController::class, 'receptionDelete'])->name('reception.delete');
+    });
+
+
+     //Accounts routes
+     Route::group(['prefix' => 'accounts'], function(){
+        Route::get('/create', [AccountController::class, 'accountsCreate'])->name('accounts.create');
+        Route::get('/manage', [AccountController::class, 'accountsManage'])->name('accounts.manage');
+        Route::post('/store', [AccountController::class, 'accountsStore'])->name('accounts.store');
+        Route::get('/edit/{id}/{slug}', [AccountController::class, 'accountsEdit'])->name('accounts.edit');
+        Route::get('/view/{id}/{slug}', [AccountController::class, 'accountsView'])->name('accounts.view');
+        Route::get('/active/{id}', [AccountController::class, 'accountsActive'])->name('accounts.active');
+        Route::get('/inactive/{id}', [AccountController::class, 'accountsInactive'])->name('accounts.inactive');
+        Route::post('/update/{id}', [AccountController::class, 'accountsUpdate'])->name('accounts.update');
+        Route::get('/delete/{id}', [AccountController::class, 'accountsDelete'])->name('accounts.delete');
     });
     

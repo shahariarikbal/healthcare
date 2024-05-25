@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Status;
+use App\Http\Requests\AccountsStoreRequest;
+use App\Http\Requests\AccountsUpdateRequest;
 use App\Models\Account;
+use App\Services\AccountsServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    protected $accountServices;
+
+    public function __construct(AccountsServices $accountServices)
+    {
+        $this->accountServices = $accountServices;
+    }
+
+
     public function showLoginForm()
     {
         return view('auth.account.login');
@@ -51,5 +62,73 @@ class AccountController extends Controller
     {
         Auth::guard('account')->logout();
         return redirect('/account/login');
+    }
+
+
+    // Receiptionist CRUD operation
+    public function accountsCreate()
+    {
+        return view('admin.pages.accounts.add');
+    }
+
+    public function accountsStore(AccountsStoreRequest $request)
+    {
+        $newReception = $this->accountServices->accountsStore($request);
+        return redirect()->route('accounts.manage')->with('success', 'Account has been created');
+    }
+
+    public function accountsManage()
+    {
+        if (request()->ajax()) {
+            $data = $this->accountServices->getAccountsDataForDatatable();
+            $dataWithActions = $data->map(function ($row) {
+                $row->action = $this->accountServices->generateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithActions)->make(true);
+        }
+        return view('admin.pages.accounts.manage');
+    }
+
+    public function accountsEdit($id)
+    {
+        $accounts = Account::findOrFail($id);
+        return view('admin.pages.accounts.edit', compact('accounts'));
+    }
+
+    public function accountsView($id)
+    {
+        $accounts = Account::findOrFail($id);
+        return view('admin.pages.accounts.view', compact('accounts'));
+    }
+
+    public function accountsUpdate(AccountsUpdateRequest $request, $id)
+    {
+        $accounts = Account::findOrFail($id);
+        $this->accountServices->accountsUpdate($request, $accounts);
+        return redirect()->route('accounts.manage')->with('success', 'Account has been updated');
+    }
+
+    public function accountsActive($id)
+    {
+        $accounts = Account::findOrFail($id);
+        $accounts->is_active = Status::INACTIVE;
+        $accounts->save();
+        return redirect()->route('accounts.manage')->with('success', 'Accounts has been inactivated');
+    }
+
+    public function accountsInactive($id)
+    {
+        $accounts = Account::findOrFail($id);
+        $accounts->is_active = Status::ACTIVE;
+        $accounts->save();
+        return redirect()->route('accounts.manage')->with('success', 'Accounts has been Activated');
+    }
+
+    public function accountsDelete($id)
+    {
+        $accounts = Account::findOrFail($id);
+        $accounts->delete();
+        return redirect()->route('accounts.manage')->with('success', 'Accounts has been deleted');
     }
 }

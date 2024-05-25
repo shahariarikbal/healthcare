@@ -43,6 +43,26 @@
                             <li><a class="nav-link" href="{{ route('nurse.manage') }}">Manage </a></li>
                         </ul>
                     </li>
+                    <li class="nav-item has-submenu">
+                        <a class="nav-link" href="javascript:void(0);">
+                            <i class="fa-solid fa-user-tie"></i>
+                            Receptionist  <i class="fa-solid fa-chevron-down float-end"></i>
+                        </a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="{{ route('reception.create') }}">Add</a></li>
+                            <li><a class="nav-link" href="{{ route('reception.manage') }}">Manage </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-submenu">
+                        <a class="nav-link" href="javascript:void(0);">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                             Accounts  <i class="fa-solid fa-chevron-down float-end"></i>
+                        </a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="{{ route('accounts.create') }}">Add </a></li>
+                            <li><a class="nav-link" href="{{ route('accounts.manage') }}">Manage </a></li>
+                        </ul>
+                    </li>
                       <li class="nav-item has-submenu">
                           <a class="nav-link" href="javascript:void(0);">
                               <i class="fa-solid fa-hospital-user"></i>
@@ -70,31 +90,6 @@
                           <a class="nav-link" href="javascript:void(0);">
                               <i class="fa-solid fa-prescription"></i>
                               Prescription  <i class="fa-solid fa-chevron-down float-end"></i>
-                          </a>
-                          <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>
-                          </ul>
-                      </li>
-                      <li class="nav-item has-submenu">
-                          <a class="nav-link" href="javascript:void(0);">
-                              <i class="fa-solid fa-user-tie"></i>
-                              Receptionist  <i class="fa-solid fa-chevron-down float-end"></i>
-                          </a>
-                          <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>
-                          </ul>
-                      </li>
-
-                      <li class="nav-item has-submenu">
-                          <a class="nav-link" href="javascript:void(0);">
-                              <i class="fa-solid fa-file-invoice-dollar"></i>
-                               Accounts  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
                               <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
