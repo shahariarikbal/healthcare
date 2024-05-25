@@ -100,7 +100,7 @@ class DoctorServices
      //For Image update
      protected function imageUpdate($request, $imageFieldName, $doctor)
      {
-          // Check if a new image file is provided
+          // if user image is provided
           if ($request->hasFile($imageFieldName)) {
                $oldImage = $doctor->avatar;
                if ($oldImage && file_exists(public_path('avatar/' . $oldImage))) {
@@ -114,7 +114,6 @@ class DoctorServices
                return $imageName;
           }
           
-          // If no new image file is provided, return the current avatar name
           return url('avatar/'.$doctor->avatar);
      }
 

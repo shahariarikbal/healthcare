@@ -5,6 +5,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,5 +78,18 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::post('/update/{id}', [PatientController::class, 'update'])->name('patient.update');
         Route::get('/delete/{id}', [PatientController::class, 'delete'])->name('patient.delete');
         Route::get('/prescription/{id}/{slug}', [PatientController::class, 'prescription'])->name('patient.prescription');
+    });
+
+    //Nurse routes
+    Route::group(['prefix' => 'nurse'], function(){
+        Route::get('/create', [NurseController::class, 'create'])->name('nurse.create');
+        Route::get('/manage', [NurseController::class, 'index'])->name('nurse.manage');
+        Route::post('/store', [NurseController::class, 'store'])->name('nurse.store');
+        Route::get('/edit/{id}/{slug}', [NurseController::class, 'edit'])->name('nurse.edit');
+        Route::get('/view/{id}/{slug}', [NurseController::class, 'view'])->name('nurse.view');
+        Route::get('/active/{id}', [NurseController::class, 'active'])->name('nurse.active');
+        Route::get('/inactive/{id}', [NurseController::class, 'inactive'])->name('nurse.inactive');
+        Route::post('/update/{id}', [NurseController::class, 'update'])->name('nurse.update');
+        Route::get('/delete/{id}', [NurseController::class, 'delete'])->name('nurse.delete');
     });
     

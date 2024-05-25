@@ -178,6 +178,10 @@ a {
     border-radius: 50%;
 }
 
+.mb-25{
+    margin-bottom: 25px;
+}
+
 /* Button area start  */
          
 .btn-add {

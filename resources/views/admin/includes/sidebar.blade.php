@@ -34,6 +34,16 @@
                           </ul>
                       </li>
                       <li class="nav-item has-submenu">
+                        <a class="nav-link" href="javascript:void(0);">
+                            <i class="fa-solid fa-user-nurse"></i>
+                             Nurse  <i class="fa-solid fa-chevron-down float-end"></i>
+                        </a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="{{ route('nurse.create') }}">Add</a></li>
+                            <li><a class="nav-link" href="{{ route('nurse.manage') }}">Manage </a></li>
+                        </ul>
+                    </li>
+                      <li class="nav-item has-submenu">
                           <a class="nav-link" href="javascript:void(0);">
                               <i class="fa-solid fa-hospital-user"></i>
                                Patient  <i class="fa-solid fa-chevron-down float-end"></i>
