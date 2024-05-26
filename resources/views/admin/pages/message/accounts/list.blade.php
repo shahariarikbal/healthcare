@@ -1,0 +1,70 @@
+@extends('admin.master')
+
+@section('content')
+    <div class="container mt-3">
+          <div class="col-md-12">
+               <div class="card">
+                    <div class="card-header">
+                          Accounts
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover table-data custom-font-size">
+                          <thead>
+                              <tr>
+                                 <th class="sl-width">SL</th>
+                                 <th>Avatar</th>
+                                 <th>Name</th>
+                                 <th>Action</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+
+                         </tbody>
+                       </table>
+                    </div>
+               </div>
+          </div>
+    </div>
+@endsection
+
+@push('script')
+<script type="text/javascript">
+          $(function () {
+            var table = $('.table-data').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('accounts.list') }}",
+                columns: [
+                    // Serial number column
+                    { 
+                        data: null,
+                        name: 'id',
+                        render: function(data, type, row, meta) {
+                            return meta.row + 1;
+                        }
+                    },
+
+                    {
+                        data:null,
+                        name:'avatar',
+                        render: function (data, type, row){
+                            return '<img src="' + data.avatar + '" class="avatar">'
+                        }
+                    },
+                    {
+                        data: null,
+                        name: 'full_name', 
+                        render: function (data, type, row) {
+                            
+                                return '<strong>' + data.first_name + ' ' + data.last_name + '</strong>'
+                        }
+                    },
+                    
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+
+});
+
+</script>
+@endpush

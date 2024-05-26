@@ -81,6 +81,15 @@ class ReceptionServices
           return $editBtn . ' ' . $viewBtn . ' ' . $deleteBtn;
      }
 
+     public function generateMessageActionButton($row)
+     {
+          $receptionMessageUrl = route('reception.message', ['id' => $row->id]);
+
+          $receptionMessageBtn = '<a href="'.$receptionMessageUrl.'" class="badge-active">Message</a>';
+
+          return $receptionMessageBtn;
+     }
+
 
      public function receptionistUpdate($request, $receptionist)
      {

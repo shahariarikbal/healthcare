@@ -79,10 +79,8 @@
                               Appointment  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>
+                              <li><a class="nav-link" href="javascript:void(0);">All Appointment </a></li>
+                              <li><a class="nav-link" href="javascript:void(0);">Daily Appointment </a></li>
                           </ul>
                       </li>
                       
@@ -92,10 +90,8 @@
                               Prescription  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>
+                              <li><a class="nav-link" href="javascript:void(0);">All Prescription </a></li>
+                              <li><a class="nav-link" href="javascript:void(0);">Daily Prescription </a></li>
                           </ul>
                       </li>
 
@@ -106,9 +102,8 @@
                           </a>
                           <ul class="submenu collapse">
                               <li><a class="nav-link" href="{{ route('doctor.list') }}">Doctors </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>
+                              <li><a class="nav-link" href="{{ route('accounts.list') }}">Accounts </a></li>
+                              <li><a class="nav-link" href="{{ route('reception.list') }}">Receptionist </a></li>
                           </ul>
                       </li>
 

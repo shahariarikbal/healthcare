@@ -5,13 +5,7 @@
           <div class="col-md-12">
                <div class="card">
                     <div class="card-header">
-                          Doctor list
-                          <a href="{{ route('doctor.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
-                          <a href="{{ route('doctor.manage') }}" class="btn btn-sm float-end btn-manage">
-                            <i class="fa-solid fa-circle-plus"></i> Manage
-                        </a>
+                          Receptionists
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">
@@ -39,7 +33,7 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('doctor.list') }}",
+                ajax: "{{ route('reception.list') }}",
                 columns: [
                     // Serial number column
                     { 
@@ -65,8 +59,7 @@
                         render: function (data, type, row) {
                             // Customize the display format as needed
                             
-                                return '<strong>' + data.first_name + ' ' + data.last_name + '</strong>' +
-                                '<p>' + data.department.name + '</p>'
+                                return '<strong>' + data.first_name + ' ' + data.last_name + '</strong>'
                         }
                     },
                     

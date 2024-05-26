@@ -14,6 +14,16 @@ class Receptionist extends Authenticatable
 
     protected $guarded = [];
 
+    public function sentMessages()
+    {
+        return $this->morphMany(Message::class, 'sender');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->morphMany(Message::class, 'receiver');
+    }
+
     /*** Accessor start ***/
 
     public function getFullNameAttribute()

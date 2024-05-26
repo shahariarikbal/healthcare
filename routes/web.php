@@ -106,6 +106,11 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/inactive/{id}', [ReceptionistController::class, 'receptionInactive'])->name('reception.inactive');
         Route::post('/update/{id}', [ReceptionistController::class, 'receptionUpdate'])->name('reception.update');
         Route::get('/delete/{id}', [ReceptionistController::class, 'receptionDelete'])->name('reception.delete');
+
+        //reception message routes
+        Route::get('/list', [MessageController::class, 'receptionMessagingList'])->name('reception.list');
+        Route::get('/message/{id}', [MessageController::class, 'receptionMessage'])->name('reception.message');
+        Route::post('/message/store/{id}', [MessageController::class, 'receptionMessageStore'])->name('reception.message.store');
     });
 
 
@@ -120,5 +125,10 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/inactive/{id}', [AccountController::class, 'accountsInactive'])->name('accounts.inactive');
         Route::post('/update/{id}', [AccountController::class, 'accountsUpdate'])->name('accounts.update');
         Route::get('/delete/{id}', [AccountController::class, 'accountsDelete'])->name('accounts.delete');
+
+        //accounts message routes
+        Route::get('/list', [MessageController::class, 'accountsMessagingList'])->name('accounts.list');
+        Route::get('/message/{id}', [MessageController::class, 'accountsMessage'])->name('accounts.message');
+        Route::post('/message/store/{id}', [MessageController::class, 'accountsMessageStore'])->name('accounts.message.store');
     });
     

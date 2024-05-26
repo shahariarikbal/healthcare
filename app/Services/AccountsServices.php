@@ -82,6 +82,15 @@ class AccountsServices
           return $editBtn . ' ' . $viewBtn . ' ' . $deleteBtn;
      }
 
+     public function generateMessageActionButton($row)
+     {
+          $accountMessageUrl = route('accounts.message', ['id' => $row->id]);
+
+          $accountMessageBtn = '<a href="'.$accountMessageUrl.'" class="badge-active">Message</a>';
+
+          return $accountMessageBtn;
+     }
+
 
      public function accountsUpdate($request, $accounts)
      {

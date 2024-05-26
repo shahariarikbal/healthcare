@@ -5,13 +5,7 @@
           <div class="col-md-12">
                <div class="card">
                     <div class="card-header">
-                          Doctor list
-                          <a href="{{ route('doctor.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
-                          <a href="{{ route('doctor.manage') }}" class="btn btn-sm float-end btn-manage">
-                            <i class="fa-solid fa-circle-plus"></i> Manage
-                        </a>
+                          Doctors
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">

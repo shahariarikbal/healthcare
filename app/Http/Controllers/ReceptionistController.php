@@ -6,6 +6,7 @@ use App\Constants\Status;
 use App\Http\Requests\ReceptionistStoreRequest;
 use App\Http\Requests\ReceptionistUpdateRequest;
 use App\Models\Receptionist;
+use App\Services\MessageServices;
 use App\Services\ReceptionServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class ReceptionistController extends Controller
 {
     protected $receptionServices;
+    
     public function __construct(ReceptionServices $receptionServices)
     {
         $this->receptionServices = $receptionServices;
