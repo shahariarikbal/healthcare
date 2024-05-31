@@ -79,8 +79,8 @@
                               Appointment  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">All Appointment </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">Daily Appointment </a></li>
+                              <li><a class="nav-link" href="{{ route('all.appointments') }}">All Appointment </a></li>
+                              <li><a class="nav-link" href="{{ route('daily.appointments') }}">Daily Appointment </a></li>
                           </ul>
                       </li>
                       
@@ -90,8 +90,8 @@
                               Prescription  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">All Prescription </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">Daily Prescription </a></li>
+                              <li><a class="nav-link" href="{{ route('all.prescriptions') }}">All Prescription </a></li>
+                              <li><a class="nav-link" href="{{ route('daily.prescriptions') }}">Daily Prescription </a></li>
                           </ul>
                       </li>
 
@@ -106,6 +106,18 @@
                               <li><a class="nav-link" href="{{ route('reception.list') }}">Receptionist </a></li>
                           </ul>
                       </li>
+
+                      <li class="nav-item has-submenu">
+                        <a class="nav-link" href="javascript:void(0);">
+                            <i class="fa-solid fa-envelope"></i>
+                            Send E-mail  <i class="fa-solid fa-chevron-down float-end"></i>
+                        </a>
+                        <ul class="submenu collapse">
+                            <li><a class="nav-link" href="javascript:void(0);">Email </a></li>
+                            <li><a class="nav-link" href="javascript:void(0);">Inbox </a></li>
+                            <li><a class="nav-link" href="javascript:void(0);">Sent </a></li>
+                        </ul>
+                    </li>
 
                       <li class="nav-item has-submenu">
                           <a class="nav-link" href="javascript:void(0);">

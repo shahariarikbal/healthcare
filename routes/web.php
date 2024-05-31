@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
@@ -131,4 +132,12 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/message/{id}', [MessageController::class, 'accountsMessage'])->name('accounts.message');
         Route::post('/message/store/{id}', [MessageController::class, 'accountsMessageStore'])->name('accounts.message.store');
     });
+
+    Route::get('/all-appointments-list', [AdminController::class, 'allAppointments'])->name('all.appointments');
+    Route::get('/appointments-view/{id}', [AdminController::class, 'viewAppointment'])->name('appointment.view');
+    Route::get('/appointments-edit/{id}', [AdminController::class, 'editAppointments'])->name('appointment.edit');
+    
+    Route::get('/daily-appointments-list', [AdminController::class, 'dailyAppointments'])->name('daily.appointments');
+    Route::get('/all-prescriptions-list', [AdminController::class, 'allPrescriptions'])->name('all.prescriptions');
+    Route::get('/daily-prescriptions-list', [AdminController::class, 'dailyPrescriptions'])->name('daily.prescriptions');
     

@@ -182,6 +182,27 @@ a {
     margin-bottom: 25px;
 }
 
+.date-filtering{
+    width: 70%;
+    margin: auto;
+}
+
+.filter-btn{
+    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%);
+    cursor: pointer;
+    color: white;
+}
+
+.date-filtering button{
+    border: none;
+}
+
+.refresh-btn{
+    background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+    cursor: pointer;
+    color: white;
+}
+
 /* Button area start  */
          
 .btn-add {
