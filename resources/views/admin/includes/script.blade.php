@@ -15,4 +15,14 @@
         placeholder: "Select a Department",
         allowClear: true
     });
+
+    $("#doctor_id").select2({
+        placeholder: "Select a Doctor",
+        allowClear: true
+    });
+
+    $("#patient_id").select2({
+        placeholder: "Select a Patient",
+        allowClear: true
+    });
 </script>

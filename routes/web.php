@@ -136,6 +136,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     Route::get('/all-appointments-list', [AdminController::class, 'allAppointments'])->name('all.appointments');
     Route::get('/appointments-view/{id}', [AdminController::class, 'viewAppointment'])->name('appointment.view');
     Route::get('/appointments-edit/{id}', [AdminController::class, 'editAppointments'])->name('appointment.edit');
+    Route::post('/appointments-update/{id}', [AdminController::class, 'updateAppointment'])->name('appointment.update');
     
     Route::get('/daily-appointments-list', [AdminController::class, 'dailyAppointments'])->name('daily.appointments');
     Route::get('/all-prescriptions-list', [AdminController::class, 'allPrescriptions'])->name('all.prescriptions');

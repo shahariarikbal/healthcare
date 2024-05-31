@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('content')
-    <div class="container mt-2">
+    <div class="container-fluid mt-2">
           <div class="col-md-12">
                <div class="card">
                     <div class="card-header">

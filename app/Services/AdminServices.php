@@ -33,8 +33,8 @@ class AdminServices
           });
        }
 
-       //pagination
-       $data = $query->paginate(request('length'), ['*'], 'page', (request('start') / request('length')) +1);
+       //fetch all data
+       $data = $query->get();
 
 
        return $data;
@@ -49,6 +49,18 @@ class AdminServices
           $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
 
           return $editBtn . ' ' . $viewBtn;
+     }
+
+
+     public function appointmentUpdate($request, $id)
+     {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->update([
+            'doctor_id' => $request->doctor_id,
+            'patient_id' => $request->patient_id,
+            'appointment_date' => $request->appointment_date,
+            'problem' => $request->problem,
+        ]);
      }
      
 
