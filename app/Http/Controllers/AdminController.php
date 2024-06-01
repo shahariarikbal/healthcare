@@ -37,6 +37,15 @@ class AdminController extends Controller
 
     public function dailyAppointments()
     {
+        if(request()->ajax()){
+            $data = $this->adminServices->getDailyAppointmentDataForDatatable();
+            $dailyDataWithActions = $data->map(function($row){
+                $row->action = $this->adminServices->generateDailyActionButtons($row);
+                return $row;
+            });
+
+            return datatables()->of($dailyDataWithActions)->make(true);
+        }
         return view('admin.pages.appointments.daily-appointments');
     }
 
@@ -53,6 +62,26 @@ class AdminController extends Controller
         try{
             $this->adminServices->appointmentUpdate($request, $id);
             return redirect()->route('all.appointments')->with('success', 'Appointment has been updated');
+        }catch(Exception $exception){
+            Log::error('Appointment error is:', ['error' => $exception->getMessage()]);
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    //for daily appointment
+    public function dailyAppointmentEdit($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Status::ACTIVE)->get();
+        $patients = Patient::orderBy('id', 'desc')->get();
+        return view('admin.pages.appointments.daily-edit', compact(['appointment', 'doctors', 'patients']));
+    }
+
+    public function dailyAppointmentUpdate(AppointmentUpdateRequest $request, $id)
+    {
+        try{
+            $this->adminServices->dailyAppointmentUpdate($request, $id);
+            return redirect()->route('daily.appointments')->with('success', 'Appointment has been updated');
         }catch(Exception $exception){
             Log::error('Appointment error is:', ['error' => $exception->getMessage()]);
             return redirect()->back()->with('error', $exception->getMessage());

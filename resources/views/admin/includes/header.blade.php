@@ -3,6 +3,6 @@
         <i class="fa-regular fa-circle-left"></i>
     </button>
     <div class="page-directory">
-        <a href="{{ url('clear') }}" class="text-white btn btn-manage">Cache Clear</a>
+        <a href="{{ url('clear') }}" class="text-white btn btn-add">Cache Clear</a>
     </div>
 </div>

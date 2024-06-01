@@ -8,8 +8,8 @@
     --azure-color: #0f9cf3;
     --medical-blue-color: #1560BD;
     --gradient-color: linear-gradient(to right, #ff5f6d, #ffc371);
-    --footer-gradient-color: linear-gradient(to right, #f00997, #41fae1);
-    --header-gradient-color: linear-gradient(to right, #41fae1, #f00997);
+    --footer-gradient-color: #ED1B24;
+    --header-gradient-color: #ED1B24;
     --card-total-appointment-gradient-color: linear-gradient(135deg, #0FF0B3 0%,#036ED9 100%);
     --card-today-appointment-gradient-color: linear-gradient(135deg, #13f1fc 0%,#0470dc 100%);
     --card-department-gradient-color: linear-gradient(135deg, #b1ea4d 0%,#459522 100%);
@@ -129,7 +129,7 @@ a {
 }
 
 .bg-header{
-    background: var(--header-gradient-color);
+    background: var(--medical-blue-color);
     color: white;
 }
 
