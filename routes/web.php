@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
@@ -142,8 +143,14 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     Route::get('/daily-appointments-edit/{id}', [AdminController::class, 'dailyAppointmentEdit'])->name('daily.appointment.edit');
     Route::post('/daily-appointments-update/{id}', [AdminController::class, 'dailyAppointmentUpdate'])->name('daily.appointment.update');
 
-
-
     Route::get('/all-prescriptions-list', [AdminController::class, 'allPrescriptions'])->name('all.prescriptions');
     Route::get('/daily-prescriptions-list', [AdminController::class, 'dailyPrescriptions'])->name('daily.prescriptions');
+
+    //Email routes
+    Route::group(['prefix' => 'email'], function(){
+        Route::get('/create', [EmailController::class, 'emailCreate'])->name('email.create');
+        Route::post('/send', [EmailController::class, 'emailSend'])->name('email.send');
+        Route::get('/inbox', [EmailController::class, 'emailInbox'])->name('email.inbox');
+        Route::get('/sent/box', [EmailController::class, 'emailSentBox'])->name('email.sent.box');
+    });
     

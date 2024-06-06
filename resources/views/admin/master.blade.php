@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin dashboard</title>
     @include('admin.includes.style')
-    {{-- @routes --}}
+    
 </head>
 <body>
     <section class="main-wrapper">
@@ -62,13 +62,13 @@
                 duration: 3000,
                 newWindow: true,
                 close: true,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
+                gravity: "top", 
+                position: "right",
+                stopOnFocus: true, 
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
-                onClick: function(){} // Callback after click
+                onClick: function(){}
                 }).showToast();
         </script>
     @endif
@@ -81,13 +81,13 @@
                 newWindow: true,
                 close: true,
                 className: "error",
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
                 style: {
                     background: "linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)",
                 },
-                onClick: function(){} // Callback after click
+                onClick: function(){}
                 }).showToast();
         </script>
     @endif

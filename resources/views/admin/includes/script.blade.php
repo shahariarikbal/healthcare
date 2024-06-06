@@ -25,4 +25,9 @@
         placeholder: "Select a Patient",
         allowClear: true
     });
+
+    $("#email_to").select2({
+        placeholder: "Emails",
+        allowClear: true
+    });
 </script>
