@@ -113,9 +113,8 @@
                             Send E-mail  <i class="fa-solid fa-chevron-down float-end"></i>
                         </a>
                         <ul class="submenu collapse">
-                            <li><a class="nav-link" href="{{ route('email.create') }}">Email </a></li>
-                            <li><a class="nav-link" href="{{ route('email.inbox') }}">Inbox </a></li>
-                            <li><a class="nav-link" href="{{ route('email.sent.box') }}">Sent </a></li>
+                            <li><a class="nav-link" href="{{ route('email.create') }}">Email Compose </a></li>
+                            <li><a class="nav-link" href="{{ route('email.manage') }}">All Email </a></li>
                         </ul>
                     </li>
 

@@ -81,7 +81,6 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/edit/{id}/{slug}', [PatientController::class, 'edit'])->name('patient.edit');
         Route::post('/update/{id}', [PatientController::class, 'update'])->name('patient.update');
         Route::get('/delete/{id}', [PatientController::class, 'delete'])->name('patient.delete');
-        Route::get('/prescription/{id}/{slug}', [PatientController::class, 'prescription'])->name('patient.prescription');
     });
 
     //Nurse routes
@@ -150,7 +149,8 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     Route::group(['prefix' => 'email'], function(){
         Route::get('/create', [EmailController::class, 'emailCreate'])->name('email.create');
         Route::post('/send', [EmailController::class, 'emailSend'])->name('email.send');
-        Route::get('/inbox', [EmailController::class, 'emailInbox'])->name('email.inbox');
-        Route::get('/sent/box', [EmailController::class, 'emailSentBox'])->name('email.sent.box');
+        Route::get('/manage', [EmailController::class, 'sendingEmailShow'])->name('email.manage');
+        Route::get('/view/{id}', [EmailController::class, 'sendingEmailDetails'])->name('email.view');
+        Route::get('/delete/{id}', [EmailController::class, 'sendingEmailDelete'])->name('email.delete');
     });
     

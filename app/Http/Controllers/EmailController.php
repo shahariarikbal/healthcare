@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Jobs\PatientOfferEmailJob;
 use App\Models\Email;
 use App\Models\Patient;
+use App\Services\EmailServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class EmailController extends Controller
 {
+    protected $emailService;
+
+    public function __construct(EmailServices $emailService)
+    {
+        $this->emailService = $emailService;
+    }
+
     public function emailCreate()
     {
         $emails = Patient::latest()->get(['email']);
@@ -52,8 +60,17 @@ class EmailController extends Controller
         return redirect()->back()->with('success', 'Email has beeen sent');
     }
 
-    // public function emailInbox()
-    // {
-    //     return view('admin.pages.email.template');
-    // }
+    public function sendingEmailShow()
+    {
+        if(request()->ajax()){
+            $data = $this->emailService->getAllSendingEmailFromDatabase();
+            $dataWithAction = $data->map(function($row){
+                $row->action = $this->emailService->generateActionButtons($row);
+                return $row;
+            });
+
+            return datatables()->of($dataWithAction)->make(true);
+        }
+        return view('admin.pages.email.sent-box');
+    }
 }

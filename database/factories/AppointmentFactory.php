@@ -24,7 +24,7 @@ class AppointmentFactory extends Factory
             'patient_id' => Patient::all()->random()->id,
             'doctor_id' => Doctor::all()->random()->id,
             'appointment_date' => $this->faker->date('Y-m-d'),
-            'problem' => 'Patient problem gose to here',
+            'problem' => $this->faker->paragraph,
             'status' => $this->faker->numberBetween(0, 4)
         ];
     }

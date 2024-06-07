@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin dashboard</title>
     @include('admin.includes.style')
+    @stack('style')
     
 </head>
 <body>

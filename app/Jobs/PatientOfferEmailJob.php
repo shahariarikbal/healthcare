@@ -34,5 +34,7 @@ class PatientOfferEmailJob implements ShouldQueue
             $email = new PatientOfferEmail($this->dynamicData);
             Mail::to($this->email)->send($email);
         }
+
+        sleep(1);
     }
 }

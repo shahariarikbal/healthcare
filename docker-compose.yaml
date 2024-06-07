@@ -1,11 +1,5 @@
 version: "3"
-networks:
-  default:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.18.0.0/16   # Change the subnet to a non-overlapping range
-          gateway: 172.18.0.1
+
 services:
   db:
     image: mysql
