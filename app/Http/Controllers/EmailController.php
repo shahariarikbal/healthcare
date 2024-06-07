@@ -73,4 +73,11 @@ class EmailController extends Controller
         }
         return view('admin.pages.email.sent-box');
     }
+
+    public function sendingEmailDelete($id)
+    {
+        $email = Email::findOrFail($id);
+        $email->delete();
+        return redirect()->back()->with('success', 'Email has beeen deleted');
+    }
 }

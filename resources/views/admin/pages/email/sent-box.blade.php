@@ -27,6 +27,7 @@
                           <thead>
                               <tr>
                                  <th class="table-sl">SL</th>
+                                 <th>Sending date</th>
                                  <th>Email</th>
                                  <th>Subject</th>
                                  <th>Message</th>
@@ -53,6 +54,20 @@
                 ajax: "{{ route('email.manage') }}",
                 columns: [
                     {data: 'id', name: 'id'},
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                        render: function(data, type, row) {
+                            var date = new Date(data);
+                            return date.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            });
+                        }
+                    },
                     {data: 'email_to', name: 'email_to'},
                     {data: 'subject', name: 'subject'},
                     {
