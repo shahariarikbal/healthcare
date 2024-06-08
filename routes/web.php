@@ -70,7 +70,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/inactive/{id}', [DoctorController::class, 'doctorInactive'])->name('doctor.inactive');
         //Doctor message routes
         Route::get('/list', [MessageController::class, 'doctorMessagingList'])->name('doctor.list');
-        Route::get('/message/{id}', [MessageController::class, 'doctorMessage'])->name('doctor.message');
+        Route::get('/message/show/{id}', [MessageController::class, 'showDoctorMessage'])->name('doctor.message');
         Route::post('/message/store/{id}', [MessageController::class, 'doctorMessageStore'])->name('doctor.message.store');
     });
 

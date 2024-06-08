@@ -46,12 +46,12 @@ class MessageController extends Controller
         return view('admin.pages.message.doctors.doctor-list');
     }
 
-    public function doctorMessage($id)
+    public function showDoctorMessage($id)
     {
         $doctor = Doctor::find($id);
         $sentMessages = $doctor->sentMessages()->with('receiver')->get();
         $receivedMessages = $doctor->receivedMessages()->with('sender')->get();
-        return view('admin.pages.message.doctor-message-view', compact('doctor', 'sentMessages', 'receivedMessages'));
+        return view('admin.pages.message.doctors.doctor-message-view', compact('doctor', 'sentMessages', 'receivedMessages'));
     }
 
     public function doctorMessageStore(Request $request, $id)
