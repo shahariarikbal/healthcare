@@ -8,7 +8,7 @@
                       <div class="d-flex">
                           <div class="flex-grow-1">
                               <p class="text-truncate mb-2 text-white">Total Appointment</p>
-                              <h4 class="mb-2 text-white">1452</h4>
+                              <h4 class="mb-2 text-white">{{ $totalAppointments ?? 0 }}</h4>
                           </div>
                           <div class="avatar-sm">
                               <span class="avatar-title rounded-3">
@@ -25,7 +25,7 @@
                       <div class="d-flex">
                           <div class="flex-grow-1">
                               <p class="text-truncate mb-2 text-white">Today Appointment</p>
-                              <h4 class="mb-2 text-white">938</h4>
+                              <h4 class="mb-2 text-white">{{ $todayAppointments ?? 0 }}</h4>
                           </div>
                           <div class="avatar-sm">
                               <span class="avatar-title rounded-3">
@@ -41,12 +41,12 @@
                   <div class="card-body">
                       <div class="d-flex">
                           <div class="flex-grow-1">
-                              <p class="text-truncate mb-2 text-white">Departments</p>
-                              <h4 class="mb-2 text-white">8246</h4>
+                              <p class="text-truncate mb-2 text-white">Patients</p>
+                              <h4 class="mb-2 text-white">{{ $patients ?? 0 }}</h4>
                           </div>
                           <div class="avatar-sm">
                               <span class="avatar-title rounded-3">
-                                  <i class="fa-solid fa-graduation-cap icon"></i>
+                                <i class="fa-solid fa-bed-pulse"></i>
                               </span>
                           </div>
                       </div>                                              
@@ -59,7 +59,7 @@
                       <div class="d-flex">
                           <div class="flex-grow-1">
                               <p class="text-truncate mb-2 text-white">Doctors</p>
-                              <h4 class="mb-2 text-white">29670</h4>
+                              <h4 class="mb-2 text-white">{{ $doctors ?? 0 }}</h4>
                           </div>
                           <div class="avatar-sm">
                               <span class="avatar-title rounded-3">
