@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\SmtpServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -170,6 +171,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        SmtpServiceProvider::class,
     ])->toArray(),
 
     /*

@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-start show" data-bs-scroll="false" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
           <div class="offcanvas-header justify-content-center">
               <a href="{{ route('admin.dashboard') }}">
-                  <p class="brand-name">HCMS</p>
+                  <img src="{{ asset(App\Constants\Status::DEFAULT_LOGO_SET) }}" />
               </a>
           </div>
           <div class="offcanvas-body">
@@ -121,13 +121,10 @@
                       <li class="nav-item has-submenu">
                           <a class="nav-link" href="javascript:void(0);">
                               <i class="fa-solid fa-envelope"></i>
-                              Email setup  <i class="fa-solid fa-chevron-down float-end"></i>
+                              SMTP Config  <i class="fa-solid fa-chevron-down float-end"></i>
                           </a>
                           <ul class="submenu collapse">
-                              <li><a class="nav-link" href="javascript:void(0);">item 4 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 5 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 6 </a></li>
-                              <li><a class="nav-link" href="javascript:void(0);">item 7 </a></li>
+                              <li><a class="nav-link" href="{{ route('smtp.setting') }}">SMTP Settings </a></li>
                           </ul>
                       </li>
                   </ul>

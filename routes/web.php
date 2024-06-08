@@ -11,6 +11,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ReceptionistController;
+use App\Http\Controllers\SmtpSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -153,4 +154,8 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/view/{id}', [EmailController::class, 'sendingEmailDetails'])->name('email.view');
         Route::get('/delete/{id}', [EmailController::class, 'sendingEmailDelete'])->name('email.delete');
     });
+
+    //SMTP Settings routes
+    Route::get('/smtp-setting', [SmtpSettingController::class, 'showSmtpForm'])->name('smtp.setting');
+    Route::post('/smtp-setting-store', [SmtpSettingController::class, 'smtpStore'])->name('smtp.setting.store');
     
