@@ -86,3 +86,15 @@ document.addEventListener("DOMContentLoaded", function(){
       });
   });
 });
+
+
+// Active class add remove
+$(document).ready(function() {
+    $('.nav-link').click(function() {
+        // Remove 'active' class from all nav-items
+        $('.nav-item').removeClass('active');
+
+        // Add 'active' class to the parent nav-item of the clicked nav-link
+        $(this).parent().addClass('active');
+    });
+});
