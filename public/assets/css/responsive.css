@@ -1,0 +1,16 @@
+
+ @media (max-width: 768px) {
+     .offcanvas {
+          display: none;
+     }
+
+     .offcanvas.show{
+          display: block;
+     }
+ }
+
+ @media (max-width: 769px) {
+     .offcanvas.show{
+          display: block;
+     }
+ }
