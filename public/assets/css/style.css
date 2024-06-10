@@ -448,6 +448,7 @@ a {
 
 
 /* Custom css start */
+/* Header section css start */
 .sidebar-toggle-btn {
     background: transparent;
     border: none;
@@ -499,6 +500,60 @@ a {
 .custom-profile-dropdown-menu li a:hover {
     background: #e2e2e2;
 }
+/* Header section css End */
+
+/* Sidebar css start */
+.nav-list {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-list-item-link {
+    display: block;
+    padding: 8px;
+    color: var(--pure-white-color);
+    font-size: 15px;
+    font-weight: 600;
+    transition: all .5s ease;
+}
+
+.nav-list-item.active .nav-list-item-link,
+.nav-list-item-link:hover {
+    background: var(--pure-white-color);
+    color: #000;
+}
+
+.submenu-list {
+    padding-left: 35px;
+    background: #3374c5;
+    transition: all .5s ease;
+}
+
+.nav-list-item-link i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.nav-list-item-link .fa-chevron-down {
+    transition: all .5s ease;
+    margin-right: 0;
+    transform: rotate(270deg);
+    font-size: 14px;
+}
+
+.nav-list-item.has-submenu.active .nav-list-item-link .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.submenu-list-item-link {
+    padding: 5px 0;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--pure-white-color);
+}
+/* Sidebar css End */
 /* Custom css End */
 
 

@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(){
-    document.querySelectorAll('.sidebar .nav-link').forEach(function(element){
+    document.querySelectorAll('.sidebar .nav-list-item-link').forEach(function(element){
       
       element.addEventListener('click', function (e) {
   
         let nextEl = element.nextElementSibling;
   
-        if (nextEl && nextEl.classList.contains('submenu')) {
+        if (nextEl && nextEl.classList.contains('submenu-list')) {
             e.preventDefault();
             
             if (nextEl.classList.contains('show')) {
                 nextEl.classList.remove('show');
             } else {
                 // Hide any other open submenu
-                document.querySelectorAll('.submenu.show').forEach(function(submenu){
+                document.querySelectorAll('.submenu-list.show').forEach(function(submenu){
                     submenu.classList.remove('show');
                 });
                 
@@ -88,13 +88,51 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-// Active class add remove
 $(document).ready(function() {
-    $('.nav-link').click(function() {
-        // Remove 'active' class from all nav-items
-        $('.nav-item').removeClass('active');
+    $('.sidebar .nav-list-item-link').on('click', function() {
+        // Remove active class from all nav-list-item
+        $('.sidebar .nav-list-item').removeClass('active');
+        
+        // Add active class to the clicked item's parent li
+        $(this).parent('.nav-list-item').addClass('active');
+        
+        // Optional: Prevent default action if the clicked item has a submenu
+        if ($(this).next('.submenu-list').length > 0) {
+            event.preventDefault();
+        }
+    });
 
-        // Add 'active' class to the parent nav-item of the clicked nav-link
-        $(this).parent().addClass('active');
+    $('.submenu-list-item-link').on('click', function(e) {
+        e.stopPropagation(); // Stop event from bubbling up to parent nav-list-item-link
+        
+        // Remove active class from all nav-list-item
+        $('.sidebar .nav-list-item').removeClass('active');
+        
+        // Add active class to the closest parent nav-list-item
+        $(this).closest('.nav-list-item').addClass('active');
     });
 });
+
+ $(document).ready(function(){
+    function toggleOffcanvas() {
+        if ($(window).width() <= 767) {
+            $('#offcanvasScrolling').removeClass('show');
+        } else {
+            $('#offcanvasScrolling').addClass('show');
+        }
+    }
+
+    // Initially toggle based on window width
+    toggleOffcanvas();
+
+    // Attach resize event listener to dynamically toggle
+    $(window).resize(function() {
+        toggleOffcanvas();
+    });
+
+    // Toggle offcanvas scrolling on sidebarToggle click
+    $('#sidebarToggle').on('click', function() {
+        $('#offcanvasScrolling').toggleClass('show');
+    });
+});
+
