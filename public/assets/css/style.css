@@ -445,6 +445,122 @@ a {
  
 /* Others css end */
 
+
+
+/* Custom css start */
+/* Header section css start */
+.sidebar-toggle-btn {
+    background: transparent;
+    border: none;
+}
+
+.sidebar-toggle-btn i {
+    font-size: 30px;
+    color: #fff;
+} 
+
+.custom-profile-dropdown {
+    position: relative;
+    margin-left: 20px;
+    height: 100%;
+    cursor: pointer;
+    user-select: none;
+}
+
+.custom-profile-dropdown-image {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 1000%;
+    margin-right: 5px;
+}
+
+.custom-profile-dropdown-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.custom-profile-dropdown-menu {
+    right: 0;
+    top: 45px!important;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 0;
+}
+
+.custom-profile-dropdown-menu li a {
+    padding: 5px 10px;
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    transition: all .5s ease;
+}
+
+.custom-profile-dropdown-menu li a:hover {
+    background: #e2e2e2;
+}
+/* Header section css End */
+
+/* Sidebar css start */
+.nav-list {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.nav-list-item-link {
+    display: block;
+    padding: 8px;
+    color: var(--pure-white-color);
+    font-size: 15px;
+    font-weight: 600;
+    transition: all .5s ease;
+}
+
+.nav-list-item.active .nav-list-item-link,
+.nav-list-item-link:hover {
+    background: var(--pure-white-color);
+    color: #000;
+}
+
+.submenu-list {
+    padding-left: 35px;
+    background: #3374c5;
+    transition: all .5s ease;
+}
+
+.nav-list-item-link i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.nav-list-item-link .fa-chevron-down {
+    transition: all .5s ease;
+    margin-right: 0;
+    transform: rotate(270deg);
+    font-size: 14px;
+}
+
+.nav-list-item.has-submenu.active .nav-list-item-link .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.submenu-list-item-link {
+    padding: 5px 0;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--pure-white-color);
+}
+/* Sidebar css End */
+/* Custom css End */
+
+
+
+
+
+
 /* table css start */
 
 .table_main{
