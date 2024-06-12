@@ -109,7 +109,7 @@
                             <a class="submenu-list-item-link" href="{{ route('all.appointments') }}">All Appointment </a>
                         </li>
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('daily.appointments') }}">Daily Appointment </a>
+                            <a class="submenu-list-item-link" href="{{ route('daily.appointments') }}">Today Appointment </a>
                         </li>
                     </ul>
                 </li>              
