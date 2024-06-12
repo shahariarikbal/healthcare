@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ExpanseController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
@@ -127,6 +128,12 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/inactive/{id}', [AccountController::class, 'accountsInactive'])->name('accounts.inactive');
         Route::post('/update/{id}', [AccountController::class, 'accountsUpdate'])->name('accounts.update');
         Route::get('/delete/{id}', [AccountController::class, 'accountsDelete'])->name('accounts.delete');
+
+        //expanse routes
+        Route::get('/expanse-manage', [ExpanseController::class, 'expanseManage'])->name('expanse.manage');
+        Route::get('/expanse-create', [ExpanseController::class, 'expanseCreate'])->name('expanse.create');
+        Route::post('/expanse-store', [ExpanseController::class, 'expanseStore'])->name('expanse.store');
+        
 
         //accounts message routes
         Route::get('/list', [MessageController::class, 'accountsMessagingList'])->name('accounts.list');

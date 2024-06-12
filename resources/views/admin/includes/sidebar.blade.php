@@ -82,6 +82,18 @@
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Manage </a>
                         </li>
+                        <li class="submenu-list-item">
+                            <a class="submenu-list-item-link" href="{{ route('expanse.manage') }}">Expanse </a>
+                        </li>
+                        <li class="submenu-list-item">
+                            <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Pending list </a>
+                        </li>
+                        <li class="submenu-list-item">
+                            <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Complete list </a>
+                        </li>
+                        <li class="submenu-list-item">
+                            <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Report </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-list-item has-submenu">
