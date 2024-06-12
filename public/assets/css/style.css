@@ -155,6 +155,15 @@ a {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.balance-card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 170px;
+}
+
+.dashboard-chart{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .today-appointment{
     background: var(--card-today-appointment-gradient-color);
 }
