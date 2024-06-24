@@ -2,7 +2,7 @@
 
 namespace App\Constants;
 
-class Status
+class Statics
 {
     const ACTIVE = 1;
     const INACTIVE = 0;
@@ -11,4 +11,6 @@ class Status
     const DEFAULT_IMAGE_SET = 'assets/images/avatar.png';
 
     const DEFAULT_LOGO_SET = 'assets/images/logo.png';
+
+    const DEFAULT_RECEIPT_SET = 'assets/images/default-receipt.png';
 }

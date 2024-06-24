@@ -10,7 +10,12 @@
                     </div>
                     <div class="card-body">
                          <div class="doctor-details">
-                              <img src="{{ asset($doctor->avatar) }}" class="details-view-avatar" />
+                            @if($doctor->avatar)
+                            <img src="{{ asset($doctor->avatar) }}" class="details-view-avatar" />
+                            @else
+                            <img src="{{ asset(App\Constants\Statics::DEFAULT_IMAGE_SET) }}" class="avatar-size" />
+                            @endif
+                              
                               <div class="details-info">
                                   <span class="name">Name: {{ $doctor->full_name ?? 'Doctor name' }}</span>
                                   <span class="specialist">Specialist: {{ $doctor->department?->name ?? 'Specialist' }}</span>

@@ -80,7 +80,7 @@
                                    @if($receptionist->avatar)
                                    <img src="{{ asset($receptionist->avatar) }}" class="avatar-size" />
                                    @else
-                                   <img src="{{ asset(App\Constants\Status::DEFAULT_IMAGE_SET) }}" id="imagePreview" class="avatar-size" />
+                                   <img src="{{ asset(App\Constants\Statics::DEFAULT_IMAGE_SET) }}" id="imagePreview" class="avatar-size" />
                                    @endif
                                    
                               </div>

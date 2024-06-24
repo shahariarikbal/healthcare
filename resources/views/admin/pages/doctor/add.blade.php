@@ -85,7 +85,7 @@
                               <div class="col-md-6">
                                    <label for="avatar" class="form-label">Avatar <span class="text-danger">*</span></label>
                                    <input type="file" class="form-control" name="avatar" onchange="imageChange(event)"/>
-                                   <img src="{{ asset(App\Constants\Status::DEFAULT_IMAGE_SET) }}" id="imagePreview" class="avatar-size" />
+                                   <img src="{{ asset(App\Constants\Statics::DEFAULT_IMAGE_SET) }}" id="imagePreview" class="avatar-size" />
                               </div>
 
                               <span class="text-danger">{{ $errors->has('avatar') ? $errors->first('avatar') : ' ' }}</span>

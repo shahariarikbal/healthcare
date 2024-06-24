@@ -133,6 +133,9 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/expanse-manage', [ExpanseController::class, 'expanseManage'])->name('expanse.manage');
         Route::get('/expanse-create', [ExpanseController::class, 'expanseCreate'])->name('expanse.create');
         Route::post('/expanse-store', [ExpanseController::class, 'expanseStore'])->name('expanse.store');
+        Route::get('/expanse-edit/{id}', [ExpanseController::class, 'expanseEdit'])->name('expanse.edit');
+        Route::post('/expanse-update/{id}', [ExpanseController::class, 'expanseUpdate'])->name('expanse.update');
+        Route::get('/expanse-delete/{id}', [ExpanseController::class, 'expanseDelete'])->name('expanse.delete');
         
 
         //accounts message routes

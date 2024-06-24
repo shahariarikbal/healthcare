@@ -80,7 +80,7 @@
                                    @if($accounts->avatar)
                                    <img src="{{ asset($accounts->avatar) }}" class="avatar-size" />
                                    @else
-                                   <img src="{{ asset(App\Constants\Status::DEFAULT_IMAGE_SET) }}" id="imagePreview" class="avatar-size" />
+                                   <img src="{{ asset(App\Constants\Statics::DEFAULT_IMAGE_SET) }}" id="imagePreview" class="avatar-size" />
                                    @endif
                                    
                               </div>

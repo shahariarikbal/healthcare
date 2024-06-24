@@ -1,7 +1,7 @@
 <div class="offcanvas offcanvas-start show" data-bs-scroll="false" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header justify-content-center">
         <a href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset(App\Constants\Status::DEFAULT_LOGO_SET) }}" />
+            <img src="{{ asset(App\Constants\Statics::DEFAULT_LOGO_SET) }}" />
         </a>
     </div>
     <div class="offcanvas-body">

@@ -83,7 +83,7 @@
                                    @if(!empty($doctor->avatar))
                                    <img src="{{ asset($doctor->avatar) }}" id="imagePreview" class="avatar-size" />
                                    @else
-                                   <img src="{{ asset(App\Constants\Status::DEFAULT_IMAGE_SET) }}" class="avatar-size" />
+                                   <img src="{{ asset(App\Constants\Statics::DEFAULT_IMAGE_SET) }}" class="avatar-size" />
                                    @endif
                                    <span class="text-danger">{{ $errors->has('avatar') ? $errors->first('avatar') : ' ' }}</span>
                               </div>

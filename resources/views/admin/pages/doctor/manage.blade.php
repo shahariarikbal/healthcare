@@ -43,12 +43,11 @@
                 serverSide: true,
                 ajax: "{{ route('doctor.manage') }}",
                 columns: [
-                    // Serial number column
                     { 
                         data: null,
                         name: 'id',
                         render: function(data, type, row, meta) {
-                            // Calculate the serial number using the row index
+                            // Serial number
                             return meta.row + 1;
                         }
                     },
@@ -66,7 +65,6 @@
                         name: 'full_name', // Change the name to 'full_name' to avoid confusion
                         render: function (data, type, row) {
                             // Customize the display format as needed
-                            
                                 return '<strong>' + data.first_name + ' ' + data.last_name + '</strong>' +
                                 '<p>' + data.department.name + '</p>'
                         }
@@ -83,14 +81,14 @@
                         data: 'experience',
                         name: 'experience',
                         render: function(data, type, row) {
-                            return '<p>' + data + " years" +'</p>'; // Append "years" to the experience value
+                            return '<p>' + data + " years" +'</p>';
                         }
                     },
                     {
                         data: 'fee',
                         name: 'fee',
                         render: function(data, type, row) {
-                            return '$' + data; // Add the "$" symbol before the fee value
+                            return '$' + data;
                         }
                     },
                     {

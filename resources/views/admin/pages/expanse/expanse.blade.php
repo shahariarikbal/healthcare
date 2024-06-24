@@ -11,6 +11,19 @@
                           </a>
                     </div>
                     <div class="card-body">
+                        <div class="input-group date-filtering">
+                            <input type="date" aria-label="From date" name="from_date" id="from_date" class="form-control">
+                            <input type="date" aria-label="To date" name="to_date" id="to_date" class="form-control">
+                            <button type="button" id="filter-btn">
+                              <span class="input-group-text filter-btn">Filter</span>
+                            </button>
+                            <button type="button" id="refresh-btn">
+                              <span class="input-group-text refresh-btn">Refresh</span>
+                            </button>
+                          </div>
+                          <div class="expanse-box">
+                            <p>Total expanse: $0</p>
+                          </div>
                         <table id="expanse-list" class="table table-hover table-data custom-font-size">
                           <thead>
                               <tr>
@@ -34,6 +47,57 @@
 
 @push('script')
     <script type="text/javascript">
+            $(function () {
             
+            var table = $('.table-data').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('expanse.manage') }}",
+                    data: function(d){
+                        d.from_date = $('#from_date').val();
+                        d.to_date = $('#to_date').val();
+                    },
+                    dataSrc: function(json){
+                        $('.expanse-box p').text('Total expanse: $' + json.total_amount);
+                        return json.data;
+                    }
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'expanse_date', name: 'expanse_date'},
+                    {data: 'purpose', name: 'purpose'},
+                    {
+                        data: 'amount', 
+                        name: 'amount',
+                        render:function(data, type, row){
+                            return '$' + data
+                        }
+                    },
+                    {
+                        data: 'image', 
+                        name: 'image',
+                        render:function(data, type, row){
+                            if(!data){
+                                return 'N/A';
+                            }
+                            return '<img src="' + data + '" class="receipt-img">'
+                        }
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+
+            $('#filter-btn').on('click', function(){
+                table.draw();
+            });
+
+            $('#refresh-btn').on('click', function(){
+                $('#from_date').val('');
+                $('#to_date').val('');
+                table.draw();
+            })
+            
+          });
     </script>
 @endpush

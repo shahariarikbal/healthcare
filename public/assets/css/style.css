@@ -189,6 +189,11 @@ a {
     border-radius: 50%;
 }
 
+.receipt-img{
+    height: 50px;
+    width: 100px;
+}
+
 .mb-25{
     margin-bottom: 25px;
 }
@@ -565,11 +570,20 @@ a {
 /* Sidebar css End */
 /* Custom css End */
 
+.expanse-box{
+    position: relative;
+    left: 39%;
+    height: 50px;
+    width: 210px;
+    border-radius: 5px;
+    background-color: palegreen;
+}
 
-
-
-
-
+.expanse-box p{
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 10px;
+}
 /* table css start */
 
 .table_main{
