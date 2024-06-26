@@ -85,11 +85,12 @@
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('expanse.manage') }}">Expanse </a>
                         </li>
+                        
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Pending list </a>
+                            <a class="submenu-list-item-link" href="{{ route('accounts.billing.manage') }}">Billings </a>
                         </li>
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Complete list </a>
+                            <a class="submenu-list-item-link" href="{{ route('accounts.billing.invoice') }}">Invoices </a>
                         </li>
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Report </a>

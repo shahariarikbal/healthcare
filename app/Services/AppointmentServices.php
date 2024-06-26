@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Appointment;
 use Carbon\Carbon;
 
-class AdminServices
+class AppointmentServices
 {
     public function getAppointmentDataForDatatable()
     {
@@ -42,12 +42,15 @@ class AdminServices
 
     public function generateActionButtons($row)
     {
-          
-          $editUrl = route('appointment.edit', ['id' => $row->id,'slug' => $row->slug]);
+          $editBtn = '';
+          if(!auth()->guard('account')->check() && !auth()->guard('receptionist')->check()){
+            $editUrl = route('appointment.edit', ['id' => $row->id]);
+            $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
+          }
+          $billingUrl = route('bill.collect', ['id' => $row->id]);
+          $billingBtn = $row->is_pay === 1 ? '<a href="#" class="edit paid-btn" title="Paid"><i class="fa-solid fa-circle-check"></i></a>' : '<a href="'.$billingUrl.'" class="edit delete-btn" title="Billing"><i class="fa-solid fa-money-bill-transfer"></i></a>';
 
-          $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
-
-          return $editBtn;
+          return $editBtn.' '. $billingBtn;
      }
 
 

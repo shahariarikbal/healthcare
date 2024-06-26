@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\Status;
+use App\Constants\Statics;
 use App\Http\Requests\AppointmentUpdateRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
-use App\Services\AdminServices;
+use App\Services\AppointmentServices;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
-    protected $adminServices;
+    protected $appointmentServices;
 
-    public function __construct(AdminServices $adminServices)
+    public function __construct(AppointmentServices $appointmentServices)
     {
-        $this->adminServices = $adminServices;
+        $this->appointmentServices = $appointmentServices;
     }
 
     public function allAppointments()
     {
         if (request()->ajax()) {
-            $data = $this->adminServices->getAppointmentDataForDatatable();
+            $data = $this->appointmentServices->getAppointmentDataForDatatable();
             $dataWithActions = $data->map(function ($row) {
-                $row->action = $this->adminServices->generateActionButtons($row);
+                $row->action = $this->appointmentServices->generateActionButtons($row);
                 return $row;
             });
             return datatables()->of($dataWithActions)->make(true);
@@ -38,9 +38,9 @@ class AdminController extends Controller
     public function dailyAppointments()
     {
         if(request()->ajax()){
-            $data = $this->adminServices->getDailyAppointmentDataForDatatable();
+            $data = $this->appointmentServices->getDailyAppointmentDataForDatatable();
             $dailyDataWithActions = $data->map(function($row){
-                $row->action = $this->adminServices->generateDailyActionButtons($row);
+                $row->action = $this->appointmentServices->generateDailyActionButtons($row);
                 return $row;
             });
 
@@ -52,7 +52,7 @@ class AdminController extends Controller
     public function editAppointments($id)
     {
         $appointment = Appointment::findOrFail($id);
-        $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Status::ACTIVE)->get();
+        $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Statics::ACTIVE)->get();
         $patients = Patient::orderBy('id', 'desc')->get();
         return view('admin.pages.appointments.edit', compact(['appointment', 'doctors', 'patients']));
     }
@@ -60,7 +60,7 @@ class AdminController extends Controller
     public function updateAppointment(AppointmentUpdateRequest $request, $id)
     {
         try{
-            $this->adminServices->appointmentUpdate($request, $id);
+            $this->appointmentServices->appointmentUpdate($request, $id);
             return redirect()->route('all.appointments')->with('success', 'Appointment has been updated');
         }catch(Exception $exception){
             Log::error('Appointment error is:', ['error' => $exception->getMessage()]);
@@ -72,7 +72,7 @@ class AdminController extends Controller
     public function dailyAppointmentEdit($id)
     {
         $appointment = Appointment::findOrFail($id);
-        $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Status::ACTIVE)->get();
+        $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Statics::ACTIVE)->get();
         $patients = Patient::orderBy('id', 'desc')->get();
         return view('admin.pages.appointments.daily-edit', compact(['appointment', 'doctors', 'patients']));
     }
@@ -80,7 +80,7 @@ class AdminController extends Controller
     public function dailyAppointmentUpdate(AppointmentUpdateRequest $request, $id)
     {
         try{
-            $this->adminServices->dailyAppointmentUpdate($request, $id);
+            $this->appointmentServices->dailyAppointmentUpdate($request, $id);
             return redirect()->route('daily.appointments')->with('success', 'Appointment has been updated');
         }catch(Exception $exception){
             Log::error('Appointment error is:', ['error' => $exception->getMessage()]);

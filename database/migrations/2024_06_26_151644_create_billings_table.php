@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('billings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('patient_id');
+            $table->float('fee');
             $table->date('appointment_date');
-            $table->longText('problem')->nullable();
-            $table->boolean('is_pay')->comment('0 for Due, 1 for Paid')->default(false);
-            $table->unsignedBigInteger('status')->comment('0 for Pending, 1 for Done, 2 for Reception, 3 for Accounts, 4 for Absent, 5 for Doctor');
+            $table->date('payment_date');
+            $table->string('payment_type');
+            $table->unsignedBigInteger('collected_by')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('billings');
     }
 };

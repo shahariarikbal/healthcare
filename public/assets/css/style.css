@@ -325,6 +325,13 @@ a {
     padding: 5px;
   }
 
+  .paid-btn{
+    color: #06da2a;
+    height: 40px;
+    width: 40px;
+    padding: 5px;
+  }
+
   .view-btn{
     color: #faa912;
     height: 40px;

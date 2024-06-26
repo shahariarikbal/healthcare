@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DoctorController;
@@ -136,6 +137,12 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/expanse-edit/{id}', [ExpanseController::class, 'expanseEdit'])->name('expanse.edit');
         Route::post('/expanse-update/{id}', [ExpanseController::class, 'expanseUpdate'])->name('expanse.update');
         Route::get('/expanse-delete/{id}', [ExpanseController::class, 'expanseDelete'])->name('expanse.delete');
+
+        //Billings routes
+        Route::get('/billing-manage', [BillingController::class, 'accountsBillingsManage'])->name('accounts.billing.manage');
+        Route::get('/bill-collect-form/{id}', [BillingController::class, 'accountsBillCollectForm'])->name('bill.collect');
+        Route::post('/patient-bill-store/{id}', [BillingController::class, 'accountsBillStore'])->name('account.bill.store');
+        Route::get('/billing-invoices', [BillingController::class, 'accountsBillingsInvoice'])->name('accounts.billing.invoice');
         
 
         //accounts message routes
