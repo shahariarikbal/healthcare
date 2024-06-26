@@ -70,12 +70,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-list-item has-submenu">
+                <li class="nav-list-item has-submenu {{ Route::is('accounts*') ? 'active open' : '' }}">
                     <a class="nav-list-item-link" href="javascript:void(0);">
                         <i class="fa-solid fa-file-invoice-dollar"></i>
                          Accounts  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
-                    <ul class="submenu-list collapse">
+                    <ul class="submenu-list collapse {{ Route::is('accounts*') ? 'show' : '' }}">
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('accounts.create') }}">Add </a>
                         </li>
