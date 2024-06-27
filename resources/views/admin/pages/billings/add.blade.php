@@ -9,7 +9,7 @@
                           <a href="{{ route('accounts.billing.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
-                         <form class="row g-3" action="{{ route('account.bill.store', $appointment->id) }}" method="POST">
+                         <form class="row g-3" action="{{ route('accounts.bill.store', $appointment->id) }}" method="POST">
                               @csrf
                               <div class="col-6">
                                    <label for="doctor_id" class="form-label">Doctors <span class="text-danger">*</span></label>

@@ -6,10 +6,10 @@
                <div class="card">
                     <div class="card-header">
                          Appointment Edit
-                          <a href="{{ route('daily.appointments') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                          <a href="{{ route('appointment.daily') }}" class="btn btn-sm float-end btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
-                         <form class="row g-3" action="{{ route('daily.appointment.update', $appointment->id) }}" method="POST">
+                         <form class="row g-3" action="{{ route('appointment.daily.update', $appointment->id) }}" method="POST">
                               @csrf
                               <div class="col-12">
                                    <label for="doctor_id" class="form-label">Doctors <span class="text-danger">*</span></label>

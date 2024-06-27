@@ -131,17 +131,17 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/delete/{id}', [AccountController::class, 'accountsDelete'])->name('accounts.delete');
 
         //expanse routes
-        Route::get('/expanse-manage', [ExpanseController::class, 'expanseManage'])->name('expanse.manage');
-        Route::get('/expanse-create', [ExpanseController::class, 'expanseCreate'])->name('expanse.create');
-        Route::post('/expanse-store', [ExpanseController::class, 'expanseStore'])->name('expanse.store');
-        Route::get('/expanse-edit/{id}', [ExpanseController::class, 'expanseEdit'])->name('expanse.edit');
-        Route::post('/expanse-update/{id}', [ExpanseController::class, 'expanseUpdate'])->name('expanse.update');
-        Route::get('/expanse-delete/{id}', [ExpanseController::class, 'expanseDelete'])->name('expanse.delete');
+        Route::get('/expanse-manage', [ExpanseController::class, 'expanseManage'])->name('accounts.expanse.manage');
+        Route::get('/expanse-create', [ExpanseController::class, 'expanseCreate'])->name('accounts.expanse.create');
+        Route::post('/expanse-store', [ExpanseController::class, 'expanseStore'])->name('accounts.expanse.store');
+        Route::get('/expanse-edit/{id}', [ExpanseController::class, 'expanseEdit'])->name('accounts.expanse.edit');
+        Route::post('/expanse-update/{id}', [ExpanseController::class, 'expanseUpdate'])->name('accounts.expanse.update');
+        Route::get('/expanse-delete/{id}', [ExpanseController::class, 'expanseDelete'])->name('accounts.expanse.delete');
 
         //Billings routes
         Route::get('/billing-manage', [BillingController::class, 'accountsBillingsManage'])->name('accounts.billing.manage');
-        Route::get('/bill-collect-form/{id}', [BillingController::class, 'accountsBillCollectForm'])->name('bill.collect');
-        Route::post('/patient-bill-store/{id}', [BillingController::class, 'accountsBillStore'])->name('account.bill.store');
+        Route::get('/bill-collect-form/{id}', [BillingController::class, 'accountsBillCollectForm'])->name('accounts.bill.collect');
+        Route::post('/patient-bill-store/{id}', [BillingController::class, 'accountsBillStore'])->name('accounts.bill.store');
         Route::get('/billing-invoices', [BillingController::class, 'accountsBillingsInvoice'])->name('accounts.billing.invoice');
         
 
@@ -151,14 +151,18 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::post('/message/store/{id}', [MessageController::class, 'accountsMessageStore'])->name('accounts.message.store');
     });
 
-    Route::get('/all-appointments-list', [AdminController::class, 'allAppointments'])->name('all.appointments');
-    Route::get('/appointments-view/{id}', [AdminController::class, 'viewAppointment'])->name('appointment.view');
-    Route::get('/appointments-edit/{id}', [AdminController::class, 'editAppointments'])->name('appointment.edit');
-    Route::post('/appointments-update/{id}', [AdminController::class, 'updateAppointment'])->name('appointment.update');
+    Route::group(['prefix' => 'appointment'], function(){
+        Route::get('/all-list', [AdminController::class, 'allAppointments'])->name('appointment.all');
+        Route::get('/view/{id}', [AdminController::class, 'viewAppointment'])->name('appointment.view');
+        Route::get('/edit/{id}', [AdminController::class, 'editAppointments'])->name('appointment.edit');
+        Route::post('/update/{id}', [AdminController::class, 'updateAppointment'])->name('appointment.update');
+        
+        Route::get('/daily-appointments-list', [AdminController::class, 'dailyAppointments'])->name('appointment.daily');
+        Route::get('/daily-appointments-edit/{id}', [AdminController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
+        Route::post('/daily-appointments-update/{id}', [AdminController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
     
-    Route::get('/daily-appointments-list', [AdminController::class, 'dailyAppointments'])->name('daily.appointments');
-    Route::get('/daily-appointments-edit/{id}', [AdminController::class, 'dailyAppointmentEdit'])->name('daily.appointment.edit');
-    Route::post('/daily-appointments-update/{id}', [AdminController::class, 'dailyAppointmentUpdate'])->name('daily.appointment.update');
+        
+    });
 
     Route::get('/all-prescriptions-list', [AdminController::class, 'allPrescriptions'])->name('all.prescriptions');
     Route::get('/daily-prescriptions-list', [AdminController::class, 'dailyPrescriptions'])->name('daily.prescriptions');

@@ -42,7 +42,7 @@ class ExpanseController extends Controller
     {
         try{
             $this->expanseService->expanseStore($request);
-            return redirect()->route('expanse.manage')->with('success', 'Expanse has been created');
+            return redirect()->route('accounts.expanse.manage')->with('success', 'Expanse has been created');
         }catch(Exception $exception){
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -59,7 +59,7 @@ class ExpanseController extends Controller
         try{
             $expanse = Expanse::findOrFail($id);
             $this->expanseService->expanseUpdate($request, $expanse);
-            return redirect()->route('expanse.manage')->with('success', 'Expanse has been updated');
+            return redirect()->route('accounts.expanse.manage')->with('success', 'Expanse has been updated');
         }catch(Exception $exception){
             return redirect()->back()->with('error', $exception->getMessage());
         }
@@ -69,6 +69,6 @@ class ExpanseController extends Controller
     {
         $expanse = Expanse::findOrFail($id);
         $expanse->delete();
-        return redirect()->route('expanse.manage')->with('success', 'Expanse has been deleted');
+        return redirect()->route('accounts.expanse.manage')->with('success', 'Expanse has been deleted');
     }
 }

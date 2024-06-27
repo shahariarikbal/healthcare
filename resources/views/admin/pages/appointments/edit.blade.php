@@ -6,7 +6,7 @@
                <div class="card">
                     <div class="card-header">
                          Appointment Edit
-                          <a href="{{ route('all.appointments') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                          <a href="{{ route('appointment.all') }}" class="btn btn-sm float-end btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('appointment.update', $appointment->id) }}" method="POST">

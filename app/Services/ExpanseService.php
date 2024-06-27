@@ -76,8 +76,8 @@ class ExpanseService
 
      public function getActionButton($row)
      {
-          $editUrl = route('expanse.edit', ['id' => $row->id]);
-          $deleteUrl = route('expanse.delete', ['id' => $row->id]);
+          $editUrl = route('accounts.expanse.edit', ['id' => $row->id]);
+          $deleteUrl = route('accounts.expanse.delete', ['id' => $row->id]);
 
           $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn"><i class="fa-regular fa-pen-to-square"></i></a>';
           $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" onclick="return confirm(&quot;Are you sure delete this expnase ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';

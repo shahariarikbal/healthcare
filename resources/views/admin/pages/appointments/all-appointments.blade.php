@@ -47,7 +47,7 @@
           processing: true,
           serverSide: true,
           ajax: {
-            url: "{{ route('all.appointments') }}",
+            url: "{{ route('appointment.all') }}",
             data: function(d){
               d.from_date = $('#from_date').val();
               d.to_date = $('#to_date').val();

@@ -6,10 +6,10 @@
                <div class="card">
                     <div class="card-header">
                           Expanse create
-                          <a href="{{ route('expanse.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                          <a href="{{ route('accounts.expanse.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
-                         <form class="row g-3" action="{{ route('expanse.store') }}" method="POST" enctype="multipart/form-data">
+                         <form class="row g-3" action="{{ route('accounts.expanse.store') }}" method="POST" enctype="multipart/form-data">
                               @csrf
                               <div class="col-lg-4 col-md-4 col-sm-12">
                                    <label for="expanse_date" class="form-label">Expanse date <span class="text-danger">*</span></label>

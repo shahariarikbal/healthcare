@@ -6,7 +6,7 @@
                <div class="card">
                     <div class="card-header">
                         Expanse list
-                          <a href="{{ route('expanse.create') }}" class="btn btn-sm float-end btn-add">
+                          <a href="{{ route('accounts.expanse.create') }}" class="btn btn-sm float-end btn-add">
                               <i class="fa-solid fa-circle-plus"></i> Add
                           </a>
                     </div>
@@ -53,7 +53,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('expanse.manage') }}",
+                    url: "{{ route('accounts.expanse.manage') }}",
                     data: function(d){
                         d.from_date = $('#from_date').val();
                         d.to_date = $('#to_date').val();
