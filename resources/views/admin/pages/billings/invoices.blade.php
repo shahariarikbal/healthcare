@@ -97,5 +97,9 @@
 
 });
 
+    function downloadInvoice(event){
+      window.location.href = event.target.href
+    }
+
 </script>
 @endpush

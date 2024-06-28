@@ -1,0 +1,41 @@
+.receipt-body{
+     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     margin: auto;
+     padding: 15px;
+}
+
+.invoice-info{
+     margin-left: 15%;
+}
+
+.patient-info{
+     margin-left: 1%;
+}
+
+@media print {
+     body *{
+          visibility: hidden;
+     }
+     
+     .print-container, .print-container *{
+          visibility: visible;
+          height: auto;
+     }
+     
+     .print-container {
+          position: absolute;
+          left: 0;
+          top: 0;
+          max-width: 100%;
+          padding: 0 15px;
+          box-sizing: border-box;
+     }
+     .receipt-body {
+          width: 100%;
+          margin: 0;
+          overflow: hidden;
+     }
+     @page {
+          size: A4 landscape;
+     }
+}

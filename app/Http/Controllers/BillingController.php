@@ -72,6 +72,6 @@ class BillingController extends Controller
     public function invoiceDownload($id)
     {
         $invoice = Billing::with(['doctor', 'patient'])->findOrFail($id);
-        return view('admin.pages.billings.invoice');
+        return view('admin.pages.billings.invoice', compact('invoice'));
     }
 }
