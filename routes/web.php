@@ -138,6 +138,10 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::post('/expanse-update/{id}', [ExpanseController::class, 'expanseUpdate'])->name('accounts.expanse.update');
         Route::get('/expanse-delete/{id}', [ExpanseController::class, 'expanseDelete'])->name('accounts.expanse.delete');
 
+        //Invoice
+        Route::get('/invoice-manage', [BillingController::class, 'invoiceManage'])->name('accounts.invoice.manage');
+        Route::get('/invoice-download/{id}', [BillingController::class, 'invoiceDownload'])->name('accounts.invoice.download');
+
         //Billings routes
         Route::get('/billing-manage', [BillingController::class, 'accountsBillingsManage'])->name('accounts.billing.manage');
         Route::get('/bill-collect-form/{id}', [BillingController::class, 'accountsBillCollectForm'])->name('accounts.bill.collect');

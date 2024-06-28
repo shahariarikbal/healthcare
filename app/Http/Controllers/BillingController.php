@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants\Statics;
 use App\Http\Requests\BillingStoreRequest;
 use App\Models\Appointment;
+use App\Models\Billing;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Services\AppointmentServices;
@@ -55,8 +56,22 @@ class BillingController extends Controller
         }
     }
 
-    public function accountsBillingsInvoice()
+    public function invoiceManage()
     {
-        
+        if(request()->ajax()){
+            $data = $this->billingServices->getAllInvoicesFromDatabase();
+            $dataWithAction = $data->map(function($row){
+                $row->action = $this->billingServices->generateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithAction)->make(true);
+        }
+        return view('admin.pages.billings.invoices');
+    }
+
+    public function invoiceDownload($id)
+    {
+        $invoice = Billing::with(['doctor', 'patient'])->findOrFail($id);
+        return view('admin.pages.billings.invoice');
     }
 }

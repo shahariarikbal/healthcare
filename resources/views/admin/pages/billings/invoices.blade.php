@@ -5,7 +5,7 @@
           <div class="col-md-12">
                <div class="card">
                     <div class="card-header">
-                        Appointments list
+                        Invoice list
                     </div>
                     <div class="card-body">
                       <div class="input-group date-filtering">
@@ -24,11 +24,8 @@
                                  <th class="sl-width">SL</th>
                                  <th>Doctor</th>
                                  <th>Patient</th>
-                                 <th>Appointment date</th>
-                                 <th>Payment Status</th>
-                                 @if (auth()->guard('web')->check())
-                                  <th>Patient Status</th>
-                                 @endif
+                                 <th>Payment date</th>
+                                 <th>Payment Type</th>
                                  <th>Action</th>
                               </tr>
                          </thead>
@@ -49,7 +46,7 @@
           processing: true,
           serverSide: true,
           ajax: {
-            url: "{{ route('accounts.billing.manage') }}",
+            url: "{{ route('accounts.invoice.manage') }}",
             data: function(d){
               d.from_date = $('#from_date').val();
               d.to_date = $('#to_date').val();
@@ -80,42 +77,9 @@
                       return '<strong>' + row.patient.name +'</strong>';
                   }
               },
-              {data: 'appointment_date', name: 'appointment_date'},
-              
-              {
-                data: 'is_pay', 
-                name: 'is_pay',
-                render: function(data, type, row) {
-                    var ispay = {
-                      0: 'Due',
-                      1: 'Paid'
-                    };
+              {data: 'payment_date', name: 'payment_date'},
 
-                    var badgeClass = data == 0 ? 'badge-inactive' : data == 1 ? 'badge-active' : 'badge-inactive';
-                    return '<a href="#" class="'+ badgeClass +'">'+ ispay[data] + '</a>';
-                  }
-            },
-
-            @if (auth()->guard('web')->check())
-            {
-                  data: 'status',
-                  name: 'status',
-                  render: function(data, type, row) {
-                    var statuses = {
-                      0: 'Pending',
-                      1: 'Done',
-                      2: 'Receptionist',
-                      3: 'Accounts',
-                      4: 'Absent',
-                      5: 'Treatment',
-                    };
-
-                    var badgeClass = data == 1 ? 'badge-active' : 'badge-inactive';
-                    return '<a href="#" class="'+ badgeClass +'">'+ statuses[data] + '</a>';
-                  }
-              },
-            @endif
-
+              {data: 'payment_type', name: 'payment_type'},
               
               {data: 'action', name: 'action', orderable: false, searchable: false},
           ]

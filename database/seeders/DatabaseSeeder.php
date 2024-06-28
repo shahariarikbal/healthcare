@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             AccountSeeder::class,
             ReceptionistSeeder::class,
             DepartmentSeeder::class,
-            PatientSeeder::class
+            PatientSeeder::class,
+            AppointmentSeeder::class
         ]);
     }
 }

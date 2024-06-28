@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Account;
 use App\Models\Appointment;
 use App\Models\Billing;
+use Carbon\Carbon;
 use Str;
 
 class BillingServices
@@ -26,4 +27,46 @@ class BillingServices
 
           return $storeBill;
     }
+
+
+    //********** Invoices method ***********//
+    public function getAllInvoicesFromDatabase()
+    {
+        $query = Billing::with(['doctor', 'patient'])->orderBy('created_at', 'desc');
+
+        if(request()->filled('from_date') && request()->filled('to_date')){
+            $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+            $toDate = Carbon::parse(request()->to_date)->endOfDay();
+            $query->whereBetween('payment_date', [$fromDate, $toDate]);
+          }
+   
+          // relational field search functionality
+          if($searchValue = request('search')['value']){
+             $query->where(function($subQuery) use ($searchValue){
+               
+               $subQuery->orWhereHas('doctor', function($q) use ($searchValue){
+                   $q->where('first_name', 'like', "%{$searchValue}%")
+                   ->orWhere('last_name', 'like', "%{$searchValue}%");
+                 })
+                 ->orWhereHas('patient', function($q) use ($searchValue){
+                   $q->where('name', 'like', "%{$searchValue}%");
+                 });
+                 
+             });
+          }
+   
+          //fetch all data
+          $data = $query->get();
+   
+   
+          return $data;
+    }
+
+    public function generateActionButtons($row)
+    {
+          $invoiceDownloadUrl = route('accounts.invoice.download', ['id' => $row->id]);
+          $invoiceDownloadBtn = '<a href="'.$invoiceDownloadUrl.'" class="btn btn-primary btn-sm" title="Invoice download">Invoice</a>';
+
+          return $invoiceDownloadBtn;
+     }
 }

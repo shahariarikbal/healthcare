@@ -3,7 +3,7 @@
 @section('content')
 <div class="row py-2">
     <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12">
-        <a href="{{ route('all.appointments') }}">
+        <a href="{{ route('appointment.all') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
                     <div class="d-flex">
@@ -22,7 +22,7 @@
         </a>
     </div><!-- end col -->
     <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12">
-        <a href="{{ route('daily.appointments') }}">
+        <a href="{{ route('appointment.daily') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
                     <div class="d-flex">
