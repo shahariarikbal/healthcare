@@ -91,7 +91,8 @@
                       1: 'Done',
                       2: 'Receptionist',
                       3: 'Accounts',
-                      4: 'Absent'
+                      4: 'Absent',
+                      5: 'Treatment',
                     };
 
                     var badgeClass = data == 0 || data == 4 ? 'badge-inactive' : 'badge-active';

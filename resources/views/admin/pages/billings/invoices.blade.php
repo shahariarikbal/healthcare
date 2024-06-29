@@ -27,6 +27,7 @@
                                  <th>Patient</th>
                                  <th>Payment date</th>
                                  <th>Payment Type</th>
+                                 <th class="text-center">Amount</th>
                                  <th>Action</th>
                               </tr>
                          </thead>
@@ -89,6 +90,14 @@
               {data: 'payment_date', name: 'payment_date'},
 
               {data: 'payment_type', name: 'payment_type'},
+
+              {
+                data: 'fee', 
+                name: 'fee',
+                render:function(data, type, row){
+                  return '<p class="text-center"> $' + data + '</p>'
+                }
+              },
               
               {data: 'action', name: 'action', orderable: false, searchable: false},
           ]

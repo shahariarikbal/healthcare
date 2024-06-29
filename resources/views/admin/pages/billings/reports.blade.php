@@ -109,7 +109,7 @@
                 render:function(data, type, row){
                   return '<p class="text-center"> $' + data + '</p>'
                 }
-            },
+              },
               
           ]
       });
