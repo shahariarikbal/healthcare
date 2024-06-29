@@ -40,6 +40,7 @@
           <table class="table table-bordered">
             <tr>
               <th>#</th>
+              <th>Payment Date</th>
               <th>Doctor name</th>
               <th>Patient name</th>
               <th>Payment type</th>
@@ -47,6 +48,7 @@
             </tr>
             <tr>
               <td>1</td>
+              <td>{{ $invoice->payment_date ?? 'N/A' }}</td>
               <td>{{ $invoice->doctor?->full_name ?? 'N/A' }}</td>
               <td>{{ $invoice->patient?->name }}</td>
               <td>{{ Str::ucfirst($invoice->payment_type) }}</td>

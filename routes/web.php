@@ -142,6 +142,9 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/invoice-manage', [BillingController::class, 'invoiceManage'])->name('accounts.invoice.manage');
         Route::get('/invoice-download/{id}', [BillingController::class, 'invoiceDownload'])->name('accounts.invoice.download');
 
+        //Payment report route
+        Route::get('/payment-report-manage', [BillingController::class, 'paymentReportManage'])->name('accounts.payment.report.manage');
+
         //Billings routes
         Route::get('/billing-manage', [BillingController::class, 'accountsBillingsManage'])->name('accounts.billing.manage');
         Route::get('/bill-collect-form/{id}', [BillingController::class, 'accountsBillCollectForm'])->name('accounts.bill.collect');

@@ -74,4 +74,16 @@ class BillingController extends Controller
         $invoice = Billing::with(['doctor', 'patient'])->findOrFail($id);
         return view('admin.pages.billings.invoice', compact('invoice'));
     }
+
+
+    //Payment report
+    public function paymentReportManage()
+    {
+        if(request()->ajax()){
+            $data = $this->billingServices->getAllPaymentReportFromDatabase();
+            $totalFee = $data->sum('fee');
+            return datatables()->of($data)->with('fee', $totalFee)->make(true);
+        }        
+        return view('admin.pages.billings.reports');
+    }
 }

@@ -80,4 +80,42 @@ class BillingServices
 
           return $invoiceDownloadBtn;
      }
+
+
+     //******** Payment report ********//
+     public function getAllPaymentReportFromDatabase()
+      {
+        $query = Billing::with(['doctor', 'patient'])->orderBy('created_at', 'desc');
+
+        if(request()->filled('from_date') && request()->filled('to_date')){
+            $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+            $toDate = Carbon::parse(request()->to_date)->endOfDay();
+            $query->whereBetween('payment_date', [$fromDate, $toDate]);
+          }
+
+          if (request()->filled('payment_type')) {
+            $query->where('payment_type', request()->payment_type);
+          }
+   
+          // relational field search functionality
+          if($searchValue = request('search')['value']){
+             $query->where(function($subQuery) use ($searchValue){
+               
+               $subQuery->orWhereHas('doctor', function($q) use ($searchValue){
+                   $q->where('first_name', 'like', "%{$searchValue}%")
+                   ->orWhere('last_name', 'like', "%{$searchValue}%");
+                 })
+                 ->orWhereHas('patient', function($q) use ($searchValue){
+                   $q->where('name', 'like', "%{$searchValue}%");
+                 });
+                 
+             });
+          }
+   
+          //fetch all data
+          $data = $query->get();
+   
+   
+          return $data;
+    }
 }

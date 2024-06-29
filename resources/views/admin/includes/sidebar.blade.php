@@ -94,7 +94,7 @@
                             <a class="submenu-list-item-link" href="{{ route('accounts.invoice.manage') }}">Invoices </a>
                         </li>
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Report </a>
+                            <a class="submenu-list-item-link" href="{{ route('accounts.payment.report.manage') }}">Report </a>
                         </li>
                     </ul>
                 </li>
