@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
+            $table->string('invoiceId');
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('patient_id');
             $table->float('fee');

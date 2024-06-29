@@ -27,7 +27,7 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12 text-end invoice-info">
               <span class="text-gray-600 align-middle">InvoiceID</span> #
-              <span class="text-primary align-middle">20250</span>
+              <span class="text-primary align-middle">{{ $invoice->invoiceId ?? 'N/A' }}</span>
               <p class="text-gray-600 align-middle">
                 Issue Date: {{ date('M d, Y', strtotime($invoice->created_at)) }}
               </p>

@@ -10,10 +10,21 @@ use Str;
 
 class BillingServices
 {
+    public function invoiceNumber()
+      {
+          $billingLastId = Billing::orderBy('id', 'desc')->first();
+          if (! $billingLastId) {
+              return'HC0001';
+          } else {
+              $string = preg_replace("/[^0-9\.]/", '', $billingLastId->id);
+              return 'HC' . sprintf('%04d', $string+1);
+          }
+      }
     public function billStore($request, $id)
     {
           $appointment = Appointment::with('doctor', 'patient')->findOrFail($id);
           $storeBill = Billing::create([
+               'invoiceId' => $this->invoiceNumber(),
                'doctor_id' => $request->doctor_id,
                'fee' => $request->fee,
                'patient_id' => $request->patient_id,
