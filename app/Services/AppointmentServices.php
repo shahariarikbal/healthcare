@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Constants\Statics;
 use App\Models\Appointment;
 use Carbon\Carbon;
 
@@ -53,6 +54,17 @@ class AppointmentServices
           return $editBtn.' '. $billingBtn;
      }
 
+     public function appointmentStore($request)
+     {
+        Appointment::create([
+            'doctor_id' => $request->doctor_id,
+            'patient_id' => $request->patient_id,
+            'appointment_date' => $request->appointment_date,
+            'problem' => $request->problem,
+            'status' => Statics::INACTIVE,
+        ]);
+     }
+
 
      public function appointmentUpdate($request, $id)
      {
@@ -91,7 +103,6 @@ class AppointmentServices
 
         //fetch all data
         $data = $query->get();
-
 
         return $data;
       }

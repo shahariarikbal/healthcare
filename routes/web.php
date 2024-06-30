@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\DepartmentController;
@@ -148,14 +149,16 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     });
 
     Route::group(['prefix' => 'appointment'], function(){
-        Route::get('/all-list', [AdminController::class, 'allAppointments'])->name('appointment.all');
-        Route::get('/view/{id}', [AdminController::class, 'viewAppointment'])->name('appointment.view');
-        Route::get('/edit/{id}', [AdminController::class, 'editAppointments'])->name('appointment.edit');
-        Route::post('/update/{id}', [AdminController::class, 'updateAppointment'])->name('appointment.update');
+        Route::get('/create', [AppointmentController::class, 'appointmentCreateForm'])->name('appointment.create');
+        Route::post('/store', [AppointmentController::class, 'appointmentStore'])->name('appointment.store');
+        Route::get('/all-list', [AppointmentController::class, 'allAppointments'])->name('appointment.all');
+        Route::get('/view/{id}', [AppointmentController::class, 'viewAppointment'])->name('appointment.view');
+        Route::get('/edit/{id}', [AppointmentController::class, 'editAppointments'])->name('appointment.edit');
+        Route::post('/update/{id}', [AppointmentController::class, 'updateAppointment'])->name('appointment.update');
         
-        Route::get('/daily-appointments-list', [AdminController::class, 'dailyAppointments'])->name('appointment.daily');
-        Route::get('/daily-appointments-edit/{id}', [AdminController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
-        Route::post('/daily-appointments-update/{id}', [AdminController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
+        Route::get('/daily-appointments-list', [AppointmentController::class, 'dailyAppointments'])->name('appointment.daily');
+        Route::get('/daily-appointments-edit/{id}', [AppointmentController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
+        Route::post('/daily-appointments-update/{id}', [AppointmentController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
     
         
     });

@@ -120,6 +120,9 @@
                     </a>
                     <ul class="submenu-list collapse {{ Route::is('appointment*') ? 'show' : '' }}">
                         <li class="submenu-list-item">
+                            <a class="submenu-list-item-link" href="{{ route('appointment.create') }}">Add Appointment </a>
+                        </li>
+                        <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('appointment.all') }}">All Appointment </a>
                         </li>
                         <li class="submenu-list-item">

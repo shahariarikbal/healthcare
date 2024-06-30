@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Statics;
 use App\Constants\Status;
 use App\Http\Requests\ReceptionistStoreRequest;
 use App\Http\Requests\ReceptionistUpdateRequest;
@@ -111,7 +112,7 @@ class ReceptionistController extends Controller
     public function receptionActive($id)
     {
         $receptionist = Receptionist::findOrFail($id);
-        $receptionist->is_active = Status::INACTIVE;
+        $receptionist->is_active = Statics::INACTIVE;
         $receptionist->save();
         return redirect()->route('reception.manage')->with('success', 'Receptionist has been inactivated');
     }
@@ -119,7 +120,7 @@ class ReceptionistController extends Controller
     public function receptionInactive($id)
     {
         $receptionist = Receptionist::findOrFail($id);
-        $receptionist->is_active = Status::ACTIVE;
+        $receptionist->is_active = Statics::ACTIVE;
         $receptionist->save();
         return redirect()->route('reception.manage')->with('success', 'Receptionist has been Activated');
     }
