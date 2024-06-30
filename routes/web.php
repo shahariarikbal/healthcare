@@ -70,10 +70,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/delete/{id}', [DoctorController::class, 'doctorDelete'])->name('doctor.delete');
         Route::get('/active/{id}', [DoctorController::class, 'doctorActive'])->name('doctor.active');
         Route::get('/inactive/{id}', [DoctorController::class, 'doctorInactive'])->name('doctor.inactive');
-        //Doctor message routes
-        Route::get('/list', [MessageController::class, 'doctorMessagingList'])->name('doctor.list');
-        Route::get('/message/show/{id}', [MessageController::class, 'showDoctorMessage'])->name('doctor.message');
-        Route::post('/message/store/{id}', [MessageController::class, 'doctorMessageStore'])->name('doctor.message.store');
+        
     });
 
     //Patient routes
@@ -110,11 +107,6 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/inactive/{id}', [ReceptionistController::class, 'receptionInactive'])->name('reception.inactive');
         Route::post('/update/{id}', [ReceptionistController::class, 'receptionUpdate'])->name('reception.update');
         Route::get('/delete/{id}', [ReceptionistController::class, 'receptionDelete'])->name('reception.delete');
-
-        //reception message routes
-        Route::get('/list', [MessageController::class, 'receptionMessagingList'])->name('reception.list');
-        Route::get('/message/{id}', [MessageController::class, 'receptionMessage'])->name('reception.message');
-        Route::post('/message/store/{id}', [MessageController::class, 'receptionMessageStore'])->name('reception.message.store');
     });
 
 
@@ -152,10 +144,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/billing-invoices', [BillingController::class, 'accountsBillingsInvoice'])->name('accounts.billing.invoice');
         
 
-        //accounts message routes
-        Route::get('/list', [MessageController::class, 'accountsMessagingList'])->name('accounts.list');
-        Route::get('/message/{id}', [MessageController::class, 'accountsMessage'])->name('accounts.message');
-        Route::post('/message/store/{id}', [MessageController::class, 'accountsMessageStore'])->name('accounts.message.store');
+        
     });
 
     Route::group(['prefix' => 'appointment'], function(){
@@ -171,8 +160,29 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         
     });
 
-    Route::get('/all-prescriptions-list', [AdminController::class, 'allPrescriptions'])->name('all.prescriptions');
-    Route::get('/daily-prescriptions-list', [AdminController::class, 'dailyPrescriptions'])->name('daily.prescriptions');
+    //prescriptions route
+    Route::group(['prefix' => 'prescription'], function(){
+        Route::get('/list', [AdminController::class, 'allPrescriptions'])->name('prescription.all');
+        Route::get('/daily-list', [AdminController::class, 'dailyPrescriptions'])->name('prescription.daily');
+    });
+
+    //messageing
+    Route::group(['prefix' => 'message'], function(){
+        //accounts message routes
+        Route::get('/accounts', [MessageController::class, 'accountsMessagingList'])->name('message.accounts.index');
+        Route::get('/accounts/{id}', [MessageController::class, 'accountsMessageShow'])->name('message.accounts.show');
+        Route::post('/accounts/{id}', [MessageController::class, 'accountsMessageStore'])->name('message.accounts.store');
+
+        //reception message routes
+        Route::get('/receptionists', [MessageController::class, 'receptionMessagingList'])->name('message.receptionist.index');
+        Route::get('/receptionist/{id}', [MessageController::class, 'receptionMessage'])->name('message.receptionist.show');
+        Route::post('/receptionist/{id}', [MessageController::class, 'receptionMessageStore'])->name('message.receptionist.store');
+
+        //Doctor message routes
+        Route::get('/doctors', [MessageController::class, 'doctorMessagingList'])->name('message.doctors.index');
+        Route::get('/doctors/{id}', [MessageController::class, 'showDoctorMessage'])->name('message.doctor.show');
+        Route::post('/doctors/{id}', [MessageController::class, 'doctorMessageStore'])->name('message.doctor.store');
+    });
 
     //Email routes
     Route::group(['prefix' => 'email'], function(){
@@ -184,6 +194,9 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     });
 
     //SMTP Settings routes
-    Route::get('/smtp-setting', [SmtpSettingController::class, 'showSmtpForm'])->name('smtp.setting');
-    Route::post('/smtp-setting-store', [SmtpSettingController::class, 'smtpStore'])->name('smtp.setting.store');
+    Route::group(['prefix' => 'smtp'], function(){
+        Route::get('/setting', [SmtpSettingController::class, 'showSmtpForm'])->name('smtp.setting');
+        Route::post('/setting-store', [SmtpSettingController::class, 'smtpStore'])->name('smtp.setting.store');
+    });
+    
     

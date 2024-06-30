@@ -84,7 +84,7 @@ class AccountsServices
 
      public function generateMessageActionButton($row)
      {
-          $accountMessageUrl = route('accounts.message', ['id' => $row->id]);
+          $accountMessageUrl = route('message.accounts.show', ['id' => $row->id]);
 
           $accountMessageBtn = '<a href="'.$accountMessageUrl.'" class="badge-active">Message</a>';
 

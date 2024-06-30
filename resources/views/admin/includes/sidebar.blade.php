@@ -127,43 +127,43 @@
                         </li>
                     </ul>
                 </li>              
-                <li class="nav-list-item has-submenu">
+                <li class="nav-list-item has-submenu {{ Route::is('prescription*') ? 'active' : '' }}">
                     <a class="nav-list-item-link" href="javascript:void(0);">
                         <i class="fa-solid fa-prescription"></i>
                           Prescription  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
                     <ul class="submenu-list collapse">
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('all.prescriptions') }}">All Prescription </a>
+                            <a class="submenu-list-item-link" href="{{ route('prescription.all') }}">All Prescription </a>
                         </li>
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('daily.prescriptions') }}">Daily Prescription </a>
+                            <a class="submenu-list-item-link" href="{{ route('prescription.daily') }}">Daily Prescription </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-list-item has-submenu">
+                <li class="nav-list-item has-submenu {{ Route::is('message*') ? 'active' : '' }}">
                     <a class="nav-list-item-link" href="javascript:void(0);">
                         <i class="fa-solid fa-comment-sms"></i>
                         Messaging  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
-                    <ul class="submenu-list collapse">
+                    <ul class="submenu-list collapse {{ Route::is('message*') ? 'show' : '' }}">
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('doctor.list') }}">Doctors </a>
+                            <a class="submenu-list-item-link" href="{{ route('message.doctors.index') }}">Doctors </a>
                         </li>
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('accounts.list') }}">Accounts </a>
+                            <a class="submenu-list-item-link" href="{{ route('message.accounts.index') }}">Accounts </a>
                         </li>
                         <li class="submenu-list-item">
-                            <a class="submenu-list-item-link" href="{{ route('reception.list') }}">Receptionist </a>
+                            <a class="submenu-list-item-link" href="{{ route('message.receptionist.index') }}">Receptionist </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-list-item has-submenu">
+                <li class="nav-list-item has-submenu {{ Route::is('email*') ? 'active' : '' }}">
                     <a class="nav-list-item-link" href="javascript:void(0);">
                         <i class="fa-solid fa-envelope"></i>
                         Send E-mail  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
-                    <ul class="submenu-list collapse">
+                    <ul class="submenu-list collapse {{ Route::is('email*') ? 'show' : '' }}">
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('email.create') }}">Email Compose </a>
                         </li>
@@ -172,12 +172,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-list-item has-submenu">
+                <li class="nav-list-item has-submenu {{ Route::is('smtp*') ? 'active' : '' }}">
                     <a class="nav-list-item-link" href="javascript:void(0);">
                         <i class="fa-solid fa-envelope"></i>
                         SMTP Config  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
-                    <ul class="submenu-list collapse">
+                    <ul class="submenu-list collapse {{ Route::is('smtp*') ? 'show' : '' }}">
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('smtp.setting') }}">SMTP Settings </a>
                         </li>

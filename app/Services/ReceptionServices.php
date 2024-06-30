@@ -83,7 +83,7 @@ class ReceptionServices
 
      public function generateMessageActionButton($row)
      {
-          $receptionMessageUrl = route('reception.message', ['id' => $row->id]);
+          $receptionMessageUrl = route('message.receptionist.show', ['id' => $row->id]);
 
           $receptionMessageBtn = '<a href="'.$receptionMessageUrl.'" class="badge-active">Message</a>';
 

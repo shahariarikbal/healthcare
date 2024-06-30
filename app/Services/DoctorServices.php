@@ -67,7 +67,7 @@ class DoctorServices
 
      public function generateMessageActionButton($row)
     {
-          $doctorMessageUrl = route('doctor.message', ['id' => $row->id]);
+          $doctorMessageUrl = route('message.doctor.show', ['id' => $row->id]);
 
           $doctorMessageBtn = '<a href="'.$doctorMessageUrl.'" class="badge-active">Message</a>';
 

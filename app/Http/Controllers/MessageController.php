@@ -114,7 +114,7 @@ class MessageController extends Controller
         return view('admin.pages.message.accounts.list');
     }
 
-    public function accountsMessage($id)
+    public function accountsMessageShow($id)
     {
         $account = Account::findOrFail($id);
         $sentMessages = $account->sentMessages()->with('receiver')->get();

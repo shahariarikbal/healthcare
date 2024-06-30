@@ -6,7 +6,7 @@
                <div class="card">
                     <div class="card-header">
                           <span>{{ $reception->full_name ?? 'Receptionist name' }}</span>
-                          <a href="{{ route('reception.list') }}" class="btn btn-sm float-end btn-add">
+                          <a href="{{ route('message.receptionist.index') }}" class="btn btn-sm float-end btn-add">
                               <i class="fa-solid fa-arrow-left"></i> Back
                           </a>
                     </div>
@@ -42,7 +42,7 @@
                                </div>
 
                          </div>
-                        <form action="{{ route('reception.message.store', $reception->id) }}" method="post">
+                        <form action="{{ route('message.receptionist.store', $reception->id) }}" method="post">
                          @csrf
                          <div class="form-group mt-2">
                               <textarea name="message" class="form-control" placeholder="Enter message here..."></textarea>

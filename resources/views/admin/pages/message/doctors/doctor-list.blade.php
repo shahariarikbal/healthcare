@@ -33,14 +33,13 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('doctor.list') }}",
+                ajax: "{{ route('message.doctors.index') }}",
                 columns: [
                     // Serial number column
                     { 
                         data: null,
                         name: 'id',
                         render: function(data, type, row, meta) {
-                            // Calculate the serial number using the row index
                             return meta.row + 1;
                         }
                     },

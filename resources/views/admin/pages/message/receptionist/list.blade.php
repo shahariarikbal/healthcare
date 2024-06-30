@@ -33,7 +33,7 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('reception.list') }}",
+                ajax: "{{ route('message.receptionist.index') }}",
                 columns: [
                     // Serial number column
                     { 
