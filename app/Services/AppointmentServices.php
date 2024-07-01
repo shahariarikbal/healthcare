@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Constants\Statics;
+use App\Jobs\AppointmentBookingMailJob;
 use App\Models\Appointment;
 use Carbon\Carbon;
 
@@ -56,13 +57,18 @@ class AppointmentServices
 
      public function appointmentStore($request)
      {
-        Appointment::create([
+        $appointment = Appointment::create([
             'doctor_id' => $request->doctor_id,
             'patient_id' => $request->patient_id,
             'appointment_date' => $request->appointment_date,
             'problem' => $request->problem,
             'status' => Statics::INACTIVE,
         ]);
+
+        //Patient email
+        $email = $appointment->patient?->email;
+
+        dispatch(new AppointmentBookingMailJob($email, $appointment));
      }
 
 

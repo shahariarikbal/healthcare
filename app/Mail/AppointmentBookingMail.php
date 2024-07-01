@@ -16,9 +16,10 @@ class AppointmentBookingMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    protected $appointmentInfo;
+    public function __construct($appointmentInfo)
     {
-        //
+        $this->appointmentInfo = $appointmentInfo;
     }
 
     /**
@@ -34,11 +35,9 @@ class AppointmentBookingMail extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    public function build()
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return $this->view('admin.pages.email.appointment-booking-email-template')->with('appointment', $this->appointmentInfo);
     }
 
     /**

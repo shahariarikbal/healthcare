@@ -2,11 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Mail\AppointmentBookingMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentBookingMailJob implements ShouldQueue
 {
@@ -15,9 +17,13 @@ class AppointmentBookingMailJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+
+    protected $email;
+    protected $appointmentInfo;
+    public function __construct($email, $appointmentInfo)
     {
-        //
+        $this->email = $email;
+        $this->appointmentInfo = $appointmentInfo;
     }
 
     /**
@@ -25,6 +31,9 @@ class AppointmentBookingMailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        $data = new AppointmentBookingMail($this->appointmentInfo);
+        Mail::to($this->email)->send($data);
+
+        sleep(1);
     }
 }
