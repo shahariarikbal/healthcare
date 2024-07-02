@@ -9,7 +9,7 @@
         .container{
             height: auto;
             margin: auto;
-            width: 50%;
+            width: 100%;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             font-family: Arial, Helvetica, sans-serif;
         }
@@ -22,11 +22,13 @@
         .right-box{
             text-align: right;
             width: 50%;
+            font-size: 14px;
         }
 
         .left-box{
             text-align: left;
             width: 50%;
+            font-size: 14px;
         }
 
         .table th td{
@@ -44,7 +46,7 @@
         }
 
         thead > tr {
-            height: 35px;
+            height: 25px;
         }
 
         .items{
@@ -70,14 +72,14 @@
                 <tr>
                     <td class="left-box">
                         <h4>To</h4>
-                        <p>Abdur rahman</p>
-                        <p>Email: abdur@rahman.com</p>
-                        <p>Phone: 01309608232</p>
+                        <p>{{ $appointment->patient?->name ?? 'N/A' }}</p>
+                        <p>Email: {{ $appointment->patient?->email ?? 'N/A' }}</p>
+                        <p>Phone: {{ $appointment->patient?->phone ?? 'N/A' }}</p>
                     </td>
                     <td class="right-box">
-                        <img src="{{ asset(App\Constants\Statics::DEFAULT_LOGO_SET) }}" class="logo" />
-                        <p>InvoiceID# HC0013</p>
-                        <p>Issue date: 02/10/2024</p>
+                        <img src="{{ asset(App\Constants\Statics::DEFAULT_LOGO_SET) }}" />
+                        <p>InvoiceID# {{ $bill->invoiceId ?? 'N/A' }}</p>
+                        <p>Issue date: {{ date('d M Y', strtotime($bill->created_at)) ?? 'N/A' }}</p>
                         <p>Status: <small>Paid</small></p>
                     </td>
                 </tr>
@@ -97,14 +99,14 @@
             <tbody>
                 <tr class="items">
                     <td>#</td>
-                    <td>02/10/2024</td>
-                    <td>Abdur rahman</td>
-                    <td>CASH</td>
-                    <td>$1000</td>
+                    <td>{{ $bill->payment_date ?? 'N/A' }}</td>
+                    <td>{{ $bill->doctor?->fullname ?? 'N/A' }}</td>
+                    <td>{{ $bill->payment_type ?? 'N/A' }}</td>
+                    <td>${{ $bill->fee ?? 'N/A' }}</td>
                 </tr>
                 <tr class="total-section">
                     <td colspan="4"></td>
-                    <td>Total : $1000</td>
+                    <td>Total : ${{ $bill->fee ?? 'N/A' }}</td>
                 </tr>
             </tbody>
         </table>

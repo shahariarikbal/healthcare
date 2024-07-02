@@ -81,10 +81,10 @@ class BillingServices
     public function generateActionButtons($row)
     {
           $invoiceDownloadUrl = route('accounts.invoice.download', ['id' => $row->id]);
-          $invoiceDownloadBtn = '<a href="'.$invoiceDownloadUrl.'" onclick="downloadInvoice(event)" class="btn btn-primary btn-sm" title="Invoice download">Invoice</a>';
+          $invoiceDownloadBtn = '<a href="'.$invoiceDownloadUrl.'" class="btn btn-primary btn-sm" title="Invoice download">Invoice</a>';
 
           return $invoiceDownloadBtn;
-     }
+    }
 
 
      //******** Payment report ********//

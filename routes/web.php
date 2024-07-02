@@ -48,9 +48,6 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     'verify' => false,
   ]);
 
-  Route::get('invoice', function (){
-    return view('admin.pages.billings.receipt');
-});
 
   Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 

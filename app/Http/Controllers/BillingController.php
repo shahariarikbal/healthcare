@@ -72,7 +72,13 @@ class BillingController extends Controller
     public function invoiceDownload($id)
     {
         $invoice = Billing::with(['doctor', 'patient'])->findOrFail($id);
-        return view('admin.pages.billings.invoice', compact('invoice'));
+        $pdfPath = storage_path('app/public/bills/'.$invoice->invoiceId. '.pdf');
+
+        if(file_exists($pdfPath)){
+            return response()->download($pdfPath);
+        }else {
+            return redirect()->back()->with('error', 'Invoice not found.');
+        }
     }
 
 
