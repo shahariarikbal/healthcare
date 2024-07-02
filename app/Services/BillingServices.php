@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Jobs\GeneratePdfJob;
 use App\Models\Account;
 use App\Models\Appointment;
 use App\Models\Billing;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Str;
 
@@ -35,6 +37,9 @@ class BillingServices
           ]);
 
           $appointment->update(['is_pay' => true, 'status' => 5]);
+
+          //PDF dispatch
+          GeneratePdfJob::dispatch($appointment, $storeBill);
 
           return $storeBill;
     }

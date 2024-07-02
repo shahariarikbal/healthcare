@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="{{ asset(App\Constants\Status::DEFAULT_LOGO_SET) }}" class="logo" />
+        <img src="{{ asset(App\Constants\Statics::DEFAULT_LOGO_SET) }}" class="logo" />
         <div class="content">
             <p class="heading">Hi {{ $dynamicData['name'] }} Good day !</p>
             <p class="pera">

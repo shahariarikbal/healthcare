@@ -17,11 +17,9 @@ class MessageServices
           $message = new Message();
           $message->message = $request->message;
 
-          // sender ID set directly
           $message->sender_id = $userId;
           $message->sender_type = get_class(auth()->guard('web')->user());
 
-          // receiver ID associate (doctor)
           $message->receiver()->associate($doctor);
           
           $message->save();
@@ -36,11 +34,9 @@ class MessageServices
           $message = new Message();
           $message->message = $request->message;
 
-          // sender ID set directly
           $message->sender_id = $userId;
           $message->sender_type = get_class(auth()->guard('web')->user());
 
-          // receiver ID associate (receptionist)
           $message->receiver()->associate($reception);
           
           $message->save();
@@ -54,11 +50,9 @@ class MessageServices
           $message = new Message();
           $message->message = $request->message;
 
-          // sender ID set directly
           $message->sender_id = $userId;
           $message->sender_type = get_class(auth()->guard('web')->user());
 
-          // receiver ID associate (account)
           $message->receiver()->associate($account);
           
           $message->save();

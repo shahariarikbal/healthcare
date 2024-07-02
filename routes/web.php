@@ -43,10 +43,14 @@ Route::get('migrate', function (){
 Route::get('/', [LoginController::class, 'showAdminLoginForm']);
 
   Auth::routes([
-    'register' => false, // Registration Routes...
-    'reset' => false, // Password Reset Routes...
-    'verify' => false, // Email Verification Routes...
+    'register' => false, 
+    'reset' => false,
+    'verify' => false,
   ]);
+
+  Route::get('invoice', function (){
+    return view('admin.pages.billings.receipt');
+});
 
   Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
 
