@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Statics;
 use App\Constants\Status;
 use App\Http\Requests\DoctorStoreRequest;
 use App\Http\Requests\DoctorUpdateRequest;
@@ -33,17 +34,17 @@ class DoctorController extends Controller
 
         $doctor = Doctor::where('email', $request->email)->first();
 
-        // Check if the doctor is null
+        // if the doctor is null
         if (!$doctor) {
             return redirect()->back()->with('error', 'Invalid email address');
         }
         
-        // Check if the doctor is inactive
-        if ($doctor->is_active === Status::INACTIVE) {
+        // if the doctor is inactive
+        if ($doctor->is_active === Statics::INACTIVE) {
             return redirect()->back()->with('error', 'Unable to login. Please contact the admin');
         }
 
-        // Attempt to login
+        // Attempt to the login
         if (Auth::guard('doctor')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect('/doctor/dashboard');
         } else {
@@ -92,43 +93,43 @@ class DoctorController extends Controller
 
     public function doctorEdit($id)
     {
-        $doctor = Doctor::find($id);
+        $doctor = Doctor::findOrFail($id);
         $departments = Department::all();
         return view('admin.pages.doctor.edit', compact('doctor', 'departments'));
     }
 
     public function doctorView($id)
     {
-        $doctor = Doctor::with('department')->find($id);
+        $doctor = Doctor::with('department')->findOrFail($id);
         return view('admin.pages.doctor.view', compact('doctor'));
     }
 
     public function doctorUpdate(DoctorUpdateRequest $request, $id)
     {
-        $doctor = Doctor::find($id);
+        $doctor = Doctor::findOrFail($id);
         $this->doctorServices->doctorUpdate($request, $doctor);
         return redirect()->route('doctor.manage')->with('success', 'Doctor has been updated');
     }
 
     public function doctorActive($id)
     {
-        $doctor = Doctor::find($id);
-        $doctor->is_active = Status::INACTIVE;
+        $doctor = Doctor::findOrFail($id);
+        $doctor->is_active = Statics::INACTIVE;
         $doctor->save();
         return redirect()->route('doctor.manage')->with('success', 'Doctor has been inactivated');
     }
 
     public function doctorInactive($id)
     {
-        $doctor = Doctor::find($id);
-        $doctor->is_active = Status::ACTIVE;
+        $doctor = Doctor::findOrFail($id);
+        $doctor->is_active = Statics::ACTIVE;
         $doctor->save();
         return redirect()->route('doctor.manage')->with('success', 'Doctor has been Activated');
     }
 
     public function doctorDelete($id)
     {
-        $doctor = Doctor::find($id);
+        $doctor = Doctor::findOrFail($id);
         $doctor->delete();
         return redirect()->route('doctor.manage')->with('success', 'Doctor has been deleted');
     }

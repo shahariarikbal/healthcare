@@ -135,6 +135,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         //Invoice
         Route::get('/invoice-manage', [BillingController::class, 'invoiceManage'])->name('accounts.invoice.manage');
         Route::get('/invoice-download/{id}', [BillingController::class, 'invoiceDownload'])->name('accounts.invoice.download');
+        Route::get('/invoice-delete/{id}', [BillingController::class, 'invoiceDelete'])->name('accounts.invoice.delete');
 
         //Payment report route
         Route::get('/payment-report-manage', [BillingController::class, 'paymentReportManage'])->name('accounts.payment.report.manage');
@@ -160,6 +161,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/daily-appointments-list', [AppointmentController::class, 'dailyAppointments'])->name('appointment.daily');
         Route::get('/daily-appointments-edit/{id}', [AppointmentController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
         Route::post('/daily-appointments-update/{id}', [AppointmentController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
+        Route::get('/delete/{id}', [AppointmentController::class, 'appointmentDelete'])->name('appointment.delete');
     
         
     });

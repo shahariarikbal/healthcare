@@ -46,7 +46,7 @@
                 <li class="nav-list-item has-submenu {{ Route::is('nurse*') ? 'active' : '' }}">
                     <a class="nav-list-item-link" href="javascript:void(0);">
                         <i class="fa-solid fa-user-nurse"></i>
-                         Nurse  <i class="fa-solid fa-chevron-down float-end"></i>
+                         Nurse/Compounder  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
                     <ul class="submenu-list collapse {{ Route::is('nurse*') ? 'show' : '' }}">
                         <li class="submenu-list-item">

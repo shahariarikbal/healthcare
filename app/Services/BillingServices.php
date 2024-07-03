@@ -80,10 +80,15 @@ class BillingServices
 
     public function generateActionButtons($row)
     {
+          $invoiceDeleteBtn = '';
           $invoiceDownloadUrl = route('accounts.invoice.download', ['id' => $row->id]);
           $invoiceDownloadBtn = '<a href="'.$invoiceDownloadUrl.'" class="btn btn-primary btn-sm" title="Invoice download">Invoice</a>';
+          if(auth()->guard('web')->check()){
+            $invoiceDelete = route('accounts.invoice.delete', ['id' => $row->id]);
+            $invoiceDeleteBtn = '<a href="'.$invoiceDelete.'" class="btn btn-danger btn-sm" onclick="return confirm(&quot;Are you sure permanently delete this invoice ?&quot;)" title="Invoice delete">Delete</a>';
+          }
 
-          return $invoiceDownloadBtn;
+          return $invoiceDownloadBtn.' '. $invoiceDeleteBtn;
     }
 
 

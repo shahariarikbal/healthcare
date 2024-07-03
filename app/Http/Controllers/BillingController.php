@@ -12,6 +12,7 @@ use App\Services\AppointmentServices;
 use App\Services\BillingServices;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BillingController extends Controller
 {
@@ -79,6 +80,18 @@ class BillingController extends Controller
         }else {
             return redirect()->back()->with('error', 'Invoice not found.');
         }
+    }
+
+    public function invoiceDelete($id)
+    {
+        $invoice = Billing::findOrFail($id);
+        $pdfPath = storage_path('app/public/bills/'.$invoice->invoiceId. '.pdf');
+
+        if(file_exists($pdfPath)){
+            File::delete($pdfPath);
+        }
+        $invoice->delete();
+        return redirect()->back()->with('success', 'Invoice has been deleted');
     }
 
 

@@ -5,7 +5,7 @@
           <div class="col-md-10">
                <div class="card view-card-shadow">
                     <div class="card-header">
-                          Nurse Profile details
+                          Nurse/Compounder Profile details
                           <a href="{{ route('nurse.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
                     </div>
                     <div class="card-body">

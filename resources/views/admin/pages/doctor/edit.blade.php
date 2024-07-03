@@ -44,8 +44,8 @@
                                    <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
                                    <select class="form-control" name="gender" id="gender">
                                         <option selected disabled>Select a gender</option>
-                                        <option value="Man" {{ $doctor->gender === 'Man' ? 'selected' : '' }}>Man</option>
-                                        <option value="Woman" {{ $doctor->gender === 'Woman' ? 'selected' : '' }}>Woman</option>
+                                        <option value="Male" {{ $doctor->gender === 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ $doctor->gender === 'Female' ? 'selected' : '' }}>Female</option>
                                    </select>
                                    <span class="text-danger">{{ $errors->has('gender') ? $errors->first('gender') : ' ' }}</span>
                               </div>

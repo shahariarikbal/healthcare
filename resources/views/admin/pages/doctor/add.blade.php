@@ -49,8 +49,8 @@
                                    <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
                                    <select class="form-control" name="gender" id="gender">
                                         <option selected disabled>Select a gender</option>
-                                        <option value="Man">Man</option>
-                                        <option value="Woman">Woman</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                    </select>
                                    <span class="text-danger">{{ $errors->has('gender') ? $errors->first('gender') : ' ' }}</span>
                               </div>

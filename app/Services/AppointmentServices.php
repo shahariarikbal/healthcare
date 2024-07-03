@@ -11,7 +11,7 @@ class AppointmentServices
 {
     public function getAppointmentDataForDatatable()
     {
-       $query = Appointment::with('doctor', 'patient')->orderBy('created_at', 'desc');
+       $query = Appointment::with('doctor', 'patient')->orderBy('id', 'desc');
 
        if(request()->filled('from_date') && request()->filled('to_date')){
          $fromDate = Carbon::parse(request()->from_date)->startOfDay();
@@ -45,14 +45,18 @@ class AppointmentServices
     public function generateActionButtons($row)
     {
           $editBtn = '';
-          if(!auth()->guard('account')->check() && !auth()->guard('receptionist')->check()){
+          $deleteBtn = '';
+          if(!auth()->guard('account')->check()){
             $editUrl = route('appointment.edit', ['id' => $row->id]);
             $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
+            $deleteUrl = route('appointment.delete', ['id' => $row->id,'slug' => $row->slug]);
+            $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="appointment delete" onclick="return confirm(&quot;Are you sure delete this appointment ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
           }
+          
           $billingUrl = route('accounts.bill.collect', ['id' => $row->id]);
           $billingBtn = $row->is_pay === 1 ? '<a href="#" class="edit paid-btn" title="Paid"><i class="fa-solid fa-circle-check"></i></a>' : '<a href="'.$billingUrl.'" class="edit delete-btn" title="Billing"><i class="fa-solid fa-money-bill-transfer"></i></a>';
 
-          return $editBtn.' '. $billingBtn;
+          return $editBtn.' '. $billingBtn. ' '. $deleteBtn;
      }
 
      public function appointmentStore($request)
@@ -119,8 +123,10 @@ class AppointmentServices
           $editUrl = route('appointment.daily.edit', ['id' => $row->id,'slug' => $row->slug]);
 
           $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
+          $deleteUrl = route('appointment.delete', ['id' => $row->id,'slug' => $row->slug]);
+          $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="appointment delete" onclick="return confirm(&quot;Are you sure delete this appointment ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
 
-          return $editBtn;
+          return $editBtn. ' '. $deleteBtn;
      }
 
 

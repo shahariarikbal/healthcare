@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Statics;
 use App\Constants\Status;
 use App\Http\Requests\NurseStoreRequest;
 use App\Http\Requests\NurseUpdateRequest;
@@ -64,7 +65,7 @@ class NurseController extends Controller
     public function active($id)
     {
         $nurse = Nurse::findOrFail($id);
-        $nurse->is_active = Status::INACTIVE;
+        $nurse->is_active = Statics::INACTIVE;
         $nurse->save();
         return redirect()->route('nurse.manage')->with('success', 'Nurse has been inactivated');
     }
@@ -72,7 +73,7 @@ class NurseController extends Controller
     public function inactive($id)
     {
         $nurse = Nurse::findOrFail($id);
-        $nurse->is_active = Status::ACTIVE;
+        $nurse->is_active = Statics::ACTIVE;
         $nurse->save();
         return redirect()->route('nurse.manage')->with('success', 'Nurse has been activated');
     }

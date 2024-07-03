@@ -5,7 +5,7 @@
           <div class="col-lg-12 col-md-12 mb-25">
                <div class="card">
                     <div class="card-header">
-                          Nurse Add
+                          Nurse/Compounder Add
                           <a href="{{ route('nurse.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
@@ -41,8 +41,8 @@
                                    <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
                                    <select class="form-control" name="gender" id="gender">
                                         <option selected disabled>Select a gender</option>
-                                        <option value="Man">Man</option>
-                                        <option value="Woman">Woman</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                    </select>
                                    <span class="text-danger">{{ $errors->has('gender') ? $errors->first('gender') : ' ' }}</span>
                               </div>

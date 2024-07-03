@@ -99,10 +99,19 @@ class AppointmentController extends Controller
     {
         try{
             $this->appointmentServices->dailyAppointmentUpdate($request, $id);
-            return redirect()->route('daily.appointments')->with('success', 'Appointment has been updated');
+            return redirect()->route('appointment.daily')->with('success', 'Appointment has been updated');
         }catch(Exception $exception){
             Log::error('Appointment update error is:', ['error' => $exception->getMessage()]);
             return redirect()->back()->with('error', $exception->getMessage());
         }
+    }
+
+    //Overall delete method
+
+    public function appointmentDelete($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->delete();
+        return redirect()->back()->with('success', 'Appointment has been deleted');
     }
 }
