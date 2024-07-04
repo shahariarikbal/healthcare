@@ -462,6 +462,10 @@ a {
     text-align: right;
     margin-right: 10px;
 }
+
+.text-right{
+    text-align: right;
+}
  
  
 /* Others css end */

@@ -135,7 +135,10 @@
                         <i class="fa-solid fa-prescription"></i>
                           Prescription  <i class="fa-solid fa-chevron-down float-end"></i>
                     </a>
-                    <ul class="submenu-list collapse">
+                    <ul class="submenu-list collapse {{ Route::is('prescription*') ? 'show' : '' }}">
+                        <li class="submenu-list-item">
+                            <a class="submenu-list-item-link" href="{{ route('prescription.add') }}">Add Prescription </a>
+                        </li>
                         <li class="submenu-list-item">
                             <a class="submenu-list-item-link" href="{{ route('prescription.all') }}">All Prescription </a>
                         </li>
