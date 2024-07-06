@@ -2,14 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
+    //******* For Doctor view *******/
     public function addPrescription()
     {
-        return view('admin.pages.prescriptions.add-prescriptions');
+        $doctorId = auth()->guard('doctor')->check() ? auth()->guard('doctor')->user()->id : '';
+        if($doctorId){
+            return redirect()->back()->with('error', 'Unauthorized doctor');
+        }
+        $appointments = Appointment::with(['patient', 'doctor'])->where('doctor_id', $doctorId)
+                    ->where('is_pay', 1)
+                    ->whereDate('appointment_date', Carbon::today())
+                    ->get();
+        return view('admin.pages.prescriptions.add-prescriptions', compact('appointments'));
     }
+
+    public function showAllPrescriptions()
+    {
+        return view('admin.pages.prescriptions.doctor-all-prescriptions');
+    }
+
+    public function showTodayPrescriptions()
+    {
+        return view('admin.pages.prescriptions.doctor-today-prescriptions');
+    }
+
+    //******* For Admin view *******/
     
     public function allPrescriptions()
     {

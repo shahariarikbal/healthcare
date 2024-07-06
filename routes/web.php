@@ -170,6 +170,9 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
     //prescriptions route
     Route::group(['prefix' => 'prescription'], function(){
         Route::get('/add', [PrescriptionController::class, 'addPrescription'])->name('prescription.add');
+        Route::get('/all', [PrescriptionController::class, 'showAllPrescriptions'])->name('prescription.list');
+        Route::get('/today-list', [PrescriptionController::class, 'showTodayPrescriptions'])->name('prescription.today');
+
         Route::get('/list', [PrescriptionController::class, 'allPrescriptions'])->name('prescription.all');
         Route::get('/daily-list', [PrescriptionController::class, 'dailyPrescriptions'])->name('prescription.daily');
     });

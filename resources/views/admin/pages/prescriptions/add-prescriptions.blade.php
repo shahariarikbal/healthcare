@@ -7,6 +7,9 @@
                     <div class="card-header">
                         Add Prescription
                     </div>
+                    <form action="" method="POST">
+                        @csrf
+                    </form>
                     <div class="card-body">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="row">
@@ -39,9 +42,14 @@
                             <hr/>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="name" class="form-label">Patient name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Enter patient name..."/>
-                                    <span class="text-danger">{{ $errors->has('name') ? $errors->first('name') : ' ' }}</span>
+                                    <label for="patient_id" class="form-label">Patient name <span class="text-danger">*</span></label>
+                                   <select class="form-control" name="patient_id" id="patient_id">
+                                        <option selected disabled>Seelct a patient</option>
+                                        @foreach ($appointments as $appointment)
+                                           <option value="{{ $appointment->patient_id }}">{{ Str::ucfirst($appointment->patient?->name ?? '') }}</option>
+                                        @endforeach
+                                   </select>
+                                   <span class="text-danger">{{ $errors->has('patient_id') ? $errors->first('patient_id') : ' ' }}</span>
                                </div>
                                <div class="col-md-4">
                                 <label for="name" class="form-label">Gender <span class="text-danger">*</span></label>
@@ -52,7 +60,7 @@
                                     <option value="Other">Other</option>
                                 </select>
                                 <span class="text-danger">{{ $errors->has('name') ? $errors->first('name') : ' ' }}</span>
-                           </div>
+                            </div>
                                <div class="col-md-4">
                                     <label for="age" class="form-label">Age <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="age" value="{{ old('age') }}" placeholder="Enter patient..."/>
@@ -80,7 +88,7 @@
                                         <input type="number" class="form-control" name="duration[]" id="duration" placeholder="eg:21" required />
                                     </div>
                                     <div class="col-lg-1 col-md-1 col-sm-4">
-                                        <span class="input-group-text prescription-btn" id="addPrescription" onclick="addNewField()" title="Add more">Add</span>
+                                        <span class="input-group-text prescription-add-btn" id="addPrescription" onclick="addNewField()" title="Add more">Add</span>
                                     </div>
                                 </div>
                                 <div id="addNewInputField"></div>
@@ -95,9 +103,10 @@
 @push('script')
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
-           document.getElementById('addNewInputField').addEventListener('click', function(event) {
+        let container = document.getElementById('addNewInputField');
+            container.addEventListener('click', function(event) {
            
-                if (event.target && event.target.matches('.danger-btn')) {
+                if (event.target && event.target.matches('.prescription-remove-btn')) {
                      
                      let inputGroup = event.target.closest('.row');
                      
@@ -125,7 +134,9 @@
                     <input type="number" class="form-control" name="duration[]" id="${newFieldId}" placeholder="eg:21" required />
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-4">
-                    <span class="input-group-text prescription-btn" data-target="${newFieldId}" title="Remove"><i class="fa-solid fa-circle-minus"></i></span>
+                    <span class="input-group-text prescription-remove-btn" data-target="${newFieldId}" title="Remove">
+                        <small>X</small>
+                    </span>
                 </div>
             
             </div>
