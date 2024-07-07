@@ -41,7 +41,7 @@ class ReceptionistController extends Controller
         }
         
         // if the receptionist is inactive
-        if ($receptionist->is_active === Status::INACTIVE) {
+        if ($receptionist->is_active === Statics::INACTIVE) {
             return redirect()->back()->with('error', 'Unable to login. Please contact the admin');
         }
 

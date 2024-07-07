@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Statics;
 use App\Constants\Status;
 use App\Http\Requests\AccountsStoreRequest;
 use App\Http\Requests\AccountsUpdateRequest;
@@ -40,7 +41,7 @@ class AccountController extends Controller
         }
         
         // Check if the account is inactive
-        if ($account->is_active === Status::INACTIVE) {
+        if ($account->is_active === Statics::INACTIVE) {
             return redirect()->back()->with('error', 'Unable to login. Please contact the admin');
         }
 
@@ -112,7 +113,7 @@ class AccountController extends Controller
     public function accountsActive($id)
     {
         $accounts = Account::findOrFail($id);
-        $accounts->is_active = Status::INACTIVE;
+        $accounts->is_active = Statics::INACTIVE;
         $accounts->save();
         return redirect()->route('accounts.manage')->with('success', 'Accounts has been inactivated');
     }
@@ -120,7 +121,7 @@ class AccountController extends Controller
     public function accountsInactive($id)
     {
         $accounts = Account::findOrFail($id);
-        $accounts->is_active = Status::ACTIVE;
+        $accounts->is_active = Statics::ACTIVE;
         $accounts->save();
         return redirect()->route('accounts.manage')->with('success', 'Accounts has been Activated');
     }
