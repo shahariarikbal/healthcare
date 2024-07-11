@@ -42,6 +42,75 @@ class AppointmentServices
        return $data;
     }
 
+    public function getScheduleAppointmentDataForDatatable()
+    {
+       $query = Appointment::with('doctor', 'patient')
+                ->whereDate('appointment_date', '!=',Carbon::today())
+                ->where('is_pay', Statics::IS_NOT_PAY)
+                ->orderBy('id', 'desc');
+
+       if(request()->filled('from_date') && request()->filled('to_date')){
+         $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+         $toDate = Carbon::parse(request()->to_date)->endOfDay();
+         $query->whereBetween('appointment_date', [$fromDate, $toDate]);
+       }
+
+       // relational field search functionality
+       if($searchValue = request('search')['value']){
+          $query->where(function($subQuery) use ($searchValue){
+            
+            $subQuery->where('problem', 'like', "%{$searchValue}%")
+              ->orWhereHas('doctor', function($q) use ($searchValue){
+                $q->where('first_name', 'like', "%{$searchValue}%")
+                ->orWhere('last_name', 'like', "%{$searchValue}%");
+              })
+              ->orWhereHas('patient', function($q) use ($searchValue){
+                $q->where('name', 'like', "%{$searchValue}%");
+              });
+              
+          });
+       }
+
+       //fetch all data
+       $data = $query->get();
+
+
+       return $data;
+    }
+
+    public function getPaymentDueAppointmentDataForDatatable()
+    {
+       $query = Appointment::with('doctor', 'patient')->where('is_pay', 0)->orderBy('id', 'desc');
+
+       if(request()->filled('from_date') && request()->filled('to_date')){
+         $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+         $toDate = Carbon::parse(request()->to_date)->endOfDay();
+         $query->whereBetween('appointment_date', [$fromDate, $toDate]);
+       }
+
+       // relational field search functionality
+       if($searchValue = request('search')['value']){
+          $query->where(function($subQuery) use ($searchValue){
+            
+            $subQuery->where('problem', 'like', "%{$searchValue}%")
+              ->orWhereHas('doctor', function($q) use ($searchValue){
+                $q->where('first_name', 'like', "%{$searchValue}%")
+                ->orWhere('last_name', 'like', "%{$searchValue}%");
+              })
+              ->orWhereHas('patient', function($q) use ($searchValue){
+                $q->where('name', 'like', "%{$searchValue}%");
+              });
+              
+          });
+       }
+
+       //fetch all data
+       $data = $query->get();
+
+
+       return $data;
+    }
+
     public function generateActionButtons($row)
     {
           $editBtn = '';
@@ -57,6 +126,20 @@ class AppointmentServices
           $billingBtn = $row->is_pay === 1 ? '<a href="#" class="edit paid-btn" title="Paid"><i class="fa-solid fa-circle-check"></i></a>' : '<a href="'.$billingUrl.'" class="edit delete-btn" title="Billing"><i class="fa-solid fa-money-bill-transfer"></i></a>';
 
           return $editBtn.' '. $billingBtn. ' '. $deleteBtn;
+     }
+
+     public function generateScheduleActionButtons($row)
+    {
+          $editBtn = '';
+          $deleteBtn = '';
+          if(!auth()->guard('account')->check()){
+            $editUrl = route('appointment.edit', ['id' => $row->id]);
+            $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
+            $deleteUrl = route('appointment.delete', ['id' => $row->id,'slug' => $row->slug]);
+            $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="appointment delete" onclick="return confirm(&quot;Are you sure delete this appointment ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          }
+
+          return $editBtn. ' '. $deleteBtn;
      }
 
      public function appointmentStore($request)

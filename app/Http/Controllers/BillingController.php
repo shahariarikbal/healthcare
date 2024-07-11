@@ -28,7 +28,7 @@ class BillingController extends Controller
     public function accountsBillingsManage()
     {
         if (request()->ajax()) {
-            $data = $this->appointmentServices->getAppointmentDataForDatatable();
+            $data = $this->appointmentServices->getPaymentDueAppointmentDataForDatatable();
             $dataWithActions = $data->map(function ($row) {
                 $row->action = $this->appointmentServices->generateActionButtons($row);
                 return $row;

@@ -53,6 +53,20 @@ class AppointmentController extends Controller
         return view('admin.pages.appointments.all-appointments');
     }
 
+    public function scheduleAppointments()
+    {
+        if (request()->ajax()) {
+            $data = $this->appointmentServices->getScheduleAppointmentDataForDatatable();
+            $dataWithActions = $data->map(function ($row) {
+                $row->action = $this->appointmentServices->generateScheduleActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithActions)->make(true);
+        }
+
+        return view('admin.pages.appointments.schedule-appointments');
+    }
+
     public function dailyAppointments()
     {
         if(request()->ajax()){

@@ -7,6 +7,8 @@ class Statics
     const ACTIVE = 1;
     const INACTIVE = 0;
     const IS_NULL = null;
+    const IS_PAY = true;
+    const IS_NOT_PAY = false;
 
     const DEFAULT_IMAGE_SET = 'assets/images/avatar.png';
 

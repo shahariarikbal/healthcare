@@ -12,12 +12,30 @@
                   {{ optional(auth()->guard('web'))->user()->name ?? '' }}
               </span>
               <ul class="dropdown-menu custom-profile-dropdown-menu">
-                  <li>
-                      <a href="">Settings</a>
-                  </li>
-                  <li>
-                      <a href="">Profile</a>
-                  </li>
+                @if(auth()->guard('web')->check())
+                <li>
+                    <a href="">Settings</a>
+                </li>
+                @endif
+
+                @if(auth()->guard('account')->check())
+                <li>
+                    <a href="">Settings</a>
+                </li>
+                @endif
+
+                @if(auth()->guard('receptionist')->check())
+                <li>
+                    <a href="">Settings</a>
+                </li>
+                @endif
+
+                @if(auth()->guard('doctor')->check())
+                <li>
+                    <a href="">Settings</a>
+                </li>
+                @endif
+                  
                   <li>
                      <a href="{{ route('logout') }}"onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">Logout</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Billing;
 use App\Models\Doctor;
 use App\Models\Patient;
 use Carbon\Carbon;
@@ -26,12 +27,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function calculateReport($method, $field, $dataValue)
+    {
+        return Billing::{$method}($field, $dataValue);
+    }
+
     public function index()
     {
         $totalAppointments = Appointment::select(['id'])->get()->count();
         $todayAppointments = Appointment::where('appointment_date', Carbon::today())->select(['id'])->get()->count();
         $patients = Patient::select(['id'])->get()->count();
         $doctors = Doctor::select(['id'])->get()->count();
+        $calculateReports = [
+            'yearlyReport' => $this->calculateReport('whereYear', 'payment_date', date('Y'))->sum('fee'),
+            'monthlyReport' => $this->calculateReport('whereYear', 'payment_date', date('Y'))
+                ->whereMonth('payment_date', date('m'))->sum('fee'),
+            'todayReport' => $this->calculateReport('whereDate', 'payment_date', date('Y-m-d'))->sum('fee')
+        ];
 
         //For appointment chart data show
         $monthlyAppointmentData = Appointment::select(
@@ -43,6 +55,6 @@ class HomeController extends Controller
 
         $labels = $monthlyAppointmentData->keys()->toArray();
         $data = $monthlyAppointmentData->values()->toArray();
-        return view('admin.home.index', compact(['labels','data','totalAppointments', 'todayAppointments', 'patients', 'doctors']));
+        return view('admin.home.index', compact(['calculateReports','labels','data','totalAppointments', 'todayAppointments', 'patients', 'doctors']));
     }
 }

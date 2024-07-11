@@ -91,8 +91,7 @@
                 <div class="card balance-card">
                     <div class="card-body">
                         <h2 class="text-center">Yearly Report</h2>
-                        <h5 class="text-center">Total Patient: 560000</h5>
-                        <h5 class="text-center">Total Income: $560000</h5>
+                        <h5 class="text-center">Total Income: ${{ $calculateReports['yearlyReport'] ?? 0 }}</h5>
                     </div>
                 </div>
             </div>
@@ -100,7 +99,7 @@
                 <div class="card balance-card">
                     <div class="card-body">
                         <h2 class="text-center">Monthly Balance</h2>
-                        <h5 class="text-center">Total Income: $56000</h5>
+                        <h5 class="text-center">Total: ${{ $calculateReports['monthlyReport'] ?? 0 }}</h5>
                     </div>
                 </div>
             </div>
@@ -108,7 +107,7 @@
                 <div class="card balance-card">
                     <div class="card-body">
                         <h2 class="text-center">Today Balance</h2>
-                        <h5 class="text-center">Total Income: $46000</h5>
+                        <h5 class="text-center">Total: ${{ $calculateReports['todayReport'] ?? 0 }}</h5>
                     </div>
                 </div>
             </div>

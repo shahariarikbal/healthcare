@@ -159,9 +159,10 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/edit/{id}', [AppointmentController::class, 'editAppointments'])->name('appointment.edit');
         Route::post('/update/{id}', [AppointmentController::class, 'updateAppointment'])->name('appointment.update');
         
-        Route::get('/daily-appointments-list', [AppointmentController::class, 'dailyAppointments'])->name('appointment.daily');
-        Route::get('/daily-appointments-edit/{id}', [AppointmentController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
-        Route::post('/daily-appointments-update/{id}', [AppointmentController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
+        Route::get('/daily-list', [AppointmentController::class, 'dailyAppointments'])->name('appointment.daily');
+        Route::get('/schedule-list', [AppointmentController::class, 'scheduleAppointments'])->name('appointment.schedule');
+        Route::get('/daily-edit/{id}', [AppointmentController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
+        Route::post('/daily-update/{id}', [AppointmentController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
         Route::get('/delete/{id}', [AppointmentController::class, 'appointmentDelete'])->name('appointment.delete');
     
         

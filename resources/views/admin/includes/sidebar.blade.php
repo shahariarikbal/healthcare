@@ -103,25 +103,25 @@
                         <ul class="submenu-list collapse {{ Route::is('accounts*') ? 'show' : '' }}">
                             @if(auth()->guard('web')->check())
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('accounts.create') }}">Add </a>
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.create') }}">Add Accounts</a>
                                 </li>
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Manage </a>
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Manage Accounts</a>
                                 </li>
                             @endif
                             @if(auth()->guard('web')->check() || auth()->guard('account')->check() || auth()->guard('receptionist')->check())
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('accounts.expanse.manage') }}">Expanse </a>
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.expanse.manage') }}">Manage Expanses </a>
                                 </li>
                                 
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('accounts.billing.manage') }}">Billings </a>
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.billing.manage') }}">Pending Bills </a>
                                 </li>
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('accounts.invoice.manage') }}">Invoices </a>
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.invoice.manage') }}">Manage Invoices </a>
                                 </li>
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('accounts.payment.report.manage') }}">Report </a>
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.payment.report.manage') }}">Payment Reports </a>
                                 </li>
                             @endif
                         </ul>
@@ -162,10 +162,13 @@
                             @endif
                             @if(auth()->guard('web')->check() || auth()->guard('account')->check() || auth()->guard('receptionist')->check())
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('appointment.all') }}">All Appointment </a>
+                                    <a class="submenu-list-item-link" href="{{ route('appointment.all') }}">All Appointments </a>
                                 </li>
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('appointment.daily') }}">Today Appointment </a>
+                                    <a class="submenu-list-item-link" href="{{ route('appointment.schedule') }}">Schedule Appointments </a>
+                                </li>
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('appointment.daily') }}">Today Appointments </a>
                                 </li>
                             @endif
                         </ul>
