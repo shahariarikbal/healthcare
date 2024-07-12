@@ -57,7 +57,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/create', [DepartmentController::class, 'showDepartmentCreateForm'])->name('department.create');
         Route::get('/manage', [DepartmentController::class, 'manageDepartment'])->name('department.manage');
         Route::post('/store', [DepartmentController::class, 'store'])->name('department.store');
-        Route::get('/edit/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
+        Route::get('/edit/{id}/{slug}', [DepartmentController::class, 'edit'])->name('department.edit');
         Route::post('/update/{id}', [DepartmentController::class, 'update'])->name('department.update');
         Route::get('/delete/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
     });
@@ -143,7 +143,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
 
         //Billings routes
         Route::get('/billing-manage', [BillingController::class, 'accountsBillingsManage'])->name('accounts.billing.manage');
-        Route::get('/bill-collect-form/{id}', [BillingController::class, 'accountsBillCollectForm'])->name('accounts.bill.collect');
+        Route::get('/bill-collect-form/{id}/{slug}', [BillingController::class, 'accountsBillCollectForm'])->name('accounts.bill.collect');
         Route::post('/patient-bill-store/{id}', [BillingController::class, 'accountsBillStore'])->name('accounts.bill.store');
         Route::get('/billing-invoices', [BillingController::class, 'accountsBillingsInvoice'])->name('accounts.billing.invoice');
         
@@ -155,8 +155,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/create', [AppointmentController::class, 'appointmentCreateForm'])->name('appointment.create');
         Route::post('/store', [AppointmentController::class, 'appointmentStore'])->name('appointment.store');
         Route::get('/all-list', [AppointmentController::class, 'allAppointments'])->name('appointment.all');
-        Route::get('/view/{id}', [AppointmentController::class, 'viewAppointment'])->name('appointment.view');
-        Route::get('/edit/{id}', [AppointmentController::class, 'editAppointments'])->name('appointment.edit');
+        Route::get('/edit/{id}/{slug}', [AppointmentController::class, 'editAppointments'])->name('appointment.edit');
         Route::post('/update/{id}', [AppointmentController::class, 'updateAppointment'])->name('appointment.update');
         
         Route::get('/daily-list', [AppointmentController::class, 'dailyAppointments'])->name('appointment.daily');

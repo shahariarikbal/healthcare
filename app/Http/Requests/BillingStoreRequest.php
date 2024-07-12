@@ -26,7 +26,6 @@ class BillingStoreRequest extends FormRequest
             'patient_id' => 'required|integer',
             'appointment_date' => 'required',
             'fee' => 'required',
-            'payment_type' => 'required|string',
             'payment_date' => 'required',
         ];
     }

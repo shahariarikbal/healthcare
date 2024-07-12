@@ -81,7 +81,7 @@ class AppointmentController extends Controller
         return view('admin.pages.appointments.daily-appointments');
     }
 
-    public function editAppointments($id)
+    public function editAppointments($id, $slug)
     {
         $appointment = Appointment::findOrFail($id);
         $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Statics::ACTIVE)->get();

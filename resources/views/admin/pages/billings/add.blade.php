@@ -48,16 +48,6 @@
                               </div>
 
                               <div class="col-6">
-                                   <label for="payment_type" class="form-label">Payment type <span class="text-danger">*</span></label>
-                                   <select class="form-control" name="payment_type" id="payment_type">
-                                        <option selected disabled>Select A Type</option>
-                                        <option value="cash">Cash</option>
-                                        <option value="card">Card</option>
-                                   </select>
-                                   <span class="text-danger">{{ $errors->has('payment_type') ? $errors->first('payment_type') : ' ' }}</span>
-                              </div>
-
-                              <div class="col-6">
                                    <label for="payment_date" class="form-label">Payment date <span class="text-danger">*</span></label>
                                    <input type="date" min="Y-m-d" class="form-control" name="payment_date" value="{{ $appointment->payment_date ?? old('payment_date') }}" placeholder="eg: dd/mm/yyyy"/>
                                    <span class="text-danger">{{ $errors->has('payment_date') ? $errors->first('payment_date') : ' ' }}</span>

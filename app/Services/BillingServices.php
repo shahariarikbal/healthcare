@@ -31,7 +31,7 @@ class BillingServices
                'fee' => $request->fee,
                'patient_id' => $request->patient_id,
                'appointment_date' => $request->appointment_date,
-               'payment_type' => $request->payment_type,
+               'payment_type' => 'Cash',
                'payment_date' => $request->payment_date,
                'collected_by' => auth()->guard('web')->check() ? 0 : (auth()->guard('account')->check() ? auth()->guard('account')->user()->id : 0),
           ]);

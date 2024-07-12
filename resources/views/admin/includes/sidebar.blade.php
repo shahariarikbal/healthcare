@@ -109,7 +109,19 @@
                                     <a class="submenu-list-item-link" href="{{ route('accounts.manage') }}">Manage Accounts</a>
                                 </li>
                             @endif
-                            @if(auth()->guard('web')->check() || auth()->guard('account')->check() || auth()->guard('receptionist')->check())
+                            @if(auth()->guard('web')->check() || auth()->guard('receptionist')->check())
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.expanse.manage') }}">Manage Expanses </a>
+                                </li>
+                                
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.billing.manage') }}">Pending Bills </a>
+                                </li>
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('accounts.payment.report.manage') }}">Payment Reports </a>
+                                </li>
+                            @endif
+                            @if(auth()->guard('account')->check())
                                 <li class="submenu-list-item">
                                     <a class="submenu-list-item-link" href="{{ route('accounts.expanse.manage') }}">Manage Expanses </a>
                                 </li>

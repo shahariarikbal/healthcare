@@ -39,7 +39,7 @@ class BillingController extends Controller
         return view('admin.pages.billings.list');
     }
 
-    public function accountsBillCollectForm($id)
+    public function accountsBillCollectForm($id, $slug)
     {
         $appointment = Appointment::with('doctor', 'patient')->findOrFail($id);
         $doctors = Doctor::orderBy('id', 'desc')->where('is_active', Statics::ACTIVE)->get();

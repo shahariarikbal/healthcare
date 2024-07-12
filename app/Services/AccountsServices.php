@@ -3,9 +3,6 @@
 namespace App\Services;
 
 use App\Models\Account;
-use App\Models\Nurse;
-use App\Models\Patient;
-use App\Models\Receptionist;
 use Str;
 
 class AccountsServices

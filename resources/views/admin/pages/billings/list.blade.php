@@ -5,7 +5,7 @@
           <div class="col-md-12">
                <div class="card">
                     <div class="card-header">
-                        Appointments list
+                        Pending Bills
                     </div>
                     <div class="card-body">
                       <div class="input-group date-filtering">
@@ -26,10 +26,12 @@
                                  <th>Patient</th>
                                  <th>Appointment date</th>
                                  <th>Payment Status</th>
-                                 @if (auth()->guard('web')->check())
+                                 @if (auth()->guard('web')->check() || auth()->guard('account')->check())
                                   <th>Patient Status</th>
                                  @endif
+                                 @if (auth()->guard('account')->check())
                                  <th>Action</th>
+                                 @endif
                               </tr>
                          </thead>
                          <tbody>
@@ -96,7 +98,7 @@
                   }
             },
 
-            @if (auth()->guard('web')->check())
+            @if (auth()->guard('web')->check() || auth()->guard('account')->check())
             {
                   data: 'status',
                   name: 'status',
@@ -116,8 +118,9 @@
               },
             @endif
 
-              
+            @if (auth()->guard('account')->check())
               {data: 'action', name: 'action', orderable: false, searchable: false},
+            @endif
           ]
       });
 

@@ -15,7 +15,6 @@
                                    <th>Doctor</th>
                                    <th>Patient</th>
                                    <th>Appointment date</th>
-                                   <th>Diseased</th>
                                    <th>Status</th>
                                    <th>Action</th>
                                 </tr>
@@ -55,22 +54,20 @@
               },
              
               {
-                  data: 'doctor.first_name',
+                  data: 'doctor',
                   name: 'doctor.last_name',
                   render: function (data, type, row) {
-                          return '<strong>' + row.doctor.first_name + ' ' + row.doctor.last_name + '</strong>'
+                          return '<strong>' + row.doctor.first_name + ' ' + row.doctor.last_name + '</strong>' + '<br/>' + '<strong> Call: ' + row.doctor.phone +'</strong>'
                   }
               },
               {
-                  data: 'patient.name', 
+                  data: 'patient', 
                   name: 'patient.name',
                   render: function(data, type, row) {
-                      return '<strong>' + row.patient.name +'</strong>';
+                      return '<strong>' + row.patient.name +'</strong>' + '<br/>' + '<strong> Call: ' + row.patient.phone +'</strong>';
                   }
               },
               {data: 'appointment_date', name: 'appointment_date'},
-              
-              {data: 'problem', name: 'problem'},
 
               {
                   data: 'status',
