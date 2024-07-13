@@ -263,6 +263,23 @@
                         </ul>
                     </li>
                 @endif
+
+                @if(auth()->guard('web')->check())
+                    <li class="nav-list-item has-submenu {{ Route::is('admin*') ? 'active' : '' }}">
+                        <a class="nav-list-item-link" href="javascript:void(0);">
+                            <i class="fa-solid fa-gears"></i>
+                            Settings  <i class="fa-solid fa-chevron-down float-end"></i>
+                        </a>
+                        <ul class="submenu-list collapse {{ Route::is('admin*') ? 'show' : '' }}">
+                            <li class="submenu-list-item">
+                                <a class="submenu-list-item-link" href="{{ route('admin.profile.settings') }}">Profile Settings </a>
+                            </li>
+                            <li class="submenu-list-item">
+                                <a class="submenu-list-item-link" href="{{ route('admin.logo.settings') }}">Logo Setting </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </nav>
     </div>
