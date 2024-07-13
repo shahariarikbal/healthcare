@@ -183,6 +183,12 @@ a {
     margin-top: 10px;
 }
 
+.logo-size{
+    height: 50px;
+    width: 200px;
+    margin-top: 10px;
+}
+
 .avatar{
     height: 30px;
     width: 30px;

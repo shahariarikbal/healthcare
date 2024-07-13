@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('12345678'),
-            'avatar' => url('/assets/images/avatar.png')
+            'avatar' => url('/assets/images/avatar.png'),
+            'logo' => url('/assets/images/logo.png')
         ]);
 
         // Other users seeder
