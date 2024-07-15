@@ -50,9 +50,9 @@
                                 </form>
                                 
                                 <div class="others-login-panel">
-                                    <a href="{{ route('receptionist.login') }}" class="btn btn-sm btn-info">FrontDesk login</a>
-                                    <a href="{{ route('account.login') }}" class="btn btn-sm btn-primary">Account login</a>
-                                    <a href="{{ route('doctor.login') }}" class="btn btn-sm btn-danger">Doctor login</a>
+                                    <a href="{{ route('receptionist.login') }}" class="btn btn-sm btn-info">Receiptionist</a>
+                                    <a href="{{ route('account.login') }}" class="btn btn-sm btn-primary">Account</a>
+                                    <a href="{{ route('doctor.login') }}" class="btn btn-sm btn-danger">Doctor</a>
                                 </div>
                             </div>
                         </div>

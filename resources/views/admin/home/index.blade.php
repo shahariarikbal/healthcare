@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row py-2">
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12 total-card">
         <a href="{{ route('appointment.all') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
@@ -21,7 +21,7 @@
             </div><!-- end card -->
         </a>
     </div><!-- end col -->
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12 total-card">
         <a href="{{ route('appointment.daily') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
@@ -40,7 +40,7 @@
             </div><!-- end card -->
         </a>
     </div><!-- end col -->
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12 total-card">
         <a href="{{ route('patient.manage') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
@@ -59,7 +59,7 @@
             </div><!-- end card -->
         </a>
     </div><!-- end col -->
-    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xl-3 col-xs-12 total-card">
         <a href="{{ route('doctor.manage') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
@@ -78,14 +78,14 @@
             </div><!-- end card -->
         </a>
     </div><!-- end col -->
-    <div class="col-lg-8 col-md-8 col-sm-12 mt-4">
+    <div class="col-lg-8 col-md-8 col-sm-12 mt-4 chart-card">
         <div class="card dashboard-chart">
             <div class="card-body">
                 <canvas id="appointment_report"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-12 mt-4">
+    <div class="col-lg-4 col-md-4 col-sm-12 mt-4 report-card">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card balance-card">

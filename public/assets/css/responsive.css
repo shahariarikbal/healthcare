@@ -15,6 +15,28 @@
      }
  }
 
+ @media (min-width: 770px) and (max-width: 1200px) {
+    .offcanvas{
+        display: block;
+   }
+
+   .total-card{
+       width: 50%;
+   }
+
+   .avatar-title{
+       background: none;
+       color: #1560bd;
+   }
+
+   .chart-card{
+    width: 100%;
+   }
+   .report-card{
+    width: 100%;
+   }
+}
+
  @media (max-width: 1400px) {
      .balance-card{
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -30,3 +52,9 @@
           font-weight: 600;
       }
  }
+
+ @media (min-width: 360px) and (max-width: 1200px) {
+    .total-card{
+        margin-bottom: 5px;
+    }
+}

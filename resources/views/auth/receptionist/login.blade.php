@@ -55,6 +55,11 @@
                         </div>
       
                         <button class="btn login-btn" type="submit">Login</button>
+
+                        <div class="mt-3">
+                          <span>Email: abdullah@info.com</span> |
+                          <span>Password: 12345678</span>
+                        </div>
                       </form>
       
                     </div>

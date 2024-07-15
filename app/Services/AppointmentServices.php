@@ -136,9 +136,9 @@ class AppointmentServices
           $editBtn = '';
           $deleteBtn = '';
           if(!auth()->guard('account')->check()){
-            $editUrl = route('appointment.edit', ['id' => $row->id]);
+            $editUrl = route('appointment.edit', ['id' => $row->id, 'slug' => $row->patient?->slug]);
             $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
-            $deleteUrl = route('appointment.delete', ['id' => $row->id,'slug' => $row->slug]);
+            $deleteUrl = route('appointment.delete', ['id' => $row->id]);
             $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="appointment delete" onclick="return confirm(&quot;Are you sure delete this appointment ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
           }
 

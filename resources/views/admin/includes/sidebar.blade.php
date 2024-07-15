@@ -265,12 +265,12 @@
                 @endif
 
                 @if(auth()->guard('web')->check())
-                    <li class="nav-list-item has-submenu {{ Route::is('admin*') ? 'active' : '' }}">
+                    <li class="nav-list-item has-submenu {{ in_array(Route::currentRouteName(), ['admin.profile.settings', 'admin.logo.settings']) ? 'active' : '' }}">
                         <a class="nav-list-item-link" href="javascript:void(0);">
                             <i class="fa-solid fa-gears"></i>
                             Settings  <i class="fa-solid fa-chevron-down float-end"></i>
                         </a>
-                        <ul class="submenu-list collapse {{ Route::is('admin*') ? 'show' : '' }}">
+                        <ul class="submenu-list collapse {{ in_array(Route::currentRouteName(), ['admin.profile.settings', 'admin.logo.settings']) ? 'show' : '' }}">
                             <li class="submenu-list-item">
                                 <a class="submenu-list-item-link" href="{{ route('admin.profile.settings') }}">Profile Settings </a>
                             </li>

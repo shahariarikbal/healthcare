@@ -48,7 +48,7 @@ class BillingServices
     //********** Invoices method ***********//
     public function getAllInvoicesFromDatabase()
     {
-        $query = Billing::with(['doctor', 'patient'])->orderBy('created_at', 'desc');
+        $query = Billing::with(['doctor', 'patient'])->orderBy('id', 'desc');
 
         if(request()->filled('from_date') && request()->filled('to_date')){
             $fromDate = Carbon::parse(request()->from_date)->startOfDay();
@@ -95,7 +95,7 @@ class BillingServices
      //******** Payment report ********//
      public function getAllPaymentReportFromDatabase()
       {
-        $query = Billing::with(['doctor', 'patient'])->orderBy('created_at', 'desc');
+        $query = Billing::with(['doctor', 'patient'])->orderBy('id', 'desc');
 
         if(request()->filled('from_date') && request()->filled('to_date')){
             $fromDate = Carbon::parse(request()->from_date)->startOfDay();
