@@ -52,13 +52,25 @@ class DoctorServices
 
     public function generateActionButtons($row)
     {
-          $viewUrl = route('doctor.view', ['id' => $row->id,'slug' => $row->slug]);
-          $editUrl = route('doctor.edit', ['id' => $row->id,'slug' => $row->slug]);
-          $deleteUrl = route('doctor.delete', ['id' => $row->id,'slug' => $row->slug]);
+          $editBtn = '';
+          $viewBtn = '';
+          $deleteBtn = '';
+          
+          if(auth()->guard('account')->check() || auth()->guard('receptionist')->check() || auth()->guard('web')->check()){
+               $viewUrl = route('doctor.view', ['id' => $row->id,'slug' => $row->slug]);
+          }
+          if(auth()->guard('web')->check()){
+               $editUrl = route('doctor.edit', ['id' => $row->id,'slug' => $row->slug]);
+               $deleteUrl = route('doctor.delete', ['id' => $row->id,'slug' => $row->slug]);
+          }
+          if(auth()->guard('account')->check() || auth()->guard('receptionist')->check() || auth()->guard('web')->check()){
+               $viewBtn = '<a href="'.$viewUrl.'" class="view view-btn"><i class="fa-regular fa-eye"></i></a>';
+          }
 
-          $viewBtn = '<a href="'.$viewUrl.'" class="view view-btn"><i class="fa-regular fa-eye"></i></a>';
-          $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn"><i class="fa-regular fa-pen-to-square"></i></a>';
-          $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" onclick="return confirm(&quot;Are you sure delete this doctor ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          if(auth()->guard('web')->check()){
+               $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn"><i class="fa-regular fa-pen-to-square"></i></a>';
+               $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" onclick="return confirm(&quot;Are you sure delete this doctor ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          }
 
           
 

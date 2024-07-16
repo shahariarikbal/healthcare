@@ -6,12 +6,15 @@
                <div class="card">
                     <div class="card-header">
                           Doctor list
-                          <a href="{{ route('doctor.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                          @if(auth()->guard('web')->check())
+                            <a href="{{ route('doctor.create') }}" class="btn btn-sm float-end btn-add">
+                                <i class="fa-solid fa-circle-plus"></i> Add
+                            </a>
+                          @endif
+                          
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-data custom-font-size">
+                        <table class="table table-hover table-responsive table-data custom-font-size">
                           <thead>
                               <tr>
                                  <th class="sl-width">SL</th>
@@ -41,6 +44,7 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: "{{ route('doctor.manage') }}",
                 columns: [
                     { 
@@ -103,13 +107,19 @@
                             // Replace ':id' placeholder with the actual id value
                             doctorActiveUrl = doctorActiveUrl.replace(':id', data.id);
                             doctorInactiveUrl = doctorInactiveUrl.replace(':id', data.id);
-
+                            @if(auth()->guard('web')->check())
                             if (data.is_active === 1) {
                                 activeBtn = '<a href="' + doctorActiveUrl + '" class="badge-active">Active</a>';
                             } else {
                                 inactiveBtn = '<a href="' + doctorInactiveUrl + '" class="badge-inactive">Inactive</a>';
                             }
-
+                            @elseif(auth()->guard('account')->check())
+                            if (data.is_active === 1) {
+                                activeBtn = '<a href="#" class="badge-active">Active</a>';
+                            } else {
+                                inactiveBtn = '<a href="#" class="badge-inactive">Inactive</a>';
+                            }
+                            @endif
                             return activeBtn + ' ' + inactiveBtn;
                         }
                     },
