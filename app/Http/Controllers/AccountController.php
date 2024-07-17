@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Statics;
-use App\Constants\Status;
 use App\Http\Requests\AccountsStoreRequest;
 use App\Http\Requests\AccountsUpdateRequest;
 use App\Models\Account;
 use App\Services\AccountsServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -57,6 +57,76 @@ class AccountController extends Controller
     public function index()
     {
         return view('account.home.index');
+    }
+
+    public function profileSetting()
+    {
+        $authUser = auth()->guard('account')->user();
+        return view('account.profile.settings', compact('authUser'));
+    }
+
+    public function profileSettingUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'phone' => 'required|string|unique:accounts,phone,'.auth()->guard('account')->user()->id,
+            'email' => 'required|email|unique:accounts,email,'.auth()->guard('account')->user()->id
+        ]);
+
+        try{
+            $authUser = auth()->guard('account')->user();
+            if ($request->hasFile('avatar')) {
+                $oldImage = $authUser->avatar;
+                if ($oldImage && file_exists(public_path('logo/' . $oldImage))) {
+                     unlink(public_path('logo/' . $oldImage));
+                }
+                $image = $request->file('avatar');
+                $imageName = time() . '.' . $image->extension();
+                $image->move('logo/', $imageName);
+                $authUser->avatar = url('logo/'.$imageName);
+ 
+                $authUser->update();
+                
+         }
+
+            $authUser->update([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'email' => $request->email,
+            ]);
+
+            return redirect()->back()->with('success', 'Profile setting has been updated');
+            
+        }catch(Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'old_password' => 'required|min:8',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        try{
+            $authUser = auth()->guard('account')->user();
+
+            if(!Hash::check($request->old_password, $authUser->password)){
+                return redirect()->back()->with('error', 'The provided password does not match your current password.');
+            }
+
+            //update password
+            $authUser->update([
+                'password' => Hash::make($request->password)
+            ]);
+            return redirect()->back()->with('success', 'Password has been updated.');
+        }catch(Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     public function logout(Request $request)

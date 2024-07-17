@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('account.master')
 
 @section('content')
     <div class="container-fluid mt-3">
@@ -10,18 +10,41 @@
                                    Profile settings
                               </div>
                               <div class="card-body">
-                                   <form class="row g-3" action="{{ route('admin.profile.settings.update') }}" method="POST" enctype="multipart/form-data">
+                                   <form class="row g-3" action="{{ route('account.profile.settings.update') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                             <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-                                             <input type="text" class="form-control" name="name" value="{{ $authUser->name ?? old('name') }}" placeholder="eg: Admin"/>
-                                             <span class="text-danger">{{ $errors->has('name') ? $errors->first('name') : ' ' }}</span>
+                                             <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
+                                             <input type="text" class="form-control" name="first_name" value="{{ $authUser->first_name ?? old('first_name') }}" placeholder="eg: Admin"/>
+                                             <span class="text-danger">{{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}</span>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                             <label for="last_name" class="form-label">Last Name </label>
+                                             <input type="text" class="form-control" name="last_name" value="{{ $authUser->last_name ?? old('last_name') }}" placeholder="eg: Admin"/>
+                                             <span class="text-danger">{{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}</span>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                              <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                                             <input type="text" class="form-control" name="email" value="{{ $authUser->email ?? old('email') }}" placeholder="eg: admin@admin.com"/>
+                                             <input type="email" class="form-control" name="email" value="{{ $authUser->email ?? old('email') }}" placeholder="eg: admin@admin.com"/>
                                              <span class="text-danger">{{ $errors->has('email') ? $errors->first('email') : ' ' }}</span>
                                         </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                             <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
+                                             <input type="text" class="form-control" name="phone" value="{{ $authUser->phone ?? old('phone') }}" placeholder="eg: admin@admin.com"/>
+                                             <span class="text-danger">{{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                             <label for="phone" class="form-label">Avatar </label>
+                                             <input type="file" class="form-control" name="avatar" onchange="imageChange(event)"/>
+                                             @if(isset($authUser->avatar))
+                                             <img src="{{ asset($authUser->avatar) }}" id="imagePreview" class="avatar-size"/>
+                                             @else
+                                             <img src="{{ asset(App\Constants\Statics::DEFAULT_IMAGE_SET) }}" class="avatar-size"  />
+                                             @endif
+                                             <span class="text-danger">{{ $errors->has('avatar') ? $errors->first('avatar') : ' ' }}</span>
+                                        </div>
+
                                         <div class="col-12">
                                              <button type="submit" class="btn btn-submit">Submit</button>
                                         </div>
@@ -35,7 +58,7 @@
                                    Password settings
                               </div>
                               <div class="card-body">
-                                   <form class="row g-3" action="{{ route('admin.password.update') }}" method="POST">
+                                   <form class="row g-3" action="{{ route('account.password.update') }}" method="POST">
                                         @csrf
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                              <label for="old_password" class="form-label">Old password <span class="text-danger">*</span></label>
