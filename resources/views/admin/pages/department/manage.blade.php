@@ -6,9 +6,11 @@
                <div class="card">
                     <div class="card-header">
                           Department list
-                          <a href="{{ route('department.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                          @if(auth()->guard('web')->check())
+                            <a href="{{ route('department.create') }}" class="btn btn-sm float-end btn-add">
+                                <i class="fa-solid fa-circle-plus"></i> Add
+                            </a>
+                          @endif
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data">
@@ -16,7 +18,9 @@
                               <tr>
                                  <th class="table-sl">SL</th>
                                  <th>Name</th>
+                                 @if(auth()->guard('web')->check())
                                  <th class="table-action">Action</th>
+                                 @endif
                               </tr>
                          </thead>
                          <tbody>
@@ -40,7 +44,9 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
+                    @if(auth()->guard('web')->check())
                     {data: 'action', name: 'action', orderable: false, searchable: false},
+                    @endif
                 ]
             });
             

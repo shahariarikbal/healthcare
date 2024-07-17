@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Doctor Login</title>
+    <title>Account Login</title>
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/login-style.css') }}" />
 </head>
@@ -52,6 +52,11 @@
                         </div>
       
                         <button class="btn login-btn" type="submit">Login</button>
+
+                        <div class="mt-3">
+                          <span>Email: razzak@info.com</span> |
+                          <span>Password: 12345678</span>
+                        </div>
                       </form>
       
                     </div>

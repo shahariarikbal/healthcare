@@ -6,9 +6,12 @@
                <div class="card">
                     <div class="card-header">
                           Nurse list
-                          <a href="{{ route('nurse.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                          @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
+                            <a href="{{ route('nurse.create') }}" class="btn btn-sm float-end btn-add">
+                                <i class="fa-solid fa-circle-plus"></i> Add
+                            </a>
+                          @endif
+                          
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">

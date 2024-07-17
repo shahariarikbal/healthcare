@@ -6,9 +6,11 @@
                <div class="card">
                     <div class="card-header">
                           Patient list
-                          <a href="{{ route('patient.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                          @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
+                            <a href="{{ route('patient.create') }}" class="btn btn-sm float-end btn-add">
+                                <i class="fa-solid fa-circle-plus"></i> Add
+                            </a>
+                          @endif
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">
@@ -19,7 +21,9 @@
                                  <th>Phone</th>
                                  <th>Email</th>
                                  <th>Address</th>
-                                 <th>Action</th>
+                                 @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
+                                    <th>Action</th>
+                                 @endif
                               </tr>
                          </thead>
                          <tbody>
@@ -64,8 +68,9 @@
                     {data: 'phone', name: 'phone'},
                     {data: 'email', name: 'email'},
                     {data: 'address', name: 'address'},
-                    
+                    @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
                     {data: 'action', name: 'action', orderable: false, searchable: false},
+                    @endif
                 ]
             });
 

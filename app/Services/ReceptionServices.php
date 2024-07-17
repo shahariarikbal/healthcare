@@ -70,13 +70,21 @@ class ReceptionServices
 
     public function generateActionButtons($row)
     {
+          $editBtn = '';
+          $deleteBtn = '';
           $viewUrl = route('reception.view', ['id' => $row->id, 'slug' => $row->slug]);
-          $editUrl = route('reception.edit', ['id' => $row->id,'slug' => $row->slug]);
-          $deleteUrl = route('reception.delete', ['id' => $row->id,'slug' => $row->slug]);
+          if(auth()->guard('web')->check()){
+               $editUrl = route('reception.edit', ['id' => $row->id,'slug' => $row->slug]);
+               $deleteUrl = route('reception.delete', ['id' => $row->id,'slug' => $row->slug]);
+          }
+          
 
           $viewBtn = '<a href="'.$viewUrl.'" class="view view-btn" title="Receptionist view"><i class="fa-regular fa-eye"></i></a>';
-          $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Receptionist edit"><i class="fa-regular fa-pen-to-square"></i></a>';
-          $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="Receptionist delete" onclick="return confirm(&quot;Are you sure delete this receptionist ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          if(auth()->guard('web')->check()){
+               $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Receptionist edit"><i class="fa-regular fa-pen-to-square"></i></a>';
+               $deleteBtn = '<a href="'.$deleteUrl.'" class="delete delete-btn" title="Receptionist delete" onclick="return confirm(&quot;Are you sure delete this receptionist ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          }
+          
 
           return $editBtn . ' ' . $viewBtn . ' ' . $deleteBtn;
      }

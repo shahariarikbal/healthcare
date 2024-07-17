@@ -1,18 +1,27 @@
 <div class="offcanvas offcanvas-start show" data-bs-scroll="false" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header justify-content-center">
-        <a href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset(App\Constants\Statics::DEFAULT_LOGO_SET) }}" />
-        </a>
+        @foreach ($guards as $guard => $data)
+            @if (auth()->guard($guard)->check())
+                <a href="{{ route($data['home-route']) }}">
+                    <img src="{{ asset(App\Constants\Statics::DEFAULT_LOGO_SET) }}" />
+                </a>
+            @endif
+        @endforeach
     </div>
     <div class="offcanvas-body">
         <nav class="sidebar">
             <ul class="nav-list" id="nav_accordion">
-                <li class="nav-list-item {{ Route::is('admin.dashboard') ? 'active' : '' }}">
-                  <a class="nav-list-item-link" href="{{ route('admin.dashboard') }}">
-                      <i class="fa-solid fa-house-chimney"></i>
-                      Home
-                  </a>
-                </li>
+                @foreach ($guards as $guard => $data)
+                    @if (auth()->guard($guard)->check())
+                        <li class="nav-list-item {{ Route::currentRouteName() === $data['home-route'] ? 'active' : '' }}">
+                            <a class="nav-list-item-link" href="{{ route($data['home-route']) }}">
+                                <i class="fa-solid fa-house-chimney"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                    @endif
+                @endforeach
+                
                 @if(auth()->guard('web')->check() || auth()->guard('receptionist')->check() || auth()->guard('account')->check() || auth()->guard('doctor')->check())
                     <li class="nav-list-item has-submenu {{ Route::is('department*') ? 'active' : '' }}">
                         <a class="nav-list-item-link" href="javascript:void(0);"> 
@@ -263,23 +272,23 @@
                         </ul>
                     </li>
                 @endif
-
-                @if(auth()->guard('web')->check())
-                    <li class="nav-list-item has-submenu {{ in_array(Route::currentRouteName(), ['admin.profile.settings', 'admin.logo.settings']) ? 'active' : '' }}">
-                        <a class="nav-list-item-link" href="javascript:void(0);">
-                            <i class="fa-solid fa-gears"></i>
-                            Settings  <i class="fa-solid fa-chevron-down float-end"></i>
-                        </a>
-                        <ul class="submenu-list collapse {{ in_array(Route::currentRouteName(), ['admin.profile.settings', 'admin.logo.settings']) ? 'show' : '' }}">
-                            <li class="submenu-list-item">
-                                <a class="submenu-list-item-link" href="{{ route('admin.profile.settings') }}">Profile Settings </a>
-                            </li>
-                            <li class="submenu-list-item">
-                                <a class="submenu-list-item-link" href="{{ route('admin.logo.settings') }}">Logo Setting </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
+                @foreach ($guards as $guard => $data)
+                    @if(auth()->guard($guard)->check())
+                        <li class="nav-list-item has-submenu {{ in_array(Route::currentRouteName(), $data['routes']) ? 'active' : '' }}">
+                            <a class="nav-list-item-link" href="javascript:void(0);">
+                                <i class="{{ $data['icon'] }}"></i>
+                                {{ $data['label'] }}  <i class="fa-solid fa-chevron-down float-end"></i>
+                            </a>
+                            <ul class="submenu-list collapse {{ in_array(Route::currentRouteName(), $data['routes']) ? 'show' : '' }}">
+                                @foreach ($data['submenu'] as $submenu)
+                                    <li class="submenu-list-item">
+                                        <a class="submenu-list-item-link" href="{{ route($submenu['route']) }}">{{ $submenu['label'] }} </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+                @endforeach
             </ul>
         </nav>
     </div>

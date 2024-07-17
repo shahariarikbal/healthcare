@@ -16,7 +16,9 @@
                                    <th>Patient</th>
                                    <th>Appointment date</th>
                                    <th>Status</th>
+                                   @if(!auth()->guard('account')->check())
                                    <th>Action</th>
+                                   @endif
                                 </tr>
                            </thead>
                            <tbody>
@@ -86,7 +88,9 @@
                     return '<a href="#" class="'+ badgeClass +'">'+ statuses[data] + '</a>';
                   }
               },
+              @if(!auth()->guard('account')->check())
               {data: 'action', name: 'action', orderable: false, searchable: false},
+              @endif
           ]
       });
 

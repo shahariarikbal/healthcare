@@ -6,9 +6,11 @@
                <div class="card">
                     <div class="card-header">
                         Receptionist list
+                        @if (auth()->guard('web')->check())
                           <a href="{{ route('reception.create') }}" class="btn btn-sm float-end btn-add">
                               <i class="fa-solid fa-circle-plus"></i> Add
                           </a>
+                        @endif
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">
@@ -96,12 +98,20 @@
                            
                             receptionistActiveUrl = receptionistActiveUrl.replace(':id', data.id);
                             receptionistInactiveUrl = receptionistInactiveUrl.replace(':id', data.id);
-
-                            if (data.is_active === 1) {
-                                activeBtn = '<a href="' + receptionistActiveUrl + '" class="badge-active">Active</a>';
-                            } else {
-                                inactiveBtn = '<a href="' + receptionistInactiveUrl + '" class="badge-inactive">Inactive</a>';
-                            }
+                            @if (auth()->guard('web')->check())
+                                if (data.is_active === 1) {
+                                    activeBtn = '<a href="' + receptionistActiveUrl + '" class="badge-active">Active</a>';
+                                } else {
+                                    inactiveBtn = '<a href="' + receptionistInactiveUrl + '" class="badge-inactive">Inactive</a>';
+                                }
+                            @else
+                                if (data.is_active === 1) {
+                                        activeBtn = '<a href="#" class="badge-active">Active</a>';
+                                    } else {
+                                        inactiveBtn = '<a href="#" class="badge-inactive">Inactive</a>';
+                                }
+                            @endif
+                            
 
                             return activeBtn + ' ' + inactiveBtn;
                         }

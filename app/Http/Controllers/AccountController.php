@@ -56,7 +56,7 @@ class AccountController extends Controller
 
     public function index()
     {
-        return view('account.master');
+        return view('account.home.index');
     }
 
     public function logout(Request $request)
@@ -66,7 +66,7 @@ class AccountController extends Controller
     }
 
 
-    // Receiptionist CRUD operation
+    // Account CRUD operation
     public function accountsCreate()
     {
         return view('admin.pages.accounts.add');
@@ -74,7 +74,7 @@ class AccountController extends Controller
 
     public function accountsStore(AccountsStoreRequest $request)
     {
-        $newReception = $this->accountServices->accountsStore($request);
+        $newUser = $this->accountServices->accountsStore($request);
         return redirect()->route('accounts.manage')->with('success', 'Account has been created');
     }
 
