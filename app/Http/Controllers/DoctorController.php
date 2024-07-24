@@ -55,7 +55,7 @@ class DoctorController extends Controller
 
     public function index()
     {
-        return view('doctor.master');
+        return view('doctor.home.index');
     }
 
     public function doctorLogout(Request $request)
