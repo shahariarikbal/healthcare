@@ -78,6 +78,16 @@ class AppointmentServices
        return $data;
     }
 
+    public function getTotalScheduleAppointmentDataForDatatable()
+    {
+       $data = Appointment::with('doctor', 'patient')
+                ->whereDate('appointment_date', '!=',Carbon::today())
+                ->where('is_pay', Statics::IS_NOT_PAY)
+                ->orderBy('id', 'desc')->get()->count();
+
+       return $data;
+    }
+
     public function getPaymentDueAppointmentDataForDatatable()
     {
        $query = Appointment::with('doctor', 'patient')->where('is_pay', 0)->orderBy('id', 'desc');
@@ -225,6 +235,16 @@ class AppointmentServices
             'appointment_date' => $request->appointment_date,
             'problem' => $request->problem,
         ]);
+     }
+
+     public function totalAppointmentCount()
+     {
+      return Appointment::select(['id'])->get()->count();
+     }
+
+     public function todayTotalAppointmentCount()
+     {
+      return Appointment::where('appointment_date', Carbon::today())->select(['id'])->get()->count();
      }
      
 

@@ -7,6 +7,10 @@ use App\Http\Requests\AccountsStoreRequest;
 use App\Http\Requests\AccountsUpdateRequest;
 use App\Models\Account;
 use App\Services\AccountsServices;
+use App\Services\AppointmentServices;
+use App\Services\DoctorServices;
+use App\Services\ExpanseService;
+use App\Services\PatientServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,10 +18,18 @@ use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller
 {
     protected $accountServices;
+    protected $appointmentServices;
+    protected $expanseServices;
+    protected $doctorServices;
+    protected $patientServices;
 
-    public function __construct(AccountsServices $accountServices)
+    public function __construct(AccountsServices $accountServices, AppointmentServices $appointmentServices, ExpanseService $expanseService, DoctorServices $doctorServices, PatientServices $patientServices)
     {
         $this->accountServices = $accountServices;
+        $this->appointmentServices = $appointmentServices;
+        $this->expanseServices = $expanseService;
+        $this->doctorServices = $doctorServices;
+        $this->patientServices = $patientServices;
     }
 
 
@@ -56,7 +68,20 @@ class AccountController extends Controller
 
     public function index()
     {
-        return view('account.home.index');
+        $data = [
+            'totalSecheduleAppointment' => $this->appointmentServices->getTotalScheduleAppointmentDataForDatatable(),
+            'todayTotalBillCollect' => $this->accountServices->todayTotalBillCollect(),
+            'totalBillCollect' => $this->accountServices->totalBillCollect(),
+            'todayTotalExpanse' => $this->expanseServices->todayTotalExpanse(),
+            'monthlyTotalExpanse' => $this->expanseServices->monthlyTotalExpanse(),
+            'totalExpanse' => $this->expanseServices->totalExpanse(),
+            'totalBalanceReports' => $this->accountServices->totalBalanceReport(),
+            'totalAppointments' => $this->appointmentServices->totalAppointmentCount(),
+            'todayAppointments' => $this->appointmentServices->todayTotalAppointmentCount(),
+            'totalDoctors' => $this->doctorServices->totalDoctorCount(),
+            'totalPatients' => $this->patientServices->totalPatientCount()
+        ];
+        return view('account.home.index', compact('data'));
     }
 
     public function profileSetting()
