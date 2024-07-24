@@ -62,6 +62,11 @@ class PatientServices
 
           $patient->update($data);
      }
+
+     public function totalPatientCount()
+     {
+      return Patient::select(['id'])->get()->count();
+     }
      
 
 }

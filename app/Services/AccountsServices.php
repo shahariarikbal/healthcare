@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Account;
+use App\Models\Billing;
+use Carbon\Carbon;
 use Str;
 
 class AccountsServices
@@ -110,6 +112,36 @@ class AccountsServices
 
           $accounts->update($data);
      }
+
+     public function todayTotalBillCollect()
+     {
+          $authUserId = auth()->guard('account')->user()->id;
+          $todayCollectBill = Billing::where('collected_by', $authUserId)->where('payment_date', Carbon::today())->sum('fee');
+          return $todayCollectBill;
+     }
+
+     public function totalBillCollect()
+     {
+          $authUserId = auth()->guard('account')->user()->id;
+          $totalCollectBill = Billing::where('collected_by', $authUserId)->whereYear('payment_date', date('Y'))->sum('fee');
+          return $totalCollectBill;
+     }
      
+     protected function calculateReport($method, $field, $dataValue)
+     {
+          return Billing::{$method}($field, $dataValue);
+     }
+
+     public function totalBalanceReport()
+     {
+          $calculateReports = [
+               'yearlyReport' => $this->calculateReport('whereYear', 'payment_date', date('Y'))->sum('fee'),
+               'monthlyReport' => $this->calculateReport('whereYear', 'payment_date', date('Y'))
+                   ->whereMonth('payment_date', date('m'))->sum('fee'),
+               'todayReport' => $this->calculateReport('whereDate', 'payment_date', date('Y-m-d'))->sum('fee')
+           ];
+
+           return $calculateReports;
+     }
 
 }

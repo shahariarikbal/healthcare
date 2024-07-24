@@ -84,4 +84,22 @@ class ExpanseService
 
           return $editBtn.' '.$deleteBtn;
      }
+
+     public function todayTotalExpanse()
+     {
+          $todayTotalExpanse = Expanse::where('expanse_date', Carbon::today())->sum('amount');
+          return $todayTotalExpanse;
+     }
+
+     public function monthlyTotalExpanse()
+     {
+          $monthlyTotalExpanse = Expanse::whereYear('expanse_date', date('Y'))->whereMonth('expanse_date', date('m'))->sum('amount');
+          return $monthlyTotalExpanse;
+     }
+
+     public function totalExpanse()
+     {
+          $totalExpanse = Expanse::whereYear('expanse_date', date('Y'))->sum('amount');
+          return $totalExpanse;
+     }
 }

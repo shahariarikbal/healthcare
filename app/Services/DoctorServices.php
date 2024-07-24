@@ -129,6 +129,12 @@ class DoctorServices
           return url('avatar/'.$doctor->avatar);
      }
 
+
+     public function totalDoctorCount()
+     {
+      return Doctor::select(['id'])->get()->count();
+     }
+
      
 
 }

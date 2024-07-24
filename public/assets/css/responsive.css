@@ -58,3 +58,35 @@
         margin-bottom: 5px;
     }
 }
+
+@media (max-width: 1600px){
+    .avatar-title{
+        height: 40px;
+        width: 40px;
+        border-radius: 100% !important;
+    }
+
+    .icon{
+        font-size: 20px;
+    }
+
+    .text-truncate{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1920px){
+    .avatar-title{
+        height: 40px;
+        width: 40px;
+        border-radius: 100% !important;
+    }
+
+    .icon{
+        font-size: 20px;
+    }
+
+    .text-truncate{
+        font-size: 14px;
+    }
+}
