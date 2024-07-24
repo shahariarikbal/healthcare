@@ -12,6 +12,8 @@ class Doctor extends Authenticatable
 
     protected $guard = 'doctor';
 
+    protected $appends = ['full_name'];
+
     protected $guarded = [];
 
     /*** Relationship start ***/

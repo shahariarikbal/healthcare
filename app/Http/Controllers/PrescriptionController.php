@@ -11,15 +11,18 @@ class PrescriptionController extends Controller
     //******* For Doctor view *******/
     public function addPrescription()
     {
-        $doctorId = auth()->guard('doctor')->check() ? auth()->guard('doctor')->user()->id : '';
-        if($doctorId){
+        $doctor = auth()->guard('doctor')->check() ? auth()->guard('doctor')->user() : '';
+
+        $qualifications = explode(',', $doctor->qualification);
+        
+        if(!$doctor){
             return redirect()->back()->with('error', 'Unauthorized doctor');
         }
-        $appointments = Appointment::with(['patient', 'doctor'])->where('doctor_id', $doctorId)
+        $appointments = Appointment::with(['patient', 'doctor'])->where('doctor_id', $doctor->id)
                     ->where('is_pay', 1)
                     ->whereDate('appointment_date', Carbon::today())
                     ->get();
-        return view('admin.pages.prescriptions.add-prescriptions', compact('appointments'));
+        return view('admin.pages.prescriptions.add-prescriptions', compact('appointments', 'doctor', 'qualifications'));
     }
 
     public function showAllPrescriptions()

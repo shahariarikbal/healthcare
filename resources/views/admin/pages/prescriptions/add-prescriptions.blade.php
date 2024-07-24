@@ -15,16 +15,16 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <p>
-                                        <i class="fa fa-user"></i> Name : Mr.Jone deo
+                                        <i class="fa fa-user"></i> Name : {{ $doctor->full_name ?? 'NA' }}
                                     </p>
                                     <p>
-                                        <i class="fa-solid fa-envelope"></i> E-mail : jone@info.com
+                                        <i class="fa-solid fa-envelope"></i> E-mail : {{ $doctor->email ?? 'NA' }}
                                     </p>
                                     <p>
                                         <i class="fa-solid fa-graduation-cap"></i> Qualifications : 
-                                        <span class="badge-active">MBBS</span>
-                                        <span class="badge-active">FCPS</span>
-                                        <span class="badge-active">Medicine</span>
+                                        @foreach ($qualifications as $k => $qualification)
+                                            <span class="badge-active">{{ $qualification ?? 'NA' }}</span>
+                                        @endforeach
                                     </p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 text-right">
@@ -70,25 +70,27 @@
 
                         <div class="row mt-3">
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <label for="symptoms">Symptoms</label>
-                                <textarea class="form-control" rows="3" placeholder="Add Symptoms here..."></textarea>
+                                <label for="symptoms">Symptoms/Instructions</label>
+                                <textarea class="form-control" rows="3" name="instructions" placeholder="Enter here..."></textarea>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9">
                                 <div class="row">
-                                    <div class="col-lg-7 col-md-8 col-sm-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
                                         <label for="medicine">Medicine Name</label>
                                         <input type="text" class="form-control" name="medicine_name[]" id="medicine_name" placeholder="Medicine Name" required />
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-4">
+                                    <div class="col-lg-3 col-md-3 col-sm-4">
                                         <label for="dose">Dose</label>
                                         <input type="text" class="form-control" name="dose[]" id="dose" placeholder="dose: 1+0+1" required />
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-4">
                                         <label for="duration">Duration</label>
-                                        <input type="number" class="form-control" name="duration[]" id="duration" placeholder="eg:21" required />
+                                        <input type="number" class="form-control" name="duration[]" id="duration" placeholder="eg:21 days" required />
                                     </div>
                                     <div class="col-lg-1 col-md-1 col-sm-4">
-                                        <span class="input-group-text prescription-add-btn" id="addPrescription" onclick="addNewField()" title="Add more">Add</span>
+                                        <span class="input-group-text prescription-add-btn" id="addPrescription" onclick="addNewField()" title="Add more">
+                                            <i class="fa fa-plus"></i>
+                                        </span>
                                     </div>
                                 </div>
                                 <div id="addNewInputField"></div>
@@ -121,11 +123,11 @@
       let newFields = document.createElement('div');
       newFields.innerHTML = `
            <div class="row">
-                <div class="col-lg-7 col-md-8 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <label for="medicine">Medicine Name</label>
                     <input type="text" class="form-control" name="medicine_name[]" id="${newFieldId}" placeholder="Medicine Name" required />
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-4">
+                <div class="col-lg-3 col-md-3 col-sm-4">
                     <label for="dose">Dose</label>
                     <input type="text" class="form-control" name="dose[]" id="${newFieldId}" placeholder="dose: 1+0+1" required />
                 </div>
@@ -135,7 +137,7 @@
                 </div>
                 <div class="col-lg-1 col-md-1 col-sm-4">
                     <span class="input-group-text prescription-remove-btn" data-target="${newFieldId}" title="Remove">
-                        <small>X</small>
+                        <small>x</small>
                     </span>
                 </div>
             
