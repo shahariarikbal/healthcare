@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PrescriptionStoreRequest;
 use App\Models\Appointment;
+use App\Services\PrescriptionServices;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class PrescriptionController extends Controller
 {
+    protected $prescriptionService;
+
+    public function __construct(PrescriptionServices $prescriptionService)
+    {
+        $this->prescriptionService = $prescriptionService;
+    }
+
     //******* For Doctor view *******/
     public function addPrescription()
     {
@@ -27,12 +38,27 @@ class PrescriptionController extends Controller
 
     public function showAllPrescriptions()
     {
-        return view('admin.pages.prescriptions.doctor-all-prescriptions');
+        $totalPrescriptions = $this->prescriptionService->showTotalPrescriptions();
+        return view('admin.pages.prescriptions.doctor-all-prescriptions', compact('totalPrescriptions'));
     }
 
     public function showTodayPrescriptions()
     {
-        return view('admin.pages.prescriptions.doctor-today-prescriptions');
+        $todayPrescriptions = $this->prescriptionService->showTodayPrescriptions();
+        return view('admin.pages.prescriptions.doctor-today-prescriptions', compact('todayPrescriptions'));
+    }
+
+    public function prescriptionStore(PrescriptionStoreRequest $request)
+    {
+        try{
+            $prescriptionStore = $this->prescriptionService->store($request);
+            return redirect()->back()->with('success', 'Prescription has been created');
+        }catch(ModelNotFoundException $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+       }catch(Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+       }
+        
     }
 
     //******* For Admin view *******/

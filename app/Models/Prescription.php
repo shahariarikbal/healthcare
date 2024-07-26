@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Prescription extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function instruction()
+    {
+        return $this->belongsTo(Instruction::class, 'instruction_id', 'id');
+    }
 }

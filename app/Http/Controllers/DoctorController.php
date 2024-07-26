@@ -55,7 +55,9 @@ class DoctorController extends Controller
 
     public function index()
     {
-        return view('doctor.home.index');
+        $doctors = $this->doctorServices->totalDoctorCount();
+        $appointment = $this->doctorServices->appointmentCount();
+        return view('doctor.home.index', compact(['doctors', 'appointment']));
     }
 
     public function doctorLogout(Request $request)

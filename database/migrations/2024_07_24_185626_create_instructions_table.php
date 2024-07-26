@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('instructions', function (Blueprint $table) {
             $table->id();
             $table->unsignedMediumInteger('patient_id');
+            $table->unsignedMediumInteger('doctor_id');
             $table->string('gender');
             $table->string('age');
             $table->text('note');

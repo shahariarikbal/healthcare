@@ -9,7 +9,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Total Appointment</p>
-                            <h4 class="mb-2">0</h4>
+                            <h4 class="mb-2">{{ $appointment['totalAppointment'] ?? 0 }}</h4>
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title rounded-3">
@@ -28,7 +28,7 @@
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Today Appointment</p>
-                            <h4 class="mb-2">0</h4>
+                            <h4 class="mb-2">{{ $appointment['todayTotalAppointment'] ?? 0 }}</h4>
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title rounded-3">
@@ -46,7 +46,7 @@
              <div class="d-flex">
                  <div class="flex-grow-1">
                      <p class="text-truncate mb-2">Schedule Appointment</p>
-                     <span>0</span>
+                     <h4 class="mb-2">{{ $appointment['scheduleTotalAppointment'] ?? 0 }}</h4>
                  </div>
                  <div class="avatar-sm">
                      <span class="avatar-title rounded-3">
@@ -106,7 +106,7 @@
                            <div class="d-flex">
                                <div class="flex-grow-1">
                                    <p class="text-truncate mb-2">Doctors</p>
-                                   <h4 class="mb-2">0</h4>
+                                   <h4 class="mb-2">{{ $doctors ?? 0 }}</h4>
                                </div>
                                <div class="avatar-sm">
                                    <span class="avatar-title rounded-3">

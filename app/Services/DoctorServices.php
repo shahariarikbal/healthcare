@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Constants\Statics;
 use App\Constants\Status;
+use App\Models\Appointment;
 use App\Models\Doctor;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class DoctorServices
@@ -133,6 +136,23 @@ class DoctorServices
      public function totalDoctorCount()
      {
       return Doctor::select(['id'])->get()->count();
+     }
+
+     public function appointmentCount()
+     {
+          $doctorId = auth()->guard('doctor')->user()->id;
+          $data = [
+               'totalAppointment' => Appointment::whereYear('appointment_date', date('Y'))->where('doctor_id', $doctorId)->select('id')->get()->count(),
+               'todayTotalAppointment' => Appointment::whereDate('appointment_date', Carbon::today())->where('doctor_id', $doctorId)->select('id')->get()->count(),
+               'scheduleTotalAppointment' => Appointment::whereYear('appointment_date', date('Y'))->whereDate('appointment_date', '!=', Carbon::today())
+                                             ->where('is_pay', Statics::IS_NOT_PAY)
+                                             ->where('doctor_id', $doctorId)
+                                             ->select('id')
+                                             ->get()
+                                             ->count(),
+          ];
+
+          return $data;
      }
 
      
