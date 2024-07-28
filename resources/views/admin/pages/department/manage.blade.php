@@ -13,7 +13,7 @@
                           @endif
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover table-data">
+                        <table class="table table-hover table-data" style="width:100%">
                           <thead>
                               <tr>
                                  <th class="table-sl">SL</th>
@@ -24,7 +24,6 @@
                               </tr>
                          </thead>
                          <tbody>
-
                          </tbody>
                        </table>
                     </div>
@@ -40,6 +39,7 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: "{{ route('department.manage') }}",
                 columns: [
                     {data: 'id', name: 'id'},

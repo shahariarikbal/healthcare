@@ -21,6 +21,11 @@
     margin: 0;
     box-sizing: border-box;
 }
+body {
+    padding: 0!important;
+    overflow-x: hidden!important;
+    overflow-y: auto!important;
+}
 a {
     text-decoration: none !important;
 }
@@ -607,6 +612,7 @@ a {
     color: var(--pure-white-color);
 }
 /* Sidebar css End */
+
 /* Custom css End */
 
 .expanse-box{
