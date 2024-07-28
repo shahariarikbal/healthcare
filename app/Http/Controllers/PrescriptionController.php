@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PrescriptionStoreRequest;
 use App\Models\Appointment;
+use App\Models\Instruction;
 use App\Services\PrescriptionServices;
 use Carbon\Carbon;
 use Exception;
@@ -36,10 +37,24 @@ class PrescriptionController extends Controller
         return view('admin.pages.prescriptions.add-prescriptions', compact('appointments', 'doctor', 'qualifications'));
     }
 
-    public function showAllPrescriptions()
+    public function authUserPrescriptions()
     {
-        $totalPrescriptions = $this->prescriptionService->showTotalPrescriptions();
-        return view('admin.pages.prescriptions.doctor-all-prescriptions', compact('totalPrescriptions'));
+        if(request()->ajax()){
+            $data = $this->prescriptionService->showAuthDoctorPrescriptions();
+            
+            $dataWithAction = $data->map(function($row){
+                $row->action = $this->prescriptionService->generateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithAction)->make(true);
+        }
+
+        return view('admin.pages.prescriptions.doctor-all-prescriptions');
+    }
+
+    public function viewPrescriptions(Instruction $instruction)
+    {
+        return view('admin.pages.prescriptions.prescriptions-view', compact('instruction'));
     }
 
     public function showTodayPrescriptions()

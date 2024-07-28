@@ -13,7 +13,6 @@ use App\Http\Controllers\ExpanseController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\SmtpSettingController;
 use Illuminate\Support\Facades\Route;
@@ -172,16 +171,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         
     });
 
-    //prescriptions route
-    Route::group(['prefix' => 'prescription'], function(){
-        Route::get('/add', [PrescriptionController::class, 'addPrescription'])->name('prescription.add');
-        Route::post('/store', [PrescriptionController::class, 'prescriptionStore'])->name('prescription.store');
-        Route::get('/all', [PrescriptionController::class, 'showAllPrescriptions'])->name('prescription.list');
-        Route::get('/today-list', [PrescriptionController::class, 'showTodayPrescriptions'])->name('prescription.today');
-
-        Route::get('/list', [PrescriptionController::class, 'allPrescriptions'])->name('prescription.all');
-        Route::get('/daily-list', [PrescriptionController::class, 'dailyPrescriptions'])->name('prescription.daily');
-    });
+    
 
     //messageing
     Route::group(['prefix' => 'message'], function(){
