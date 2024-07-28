@@ -57,15 +57,41 @@ class PrescriptionServices
      {
           $authDoctorId = auth()->guard('doctor')->user()->id;
           
-          $todayPrescriptions = Instruction::with('prescriptions')->where('doctor_id', $authDoctorId)->whereDate('created_at', Carbon::today())->first();
+          $todayPrescriptions = Instruction::with('prescriptions', 'patient')->where('doctor_id', $authDoctorId)->whereDate('created_at', Carbon::today())->get();
           
           return $todayPrescriptions;
      }
 
-     public function showTotalPrescriptions()
+     public function showAuthDoctorPrescriptions()
      {
           $authDoctorId = auth()->guard('doctor')->user()->id;
-          $totalPrescriptions = Prescription::with('instruction')->whereHas('instruction', fn($q) => $q->where('doctor_id', $authDoctorId))->whereYear('created_at', date('Y'))->get();
-          return $totalPrescriptions;
+          $query = Instruction::with('patient')->where('doctor_id', $authDoctorId)->whereYear('created_at', date('Y'))->orderBy('id', 'desc');
+
+          if($searchValue = request('search')['value']){
+               $query->where(function($subQuery) use ($searchValue){
+                 
+                 $subQuery->whereHas('patient', function($q) use ($searchValue){
+                     $q->where('name', 'like', "%{$searchValue}%")
+                     ->orWhere('phone', 'like', "%{$searchValue}%");
+                   });
+                   
+               });
+            }
+
+            $data = $query->get();
+
+            return $data;
+     }
+
+     public function generateActionButtons($row)
+     {
+          
+          $prescriptionViewUrl = route('prescription.view', ['instruction' => $row->id]);
+          $prescriptionDeleteUrl = route('prescription.delete', ['instruction' => $row->id]);
+          $prescriptionViewBtn = '<a href="'.$prescriptionViewUrl.'" class="view view-btn"><i class="fa-regular fa-eye"></i></a>';
+          $prescriptionDeleteBtn = '<a href="'.$prescriptionDeleteUrl.'" class="delete delete-btn" onclick="return confirm(&quot;Are you sure delete this prescription ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          
+
+          return $prescriptionViewBtn.' '. $prescriptionDeleteBtn;
      }
 }
