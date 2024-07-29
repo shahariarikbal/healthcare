@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-lg-12 col-md-12 mb-25">
                <div class="card">
-                    <div class="card-header">
-                         Patient [ {{ $appointment->patient?->name }} ] Bill Collect
-                          <a href="{{ route('accounts.billing.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                              Patient [ {{ $appointment->patient?->name }} ] Bill Collect
+                         </h4>
+                         <a href="{{ route('accounts.billing.manage') }}" class="btn btn-sm  btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('accounts.bill.store', $appointment->id) }}" method="POST">

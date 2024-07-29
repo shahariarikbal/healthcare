@@ -4,10 +4,12 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Department list
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Department list
+                        </h4>
                           @if(auth()->guard('web')->check())
-                            <a href="{{ route('department.create') }}" class="btn btn-sm float-end btn-add">
+                            <a href="{{ route('department.create') }}" class="btn btn-sm btn-add">
                                 <i class="fa-solid fa-circle-plus"></i> Add
                             </a>
                           @endif

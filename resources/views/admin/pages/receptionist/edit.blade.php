@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-lg-12 col-md-12 mb-25">
                <div class="card">
-                    <div class="card-header">
-                         Receptionist Edit
-                          <a href="{{ route('reception.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                            Receptionist Edit
+                         </h4>
+                          <a href="{{ route('reception.manage') }}" class="btn btn-sm btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('reception.update', $receptionist->id) }}" method="POST" enctype="multipart/form-data">

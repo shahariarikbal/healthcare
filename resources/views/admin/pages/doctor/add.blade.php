@@ -4,9 +4,11 @@
     <div class="container-fluid mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Doctor Add
-                          <a href="{{ route('doctor.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                            Doctor Add
+                         </h4>                          
+                         <a href="{{ route('doctor.manage') }}" class="btn btn-sm btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data">

@@ -4,11 +4,13 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          <span>{{ $reception->full_name ?? 'Receptionist name' }}</span>
-                          <a href="{{ route('message.receptionist.index') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-arrow-left"></i> Back
-                          </a>
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            {{ $reception->full_name ?? 'Receptionist name' }}
+                        </h4>  
+                        <a href="{{ route('message.receptionist.index') }}" class="btn btn-sm btn-add">
+                            <i class="fa-solid fa-arrow-left"></i> Back
+                        </a>
                     </div>
                     <div class="card-body">
                          <div class="message-body">
