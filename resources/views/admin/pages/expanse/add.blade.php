@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-lg-12 col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Expanse create
-                          <a href="{{ route('accounts.expanse.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                            Expanse create
+                         </h4>                          
+                         <a href="{{ route('accounts.expanse.manage') }}" class="btn btn-sm btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('accounts.expanse.store') }}" method="POST" enctype="multipart/form-data">

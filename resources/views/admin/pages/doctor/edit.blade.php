@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Dr. {{ $doctor->full_name }} Profile Edit
-                          <a href="{{ route('doctor.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                            Dr. {{ $doctor->full_name }} Profile Edit
+                         </h4>
+                         <a href="{{ route('doctor.manage') }}" class="btn btn-sm btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('doctor.update', $doctor->id) }}" method="POST" enctype="multipart/form-data">

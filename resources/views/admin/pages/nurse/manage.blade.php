@@ -4,13 +4,15 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Nurse list
-                          @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
-                            <a href="{{ route('nurse.create') }}" class="btn btn-sm float-end btn-add">
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Nurse list
+                        </h4>                           
+                        @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
+                            <a href="{{ route('nurse.create') }}" class="btn btn-sm btn-add">
                                 <i class="fa-solid fa-circle-plus"></i> Add
                             </a>
-                          @endif
+                        @endif
                           
                     </div>
                     <div class="card-body">

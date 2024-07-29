@@ -16,11 +16,13 @@
     <div class="container-fluid mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Sending E-mail list
-                          <a href="{{ route('email.create') }}" class="btn btn-sm float-end btn-manage">
-                              <i class="fa-solid fa-circle-plus"></i> Sent Email
-                          </a>
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Sending E-mail list
+                        </h4>
+                        <a href="{{ route('email.create') }}" class="btn btn-sm btn-manage">
+                            <i class="fa-solid fa-circle-plus"></i> Sent Email
+                        </a>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data">

@@ -4,8 +4,10 @@
     <div class="container mt-3">
           <div class="col-lg-12 col-md-12 mb-25">
                <div class="card">
-                    <div class="card-header">
-                         Update SMTP
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                            Update SMTP
+                        </h4>                         
                     </div>
                     <div class="card-body">
                          <form class="row g-3" action="{{ route('smtp.setting.store') }}" method="POST">

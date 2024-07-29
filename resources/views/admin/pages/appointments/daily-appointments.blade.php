@@ -4,8 +4,10 @@
     <div class="container-fluid mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        Daily Appointments list
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                          Daily Appointments list
+                        </h4>                        
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">

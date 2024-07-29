@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        View Prescription
-                        <a href="#" class="btn btn-sm float-end btn-manage"><i class="fa fa-download"></i> Download</a>
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            View Prescription
+                        </h4>
+                        <a href="#" class="btn btn-sm btn-manage"><i class="fa fa-download"></i> Download</a>
                     </div>
                     <div class="card-body">
                         <div class="col-lg-12 col-md-12 col-sm-12">

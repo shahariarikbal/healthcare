@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                          Department Add
-                          <a href="{{ route('department.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                         <h4 class="hc-header-title">
+                            Department Add
+                         </h4>
+                         <a href="{{ route('department.manage') }}" class="btn btn-sm btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <form action="{{ route('department.store') }}" method="post">

@@ -6,8 +6,10 @@
                <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12">
                          <div class="card">
-                              <div class="card-header">
-                                   Profile settings
+                              <div class="card-header hc-header-outer">
+                                   <h4 class="hc-header-title">
+                                        Profile settings
+                                   </h4>                                    
                               </div>
                               <div class="card-body">
                                    <form class="row g-3" action="{{ route('admin.profile.settings.update') }}" method="POST" enctype="multipart/form-data">
@@ -31,8 +33,10 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12">
                          <div class="card">
-                              <div class="card-header">
-                                   Password settings
+                              <div class="card-header hc-header-outer">
+                                   <h4 class="hc-header-title">
+                                        Password settings
+                                   </h4>                                   
                               </div>
                               <div class="card-body">
                                    <form class="row g-3" action="{{ route('admin.password.update') }}" method="POST">

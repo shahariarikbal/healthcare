@@ -4,12 +4,14 @@
     <div class="container-fluid mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        Receptionist list
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Receptionist list
+                        </h4>                        
                         @if (auth()->guard('web')->check())
-                          <a href="{{ route('reception.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                            <a href="{{ route('reception.create') }}" class="btn btn-sm btn-add">
+                                <i class="fa-solid fa-circle-plus"></i> Add
+                            </a>
                         @endif
                     </div>
                     <div class="card-body">

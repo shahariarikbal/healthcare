@@ -6,8 +6,10 @@
                <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12">
                          <div class="card">
-                              <div class="card-header">
-                                   Logo settings
+                              <div class="card-header hc-header-outer">
+                                   <h4 class="hc-header-title">
+                                        Logo settings
+                                   </h4>                                    
                               </div>
                               <div class="card-body">
                                    <form class="row g-3" action="{{ route('admin.logo.update') }}" method="POST" enctype="multipart/form-data">
