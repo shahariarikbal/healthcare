@@ -4,9 +4,11 @@
     <div class="container mt-3">
           <div class="col-md-10">
                <div class="card view-card-shadow">
-                    <div class="card-header">
-                          Doctor Profile details
-                          <a href="{{ route('doctor.manage') }}" class="btn btn-sm float-end btn-manage">Manage</a>
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Doctor Profile details
+                        </h4>                          
+                        <a href="{{ route('doctor.manage') }}" class="btn btn-sm btn-manage">Manage</a>
                     </div>
                     <div class="card-body">
                          <div class="doctor-details">

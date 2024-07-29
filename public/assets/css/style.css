@@ -417,11 +417,10 @@ a {
   }
 
   .doctor-details {
-    display: flex; /* Display flex to arrange items horizontally */
-    align-items: center; /* Center items vertically */
+    display: flex; 
+    align-items: center;
+    justify-content: center;
     position: relative;
-    left: 30%;
-    right: 50%;
 }
 
 .details-info span {
@@ -628,4 +627,18 @@ a {
     text-align: center;
     padding-top: 10px;
     margin-top: 10px;
+}
+
+.hc-header-outer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hc-header-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+    text-transform: capitalize;
+    margin-bottom: 0;
 }

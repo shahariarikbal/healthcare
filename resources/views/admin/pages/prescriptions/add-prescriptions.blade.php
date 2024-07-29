@@ -4,8 +4,10 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        Add Prescription
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Add Prescription
+                        </h4>                        
                     </div>
                     <form action="{{ route('prescription.store') }}" method="POST">
                         @csrf

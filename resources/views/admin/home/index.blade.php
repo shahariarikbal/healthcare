@@ -6,7 +6,7 @@
         <a href="{{ route('appointment.all') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Total Appointment</p>
                             <h4 class="mb-2">{{ $totalAppointments ?? 0 }}</h4>
@@ -25,7 +25,7 @@
         <a href="{{ route('appointment.daily') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Today Appointment</p>
                             <h4 class="mb-2">{{ $todayAppointments ?? 0 }}</h4>
@@ -44,7 +44,7 @@
         <a href="{{ route('patient.manage') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Patients</p>
                             <h4 class="mb-2">{{ $patients ?? 0 }}</h4>
@@ -63,7 +63,7 @@
         <a href="{{ route('doctor.manage') }}">
             <div class="card dashboard-card">
                 <div class="card-body">
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Doctors</p>
                             <h4 class="mb-2">{{ $doctors ?? 0 }}</h4>

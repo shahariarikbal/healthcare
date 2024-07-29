@@ -4,11 +4,13 @@
     <div class="container-fluid mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        Accounts list
-                          <a href="{{ route('accounts.create') }}" class="btn btn-sm float-end btn-add">
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Accounts list
+                        </h4> 
+                        <a href="{{ route('accounts.create') }}" class="btn btn-sm btn-add">
                               <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                        </a>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">

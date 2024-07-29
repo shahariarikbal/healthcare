@@ -4,8 +4,10 @@
     <div class="container-fluid mt-2">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        Appointments list
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                          Appointments list
+                        </h4>                        
                     </div>
                     <div class="card-body">
                       <div class="input-group date-filtering">

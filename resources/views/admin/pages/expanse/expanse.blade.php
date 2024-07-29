@@ -4,11 +4,13 @@
     <div class="container-fluid mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header">
-                        Expanse list
-                          <a href="{{ route('accounts.expanse.create') }}" class="btn btn-sm float-end btn-add">
-                              <i class="fa-solid fa-circle-plus"></i> Add
-                          </a>
+                    <div class="card-header hc-header-outer">
+                        <h4 class="hc-header-title">
+                            Expanse list
+                        </h4>
+                        <a href="{{ route('accounts.expanse.create') }}" class="btn btn-sm btn-add">
+                            <i class="fa-solid fa-circle-plus"></i> Add
+                        </a>
                     </div>
                     <div class="card-body">
                         <div class="input-group date-filtering">
