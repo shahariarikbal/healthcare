@@ -49,14 +49,16 @@
                                     <button class="btn login-btn" type="submit">Login</button>
                                 </form>
                                 
-                                <div class="others-login-panel">
-                                    <a href="{{ route('receptionist.login') }}" class="btn btn-sm btn-info">Receiptionist</a>
-                                    <a href="{{ route('account.login') }}" class="btn btn-sm btn-primary">Account</a>
-                                    <a href="{{ route('doctor.login') }}" class="btn btn-sm btn-danger">Doctor</a>
-                                </div>
+                                
                             </div>
                         </div>
-                        <div class="col-md-6 d-none d-md-block"></div>
+                        <div class="col-md-6 d-none d-md-block">
+                            <div class="others-login-panel panel-login-url-box">
+                                <a href="{{ route('receptionist.login') }}" class="btn btn-sm btn-info">Receiptionist</a>
+                                <a href="{{ route('account.login') }}" class="btn btn-sm btn-primary">Account</a>
+                                <a href="{{ route('doctor.login') }}" class="btn btn-sm btn-danger">Doctor</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 </div>

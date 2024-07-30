@@ -543,6 +543,7 @@ a {
     top: 45px!important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 0;
+    transform: translate(0px, 0px) !important;
 }
 
 .custom-profile-dropdown-menu li a {
