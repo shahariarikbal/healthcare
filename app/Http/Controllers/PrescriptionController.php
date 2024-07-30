@@ -6,6 +6,7 @@ use App\Http\Requests\PrescriptionStoreRequest;
 use App\Models\Appointment;
 use App\Models\Instruction;
 use App\Services\PrescriptionServices;
+use PDF;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -61,6 +62,12 @@ class PrescriptionController extends Controller
     {
         $todayPrescriptions = $this->prescriptionService->showTodayPrescriptions();
         return view('admin.pages.prescriptions.doctor-today-prescriptions', compact('todayPrescriptions'));
+    }
+
+    public function downloadPrescriptions(Instruction $instruction)
+    {
+        $pdf = PDF::loadView('admin.pages.prescriptions.prescriptions-pdf', compact('instruction'));
+        return $pdf->download('Prescription.pdf');
     }
 
     public function prescriptionStore(PrescriptionStoreRequest $request)

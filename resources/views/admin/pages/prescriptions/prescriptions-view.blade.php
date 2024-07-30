@@ -4,11 +4,9 @@
     <div class="container mt-3">
           <div class="col-md-12">
                <div class="card">
-                    <div class="card-header hc-header-outer">
-                        <h4 class="hc-header-title">
-                            View Prescription
-                        </h4>
-                        <a href="#" class="btn btn-sm btn-manage"><i class="fa fa-download"></i> Download</a>
+                    <div class="card-header">
+                        View Prescription
+                        <a href="{{ route('prescription.download.pdf', ['instruction' => $instruction->id]) }}" class="btn btn-sm float-end btn-manage"><i class="fa fa-download"></i> Download</a>
                     </div>
                     <div class="card-body">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -52,22 +50,22 @@
                                 <p>{{ $instruction->note ?? 'NA' }}</p>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-9">
-                                <div class="row">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th class="sl-width">#</th>
+                                        <th>Medicine name</th>
+                                        <th>Dose</th>
+                                        <th>Durations</th>
+                                    </tr>
                                     @foreach ($instruction->prescriptions as $prescription)
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div>Medicine Name</div>
-                                            <p>{{ $prescription->medicine_name ?? 'NA' }}</p>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-4">
-                                            <div>Dose</div>
-                                            <p>{{ $prescription->dose ?? 'NA' }}</p>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-4">
-                                            <div>Duration</div>
-                                            <p>{{ $prescription->duration ?? 'NA' }} days</p>
-                                        </div>
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $prescription->medicine_name ?? 'NA' }}</td>
+                                            <td>{{ $prescription->dose ?? 'NA' }}</td>
+                                            <td>{{ $prescription->duration ?? 'NA' }} days</td>
+                                        </tr>
                                     @endforeach
-                                </div>
+                                </table>
                             </div>
                         </div>
                     </div>
