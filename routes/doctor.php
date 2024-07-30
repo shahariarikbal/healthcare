@@ -11,6 +11,7 @@ Route::middleware('auth:doctor')->group(function(){
        Route::get('/doctor/dashboard', [DoctorController::class, 'index'])->name('doctor.dashboard');
        Route::get('/doctor/profile/setting', [DoctorController::class, 'profileSetting'])->name('doctor.profile.settings');
        Route::post('/doctor/profile/setting/update', [DoctorController::class, 'profileSettingUpdate'])->name('doctor.profile.settings.update');
+       Route::post('/doctor/profile/password/update', [DoctorController::class, 'profilePasswordUpdate'])->name('doctor.profile.password.update');
        Route::post('/doctor/logout', [DoctorController::class, 'doctorLogout'])->name('doctor.logout');
 
        //prescriptions route

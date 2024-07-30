@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Constants\Statics;
 use App\Constants\Status;
+use App\Http\Requests\DoctorProfileUpdateRequest;
 use App\Http\Requests\DoctorStoreRequest;
 use App\Http\Requests\DoctorUpdateRequest;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Services\DoctorServices;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -58,6 +61,42 @@ class DoctorController extends Controller
         $doctors = $this->doctorServices->totalDoctorCount();
         $appointment = $this->doctorServices->appointmentCount();
         return view('doctor.home.index', compact(['doctors', 'appointment']));
+    }
+
+    public function profileSetting()
+    {
+        $authUser = auth()->guard('doctor')->user();
+        return view('doctor.profile.settings', compact('authUser'));
+    }
+
+    public function profileSettingUpdate(DoctorProfileUpdateRequest $request)
+    {
+        $profileUpdate = $this->doctorServices->profileUpdate($request);
+        return redirect()->back()->with('success', 'Profile has been updated');
+    }
+
+    public function profilePasswordUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'old_password' => 'required|min:8',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        try{
+            $authUser = auth()->guard('doctor')->user();
+
+            if(!Hash::check($request->old_password, $authUser->password)){
+                return redirect()->back()->with('error', 'The provided password does not match your current password.');
+            }
+
+            //update password
+            $authUser->update([
+                'password' => Hash::make($request->password)
+            ]);
+            return redirect()->back()->with('success', 'Password has been updated.');
+        }catch(ModelNotFoundException $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     public function doctorLogout(Request $request)
