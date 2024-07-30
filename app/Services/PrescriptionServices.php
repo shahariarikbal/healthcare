@@ -56,10 +56,22 @@ class PrescriptionServices
      public function showTodayPrescriptions()
      {
           $authDoctorId = auth()->guard('doctor')->user()->id;
-          
-          $todayPrescriptions = Instruction::with('prescriptions', 'patient')->where('doctor_id', $authDoctorId)->whereDate('created_at', Carbon::today())->get();
-          
-          return $todayPrescriptions;
+          $query = Instruction::with('patient')->where('doctor_id', $authDoctorId)->whereDate('created_at', Carbon::today())->orderBy('id', 'desc');
+
+          if($searchValue = request('search')['value']){
+               $query->where(function($subQuery) use ($searchValue){
+                 
+                 $subQuery->whereHas('patient', function($q) use ($searchValue){
+                     $q->where('name', 'like', "%{$searchValue}%")
+                     ->orWhere('phone', 'like', "%{$searchValue}%");
+                   });
+                   
+               });
+            }
+
+            $data = $query->get();
+
+            return $data;
      }
 
      public function showAuthDoctorPrescriptions()
