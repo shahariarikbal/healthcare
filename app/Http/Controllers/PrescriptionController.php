@@ -60,8 +60,16 @@ class PrescriptionController extends Controller
 
     public function showTodayPrescriptions()
     {
-        $todayPrescriptions = $this->prescriptionService->showTodayPrescriptions();
-        return view('admin.pages.prescriptions.doctor-today-prescriptions', compact('todayPrescriptions'));
+        if(request()->ajax()){
+            $data = $this->prescriptionService->showTodayPrescriptions();
+            
+            $dataWithAction = $data->map(function($row){
+                $row->action = $this->prescriptionService->generateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithAction)->make(true);
+        }
+        return view('admin.pages.prescriptions.doctor-today-prescriptions');
     }
 
     public function downloadPrescriptions(Instruction $instruction)

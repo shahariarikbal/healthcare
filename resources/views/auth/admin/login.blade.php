@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/login-style.css') }}" />
     </head>
     <body>
-        <section class="height login-bg-color">
+        <section class="vh-100 login-bg-color">
             <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">
