@@ -155,6 +155,22 @@ class DoctorServices
           return $data;
      }
 
+     public function profileUpdate($request)
+     {
+          $doctor = auth()->guard('doctor')->user();
+          $imageUpdateName = $this->imageUpdate($request, 'avatar', $doctor);
+
+          $data = [
+               'first_name' => $request->first_name,
+               'last_name' => $request->last_name,
+               'email' => $request->email,
+               'phone' => $request->phone,
+               'qualification' => $request->qualification,
+          ];
+
+          $doctor->update($data);
+     }
+
      
 
 }
