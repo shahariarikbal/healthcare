@@ -1,22 +1,22 @@
 
  @media (max-width: 768px) {
-     .offcanvas {
+     .hc-siderbar-wrap {
           display: none;
      }
 
-     .offcanvas.show{
+     .hc-siderbar-wrap.show{
           display: block;
      }
  }
 
  @media (max-width: 769px) {
-     .offcanvas.show{
+     .hc-siderbar-wrap.show{
           display: block;
      }
  }
 
  @media (min-width: 770px) and (max-width: 1200px) {
-    .offcanvas{
+    .hc-siderbar-wrap{
         display: block;
    }
 
