@@ -167,6 +167,16 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/daily-edit/{id}', [AppointmentController::class, 'dailyAppointmentEdit'])->name('appointment.daily.edit');
         Route::post('/daily-update/{id}', [AppointmentController::class, 'dailyAppointmentUpdate'])->name('appointment.daily.update');
         Route::get('/delete/{id}', [AppointmentController::class, 'appointmentDelete'])->name('appointment.delete');
+
+        //Only doctor can see this
+        Route::group(['prefix' => 'own', 'as' => 'appointment.own.'], function(){
+            Route::get('/all-list', [AppointmentController::class, 'allOwnAppointments'])->name('all');
+            Route::get('/daily-list', [AppointmentController::class, 'dailyOwnAppointments'])->name('daily');
+            Route::get('/schedule-list', [AppointmentController::class, 'scheduleOwnAppointments'])->name('schedule');
+            Route::get('/daily-edit/{id}', [AppointmentController::class, 'dailyOwnAppointmentEdit'])->name('daily.edit');
+            Route::post('/daily-update/{id}', [AppointmentController::class, 'dailyOwnAppointmentUpdate'])->name('daily.update');
+            Route::get('/delete/{id}', [AppointmentController::class, 'ownAppointmentDelete'])->name('delete');
+        });
     
         
     });

@@ -169,7 +169,7 @@
                         </ul>
                     </li>
                 @endif
-                @if(auth()->guard('web')->check() || auth()->guard('account')->check() || auth()->guard('receptionist')->check())
+                @if(auth()->guard('web')->check() || auth()->guard('account')->check() || auth()->guard('receptionist')->check() || auth()->guard('doctor')->check())
                     <li class="nav-list-item has-submenu {{ Route::is('appointment*') ? 'active' : '' }}">
                         <a class="nav-list-item-link" href="javascript:void(0);">
                             <i class="fa-solid fa-calendar-check"></i>
@@ -190,6 +190,17 @@
                                 </li>
                                 <li class="submenu-list-item">
                                     <a class="submenu-list-item-link" href="{{ route('appointment.daily') }}">Today Appointments </a>
+                                </li>
+                            @endif
+                            @if(auth()->guard('doctor')->check())
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('appointment.own.all') }}">All Appointments </a>
+                                </li>
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('appointment.own.schedule') }}">Schedule Appointments </a>
+                                </li>
+                                <li class="submenu-list-item">
+                                    <a class="submenu-list-item-link" href="{{ route('appointment.own.daily') }}">Today Appointments </a>
                                 </li>
                             @endif
                         </ul>

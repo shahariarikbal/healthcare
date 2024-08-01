@@ -120,6 +120,54 @@ class AppointmentController extends Controller
         }
     }
 
+    // Doctor guard methods
+    public function allOwnAppointments()
+    {
+        if(request()->ajax()){
+            $data = $this->appointmentServices->getDoctorOwnAppointmentDataForDatatable();
+            return datatables()->of($data)->make(true);
+        }
+        return view('admin.pages.appointments.doctor-all-appointments');
+    }
+
+    public function dailyOwnAppointments()
+    {
+        if(request()->ajax()){
+            $data = $this->appointmentServices->getDoctorOwnDailyAppointmentDataForDatatable();
+            
+            return datatables()->of($data)->make(true);
+        }
+        return view('admin.pages.appointments.doctor-daily-appointments');
+    }
+
+    public function scheduleOwnAppointments()
+    {
+        if(request()->ajax()){
+            $data = $this->appointmentServices->getDoctorOwnScheduleAppointmentDataForDatatable();
+            
+            return datatables()->of($data)->make(true);
+        }
+        return view('admin.pages.appointments.doctor-schedule-appointments');
+    }
+
+    public function dailyOwnAppointmentEdit($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $patients = Patient::orderBy('id', 'desc')->get();
+        return view('admin.pages.appointments.doctor-daily-edit', compact('appointment', 'patients'));
+    }
+
+    public function dailyOwnAppointmentUpdate(AppointmentUpdateRequest $request, $id)
+    {
+        try{
+            $this->appointmentServices->dailyDoctorAppointmentUpdate($request, $id);
+            return redirect()->route('appointment.own.daily')->with('success', 'Appointment has been updated');
+        }catch(Exception $exception){
+            Log::error('Appointment update error is:', ['error' => $exception->getMessage()]);
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
     //Overall delete method
 
     public function appointmentDelete($id)

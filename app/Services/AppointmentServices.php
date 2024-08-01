@@ -246,6 +246,132 @@ class AppointmentServices
      {
       return Appointment::where('appointment_date', Carbon::today())->select(['id'])->get()->count();
      }
+
+
+     //Doctor own services
+  
+     public function getDoctorOwnAppointmentDataForDatatable()
+      {
+        $doctor = auth()->guard('doctor')->user();
+        $query = Appointment::with('doctor', 'patient')->where('doctor_id', $doctor->id)->orderBy('id', 'desc');
+
+        if(request()->filled('from_date') && request()->filled('to_date')){
+          $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+          $toDate = Carbon::parse(request()->to_date)->endOfDay();
+          $query->whereBetween('appointment_date', [$fromDate, $toDate]);
+        }
+
+        // relational field search functionality
+        if($searchValue = request('search')['value']){
+            $query->where(function($subQuery) use ($searchValue){
+              
+              $subQuery->where('problem', 'like', "%{$searchValue}%")
+                ->orWhereHas('doctor', function($q) use ($searchValue){
+                  $q->where('first_name', 'like', "%{$searchValue}%")
+                  ->orWhere('last_name', 'like', "%{$searchValue}%");
+                })
+                ->orWhereHas('patient', function($q) use ($searchValue){
+                  $q->where('name', 'like', "%{$searchValue}%");
+                });
+                
+            });
+        }
+
+        //fetch all data
+        $data = $query->get();
+
+
+        return $data;
+      }
+
+    public function getDoctorOwnScheduleAppointmentDataForDatatable()
+    {
+       $doctor = auth()->guard('doctor')->user();
+       $query = Appointment::with('doctor', 'patient')->whereYear('appointment_date', date('Y'))
+                ->whereDate('appointment_date', '!=', Carbon::today())
+              
+                ->where('doctor_id', $doctor->id)
+                ->where('is_pay', Statics::IS_NOT_PAY)
+                ->orderBy('id', 'desc');
+
+       if(request()->filled('from_date') && request()->filled('to_date')){
+         $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+         $toDate = Carbon::parse(request()->to_date)->endOfDay();
+         $query->whereBetween('appointment_date', [$fromDate, $toDate]);
+       }
+
+       // relational field search functionality
+       if($searchValue = request('search')['value']){
+          $query->where(function($subQuery) use ($searchValue){
+            
+            $subQuery->where('problem', 'like', "%{$searchValue}%")
+              ->orWhereHas('doctor', function($q) use ($searchValue){
+                $q->where('first_name', 'like', "%{$searchValue}%")
+                ->orWhere('last_name', 'like', "%{$searchValue}%");
+              })
+              ->orWhereHas('patient', function($q) use ($searchValue){
+                $q->where('name', 'like', "%{$searchValue}%");
+              });
+              
+          });
+       }
+
+       //fetch all data
+       $data = $query->get();
+
+
+       return $data;
+    }
+
+    public function getDoctorOwnDailyAppointmentDataForDatatable()
+    {
+       $doctor = auth()->guard('doctor')->user();
+       $query = Appointment::with('doctor', 'patient')
+                ->whereDate('appointment_date', Carbon::today())
+                ->where('doctor_id', $doctor->id)
+                ->where('is_pay', Statics::IS_PAY)
+                ->orderBy('id', 'desc');
+
+       if(request()->filled('from_date') && request()->filled('to_date')){
+         $fromDate = Carbon::parse(request()->from_date)->startOfDay();
+         $toDate = Carbon::parse(request()->to_date)->endOfDay();
+         $query->whereBetween('appointment_date', [$fromDate, $toDate]);
+       }
+
+       // relational field search functionality
+       if($searchValue = request('search')['value']){
+          $query->where(function($subQuery) use ($searchValue){
+            
+            $subQuery->where('problem', 'like', "%{$searchValue}%")
+              ->orWhereHas('doctor', function($q) use ($searchValue){
+                $q->where('first_name', 'like', "%{$searchValue}%")
+                ->orWhere('last_name', 'like', "%{$searchValue}%");
+              })
+              ->orWhereHas('patient', function($q) use ($searchValue){
+                $q->where('name', 'like', "%{$searchValue}%");
+              });
+              
+          });
+       }
+
+       //fetch all data
+       $data = $query->get();
+
+
+       return $data;
+    }
+
+    public function dailyDoctorAppointmentUpdate($request, $id)
+     {
+        $doctor = auth()->guard('doctor')->user();
+        $appointment = Appointment::where('doctor_id', $doctor->id)->first();
+        $appointment->update([
+            'doctor_id' => $doctor->id,
+            'patient_id' => $request->patient_id,
+            'appointment_date' => $request->appointment_date,
+            'problem' => $request->problem,
+        ]);
+     }
      
 
 }

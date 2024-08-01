@@ -22,7 +22,7 @@ class AppointmentUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'doctor_id' => 'required|integer',
+            'doctor_id' => 'sometimes|integer',
             'patient_id' => 'required|integer',
             'appointment_date' => 'required',
             'problem' => 'required'
@@ -32,8 +32,8 @@ class AppointmentUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'doctor_id.required' => 'Doctor field is required',
-            'doctor_id.required' => 'Doctor field is must be type integer',
+            'doctor_id.sometimes' => 'Doctor field is required',
+            'doctor_id.sometimes' => 'Doctor field is must be type integer',
             'patient_id.required' => 'Patient field is required',
             'patient_id.required' => 'Patient field is must be type integer',
             'appointment_date.required' => 'Appointment date is required',

@@ -74,6 +74,13 @@ class PrescriptionServices
             return $data;
      }
 
+     public function todayTotalPrescriptionCount()
+     {
+          $authDoctorId = auth()->guard('doctor')->user()->id;
+          $data = Instruction::with('patient')->where('doctor_id', $authDoctorId)->whereDate('created_at', Carbon::today())->orderBy('id', 'desc')->get()->count();
+          return $data;
+     }
+
      public function showAuthDoctorPrescriptions()
      {
           $authDoctorId = auth()->guard('doctor')->user()->id;
@@ -93,6 +100,13 @@ class PrescriptionServices
             $data = $query->get();
 
             return $data;
+     }
+
+     public function totalPrescriptionCount()
+     {
+          $authDoctorId = auth()->guard('doctor')->user()->id;
+          $data = Instruction::with('patient')->where('doctor_id', $authDoctorId)->whereYear('created_at', date('Y'))->orderBy('id', 'desc')->get()->count();
+          return $data;
      }
 
      public function generateActionButtons($row)

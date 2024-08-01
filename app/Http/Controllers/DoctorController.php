@@ -10,6 +10,7 @@ use App\Http\Requests\DoctorUpdateRequest;
 use App\Models\Department;
 use App\Models\Doctor;
 use App\Services\DoctorServices;
+use App\Services\PrescriptionServices;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,11 @@ use Illuminate\Support\Facades\Hash;
 class DoctorController extends Controller
 {
     protected $doctorServices;
-    public function __construct(DoctorServices $doctorServices)
+    protected $prescriptionServices;
+    public function __construct(DoctorServices $doctorServices, PrescriptionServices $prescriptionServices)
     {
         $this->doctorServices = $doctorServices;
+        $this->prescriptionServices = $prescriptionServices;
     }
 
     public function showLoginForm()
@@ -60,7 +63,11 @@ class DoctorController extends Controller
     {
         $doctors = $this->doctorServices->totalDoctorCount();
         $appointment = $this->doctorServices->appointmentCount();
-        return view('doctor.home.index', compact(['doctors', 'appointment']));
+        $data = [
+            'totalPrescription' => $this->prescriptionServices->totalPrescriptionCount(),
+            'todayTotalPrescription' => $this->prescriptionServices->todayTotalPrescriptionCount()
+        ];
+        return view('doctor.home.index', compact(['doctors', 'appointment', 'data']));
     }
 
     public function profileSetting()
