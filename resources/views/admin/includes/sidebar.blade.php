@@ -1,5 +1,5 @@
-<div class="offcanvas offcanvas-start show" data-bs-scroll="false" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-header justify-content-center">
+<div class="hc-siderbar-wrap show" id="offcanvasScrolling">
+    <div class="hc-siderbar-header justify-content-center">
         @foreach ($guards as $guard => $data)
             @if (auth()->guard($guard)->check())
                 <a href="{{ route($data['home-route']) }}">
@@ -8,7 +8,7 @@
             @endif
         @endforeach
     </div>
-    <div class="offcanvas-body">
+    <div class="hc-siderbar-body">
         <nav class="sidebar">
             <ul class="nav-list" id="nav_accordion">
                 @foreach ($guards as $guard => $data)

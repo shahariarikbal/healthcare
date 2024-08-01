@@ -80,7 +80,22 @@ a {
     font-weight: 600;
     font-size: 1.4rem;
 }
-.offcanvas.show {
+.hc-siderbar-wrap {
+    width: 0;
+}
+.hc-siderbar-wrap.show {
+    background: var(--medical-blue-color);
+    width: 250px !important;
+}
+.hc-siderbar-wrap.show:not(.hiding){
+    min-height: 100vh;
+    position: unset !important;
+}
+.hc-siderbar-body {
+    overflow: auto;
+    padding: 0 !important;
+}
+/*.offcanvas.show {
     background: var(--medical-blue-color);
     width: 250px !important;
 }
@@ -91,7 +106,7 @@ a {
 .offcanvas-body {
     overflow: auto;
     padding: 0 !important;
-}
+}*/
 .icon {
     font-size: 2rem;
     padding: 0 10px;
