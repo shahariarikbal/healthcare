@@ -253,7 +253,7 @@ class AppointmentServices
      public function getDoctorOwnAppointmentDataForDatatable()
       {
         $doctor = auth()->guard('doctor')->user();
-        $query = Appointment::with('doctor', 'patient')->where('doctor_id', $doctor->id)->orderBy('id', 'desc');
+        $query = Appointment::with('doctor', 'patient')->whereYear('appointment_date', date('Y'))->where('doctor_id', $doctor->id)->orderBy('id', 'desc');
 
         if(request()->filled('from_date') && request()->filled('to_date')){
           $fromDate = Carbon::parse(request()->from_date)->startOfDay();

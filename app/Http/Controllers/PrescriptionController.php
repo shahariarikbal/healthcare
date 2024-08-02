@@ -91,6 +91,13 @@ class PrescriptionController extends Controller
         
     }
 
+    //Overall delete method
+    public function deletePrescriptions(Instruction $instruction)
+     {
+        $instruction->delete();
+        return redirect()->back()->with('success', 'Prescription has been deleted');
+     }
+
     //******* For Admin view *******/
     
     public function allPrescriptions()

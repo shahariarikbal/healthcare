@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Constants\Statics;
+use App\Models\Appointment;
 use App\Models\Instruction;
 use App\Models\Prescription;
 use Carbon\Carbon;
@@ -36,6 +38,12 @@ class PrescriptionServices
                          'duration' => $request->duration[$k]
                     ]);
                }
+
+               //Appointments status update query
+               $appointment = Appointment::where('patient_id', $instruction->patient_id)->first();
+               $appointment->update([
+                    'status' => Statics::ACTIVE
+               ]);
 
                //commit the transaction
                DB::commit();

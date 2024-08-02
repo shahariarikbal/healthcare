@@ -49,12 +49,15 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
   ]);
 
 
-  Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
-  Route::get('/admin/profile-settings', [AdminController::class, 'adminProfileSettings'])->name('admin.profile.settings');
-  Route::post('/admin/profile-settings-update', [AdminController::class, 'adminProfileSettingsUpdate'])->name('admin.profile.settings.update');
-  Route::post('/admin/password-update', [AdminController::class, 'adminPasswordUpdate'])->name('admin.password.update');
-  Route::get('/admin/logo-settings', [AdminController::class, 'adminLogoSettings'])->name('admin.logo.settings');
-  Route::post('/admin/logo-update', [AdminController::class, 'adminLogoUpdate'])->name('admin.logo.update');
+  Route::group(['prefix' => 'admin', 'as'=> 'admin.'], function(){
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+        Route::get('/profile-settings', [AdminController::class, 'adminProfileSettings'])->name('profile.settings');
+        Route::post('/profile-settings-update', [AdminController::class, 'adminProfileSettingsUpdate'])->name('profile.settings.update');
+        Route::post('/password-update', [AdminController::class, 'adminPasswordUpdate'])->name('password.update');
+        Route::get('/logo-settings', [AdminController::class, 'adminLogoSettings'])->name('logo.settings');
+        Route::post('/logo-update', [AdminController::class, 'adminLogoUpdate'])->name('logo.update');
+  });
+  
 
     //Department controller routes
     Route::group(['prefix' => 'department'], function(){
