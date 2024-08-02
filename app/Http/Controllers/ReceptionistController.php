@@ -56,7 +56,7 @@ class ReceptionistController extends Controller
 
     public function index()
     {
-        return view('receptionist.master');
+        return view('receptionist.home.index');
     }
 
     public function logout(Request $request)
