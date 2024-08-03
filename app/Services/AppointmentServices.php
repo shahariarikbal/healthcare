@@ -126,7 +126,7 @@ class AppointmentServices
           $editBtn = '';
           $deleteBtn = '';
           $billingBtn = '';
-          if(auth()->guard('web')->check()){
+          if(auth()->guard('web')->check() || auth()->guard('receptionist')->check()){
             $editUrl = route('appointment.edit', ['id' => $row->id, 'slug' => $row->patient?->slug]);
             $editBtn = '<a href="'.$editUrl.'" class="edit edit-btn" title="Appointment edit"><i class="fa-regular fa-pen-to-square"></i></a>';
             $deleteUrl = route('appointment.delete', ['id' => $row->id,'slug' => $row->slug]);

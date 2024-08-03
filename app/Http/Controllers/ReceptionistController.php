@@ -53,7 +53,7 @@ class ReceptionistController extends Controller
         }
     }
 
-
+    //Dashboard functionalities
     public function index()
     {
         return view('receptionist.home.index');

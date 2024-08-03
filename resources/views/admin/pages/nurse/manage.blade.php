@@ -8,7 +8,7 @@
                         <h4 class="hc-header-title">
                             Nurse list
                         </h4>                           
-                        @if (auth()->guard('web')->check() || auth()->guard('receptionist')->check())
+                        @if (auth()->guard('web')->check())
                             <a href="{{ route('nurse.create') }}" class="btn btn-sm btn-add">
                                 <i class="fa-solid fa-circle-plus"></i> Add
                             </a>

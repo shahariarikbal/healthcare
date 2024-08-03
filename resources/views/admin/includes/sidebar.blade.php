@@ -103,7 +103,7 @@
                         </ul>
                     </li>
                 @endif
-                @if(auth()->guard('web')->check() || auth()->guard('account')->check() || auth()->guard('receptionist')->check())
+                @if(auth()->guard('web')->check() || auth()->guard('account')->check())
                     <li class="nav-list-item has-submenu {{ Route::is('accounts*') ? 'active open' : '' }}">
                         <a class="nav-list-item-link" href="javascript:void(0);">
                             <i class="fa-solid fa-file-invoice-dollar"></i>
