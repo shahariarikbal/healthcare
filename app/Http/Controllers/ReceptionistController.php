@@ -13,6 +13,7 @@ use App\Services\ReceptionServices;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ReceptionistController extends Controller
 {
@@ -72,6 +73,30 @@ class ReceptionistController extends Controller
         try{
             $this->receptionServices->profileSettingUpdate($request);
             return redirect()->back()->with('success', 'Receptionist profile has been updated');
+        }catch(Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
+    }
+
+    public function profilePasswordUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'old_password' => 'required|min:8',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        try{
+            $authUser = auth()->guard('receptionist')->user();
+
+            if(!Hash::check($request->old_password, $authUser->password)){
+                return redirect()->back()->with('error', 'The provided password does not match your current password.');
+            }
+
+            //update password
+            $authUser->update([
+                'password' => Hash::make($request->password)
+            ]);
+            return redirect()->back()->with('success', 'Password has been updated.');
         }catch(Exception $exception){
             return redirect()->back()->with('error', $exception->getMessage());
         }
