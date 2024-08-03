@@ -9,68 +9,57 @@
     <link rel="stylesheet" href="{{ asset('assets/css/login-style.css') }}" />
 </head>
 <body>
-    <section class="vh-100 login-bg-color">
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-xl-10">
-              <div class="login-radius">
-                <div class="row g-0">
-                  
-                  <div class="col-lg-6 col-md-12 d-flex align-items-center">
-                    <div class="card-body p-4 p-lg-5 text-black">
-    
-                      @if(session('error'))
-                          <div class="alert alert-danger">
-                              {{ session('error') }}
-                          </div>
-                      @endif
-
-                      <form method="POST" action="{{ route('doctor.login') }}">
-                        @csrf
-                        <div class="d-flex align-items-center mb-3 pb-1">
-                          <img src="{{ asset('assets/images/login-logo.png') }}" class="login-logo" />
-                          <span class="mb-0 login-text">Doctor Login</span>
-                        </div>
-      
-                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-      
-                        <div class="form-outline mb-4">
-                          <label class="form-label" for="email">Email address</label>
-                          <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter your email" />
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-      
-                        <div class="form-outline mb-4">
-                          <label class="form-label" for="password">Password</label>
-                          <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password" />
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-      
-                        <button class="btn login-btn" type="submit">Login</button>
-                        
-                        <div class="mt-3">
-                          <span>Email: rahman@info.com</span> |
-                          <span>Password: 12345678</span>
-                        </div>
-                      </form>
-
-      
+    <section class="login-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="login-form-outer">
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <form method="POST" action="{{ route('doctor.login') }}" class="login-form">
+                            @csrf
+                            <div class="d-flex align-items-center mb-3 pb-1">
+                                <img src="{{ asset('assets/images/login-logo.png') }}" class="login-logo" />
+                                <span class="mb-0 login-text">Doctor Login</span>
+                            </div>          
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">
+                                Sign into your account
+                            </h5>
+          
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="email">Email address</label>
+                                <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter your email" />
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+          
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Enter your password" />
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+          
+                            <button class="btn login-btn" type="submit">Login</button>
+                            
+                            <div class="mt-3">
+                              <span>Email: rahman@info.com</span><br>
+                              <span>Password: 12345678</span>
+                            </div>
+                        </form>
                     </div>
-                  </div>
-                  <div class="col-md-6 d-none d-md-block"></div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 </body>
 </html>
