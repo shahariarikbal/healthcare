@@ -10,16 +10,16 @@
                                    Profile settings
                               </div>
                               <div class="card-body">
-                                   <form class="row g-3" action="{{ route('doctor.profile.settings.update') }}" method="POST" enctype="multipart/form-data">
+                                   <form class="row g-3" action="{{ route('receptionist.profile.settings.update') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                              <label for="first_name" class="form-label">First Name <span class="text-danger">*</span></label>
-                                             <input type="text" class="form-control" name="first_name" value="{{ $authUser->first_name ?? old('first_name') }}" placeholder="eg: Admin"/>
+                                             <input type="text" class="form-control" name="first_name" value="{{ $authUser->first_name ?? old('first_name') }}" placeholder="eg: Reception"/>
                                              <span class="text-danger">{{ $errors->has('first_name') ? $errors->first('first_name') : ' ' }}</span>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                              <label for="last_name" class="form-label">Last Name </label>
-                                             <input type="text" class="form-control" name="last_name" value="{{ $authUser->last_name ?? old('last_name') }}" placeholder="eg: Admin"/>
+                                             <input type="text" class="form-control" name="last_name" value="{{ $authUser->last_name ?? old('last_name') }}" placeholder="eg: officer"/>
                                              <span class="text-danger">{{ $errors->has('last_name') ? $errors->first('last_name') : ' ' }}</span>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -30,13 +30,13 @@
 
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                              <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
-                                             <input type="text" class="form-control" name="phone" value="{{ $authUser->phone ?? old('phone') }}" placeholder="eg: admin@admin.com"/>
+                                             <input type="text" class="form-control" name="phone" value="{{ $authUser->phone ?? old('phone') }}" placeholder="eg: 01XXXXXXXXXXX"/>
                                              <span class="text-danger">{{ $errors->has('phone') ? $errors->first('phone') : ' ' }}</span>
                                         </div>
 
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <label for="qualification" class="form-label">Qualifications <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="qualification" value="{{ $authUser->qualification ?? old('qualification') }}" placeholder="eg: admin@admin.com"/>
+                                            <input type="text" class="form-control" name="qualification" value="{{ $authUser->qualification ?? old('qualification') }}" placeholder="e.g: Qualifications"/>
                                             <span class="text-danger">{{ $errors->has('qualification') ? $errors->first('qualification') : ' ' }}</span>
                                        </div>
 
@@ -64,7 +64,7 @@
                                    Password settings
                               </div>
                               <div class="card-body">
-                                   <form class="row g-3" action="{{ route('doctor.profile.password.update') }}" method="POST">
+                                   <form class="row g-3" action="{{ route('receptionist.profile.password.update') }}" method="POST">
                                         @csrf
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                              <label for="old_password" class="form-label">Old password <span class="text-danger">*</span></label>
