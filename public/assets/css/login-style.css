@@ -3,14 +3,19 @@
     padding: 0;
 }
 
-.login-bg-color{
+body{
    background-image: url('../images/bg-img.jpg');
    background-repeat: no-repeat;
    background-size: cover;
+   height: 100vh;
+   width: 100%;
 }
 
-.login-radius{
-   border-radius: 1rem;
+.login-section {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-logo{
@@ -41,26 +46,18 @@
     font-weight: 500;
 }
 
-form{
+.login-form{
    background: #dee6e8;
-    padding: 25px;
-    border-radius: 5px;
+   padding: 25px;
+   border-radius: 5px;
 }
 
 /*** Temporary css ***/
 .others-login-panel{
    margin-top: 20px;
-    background: white;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.height{
-   height: 100% !important;
-}
-
-.panel-login-url-box{
-   margin-top: 200px
+   background: white;
+   padding: 10px;
+   border-radius: 5px;
 }
 
 
@@ -101,12 +98,6 @@ form{
 }
 
 @media (min-width: 361px) and (max-width: 1200px) {
-   .others-login-panel{
-       padding: 20px;
-       width: 60%;
-       margin-left: 20%;
-   }
-
    .others-login-panel a{
       width: 100%;
       margin-top: 5px;
