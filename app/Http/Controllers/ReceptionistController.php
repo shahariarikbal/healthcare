@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Constants\Statics;
 use App\Constants\Status;
+use App\Http\Requests\ProfileSettingUpdate;
 use App\Http\Requests\ReceptionistStoreRequest;
 use App\Http\Requests\ReceptionistUpdateRequest;
 use App\Models\Receptionist;
 use App\Services\MessageServices;
 use App\Services\ReceptionServices;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,6 +59,22 @@ class ReceptionistController extends Controller
     public function index()
     {
         return view('receptionist.home.index');
+    }
+
+    public function profileSetting()
+    {
+        $authUser = auth()->guard('receptionist')->user();
+        return view('receptionist.profile.settings', compact('authUser'));
+    }
+
+    public function profileSettingUpdate(ProfileSettingUpdate $request)
+    {
+        try{
+            $this->receptionServices->profileSettingUpdate($request);
+            return redirect()->back()->with('success', 'Receptionist profile has been updated');
+        }catch(Exception $exception){
+            return redirect()->back()->with('error', $exception->getMessage());
+        }
     }
 
     public function logout(Request $request)
