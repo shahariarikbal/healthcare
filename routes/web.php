@@ -13,6 +13,7 @@ use App\Http\Controllers\ExpanseController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\SmtpSettingController;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +51,7 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
 
 
   Route::group(['prefix' => 'admin', 'as'=> 'admin.'], function(){
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::get('/profile-settings', [AdminController::class, 'adminProfileSettings'])->name('profile.settings');
         Route::post('/profile-settings-update', [AdminController::class, 'adminProfileSettingsUpdate'])->name('profile.settings.update');
         Route::post('/password-update', [AdminController::class, 'adminPasswordUpdate'])->name('password.update');
@@ -81,6 +82,16 @@ Route::get('/', [LoginController::class, 'showAdminLoginForm']);
         Route::get('/active/{id}', [DoctorController::class, 'doctorActive'])->name('doctor.active');
         Route::get('/inactive/{id}', [DoctorController::class, 'doctorInactive'])->name('doctor.inactive');
         
+    });
+
+    //Prescriptions route
+    Route::group(['prefix' => 'prescription', 'as' => 'prescription.'], function(){
+        Route::get('/list', [PrescriptionController::class, 'allPrescriptions'])->name('all');
+        Route::get('/daily-list', [PrescriptionController::class, 'dailyPrescriptions'])->name('daily');
+
+        Route::get('/{instruction}/create', [PrescriptionController::class, 'admin_viewPrescriptions'])->name('show');
+       Route::get('/{instruction}/pdf/download', [PrescriptionController::class, 'admin_downloadPrescriptions'])->name('pdf.download');
+       Route::get('/{instruction}/destroy', [PrescriptionController::class, 'admin_deletePrescriptions'])->name('destroy');
     });
 
     //Patient routes

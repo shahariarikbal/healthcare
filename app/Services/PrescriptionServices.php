@@ -128,4 +128,59 @@ class PrescriptionServices
 
           return $prescriptionViewBtn.' '. $prescriptionDeleteBtn;
      }
+
+     //For admin panel
+
+     public function forAdminGenerateActionButtons($row)
+     {
+          
+          $prescriptionViewUrl = route('prescription.show', ['instruction' => $row->id]);
+          $prescriptionDeleteUrl = route('prescription.destroy', ['instruction' => $row->id]);
+          $prescriptionViewBtn = '<a href="'.$prescriptionViewUrl.'" class="view view-btn"><i class="fa-regular fa-eye"></i></a>';
+          $prescriptionDeleteBtn = '<a href="'.$prescriptionDeleteUrl.'" class="delete delete-btn" onclick="return confirm(&quot;Are you sure delete this prescription ?&quot;)"><i class="fa-regular fa-trash-alt"></i></a>';
+          
+
+          return $prescriptionViewBtn.' '. $prescriptionDeleteBtn;
+     }
+
+
+     public function adminShowAllPrescriptions()
+     {
+          $query = Instruction::with('patient')->whereYear('created_at', date('Y'))->orderBy('id', 'desc');
+
+          if($searchValue = request('search')['value']){
+               $query->where(function($subQuery) use ($searchValue){
+                 
+                 $subQuery->whereHas('patient', function($q) use ($searchValue){
+                     $q->where('name', 'like', "%{$searchValue}%")
+                     ->orWhere('phone', 'like', "%{$searchValue}%");
+                   });
+                   
+               });
+            }
+
+            $data = $query->get();
+
+            return $data;
+     }
+
+     public function adminShowTodayPrescriptions()
+     {
+          $query = Instruction::with('patient')->whereDate('created_at', Carbon::today())->orderBy('id', 'desc');
+
+          if($searchValue = request('search')['value']){
+               $query->where(function($subQuery) use ($searchValue){
+                 
+                 $subQuery->whereHas('patient', function($q) use ($searchValue){
+                     $q->where('name', 'like', "%{$searchValue}%")
+                     ->orWhere('phone', 'like', "%{$searchValue}%");
+                   });
+                   
+               });
+            }
+
+            $data = $query->get();
+
+            return $data;
+     }
 }

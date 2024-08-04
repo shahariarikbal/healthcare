@@ -218,7 +218,7 @@
                                     <a class="submenu-list-item-link" href="{{ route('prescription.add') }}">Add Prescription </a>
                                 </li>
                                 <li class="submenu-list-item">
-                                    <a class="submenu-list-item-link" href="{{ route('auth.doctor.prescription.list') }}">All Prescription </a>
+                                    <a class="submenu-list-item-link" href="{{ route('prescription.auth.doctor.list') }}">All Prescription </a>
                                 </li>
                                 <li class="submenu-list-item">
                                     <a class="submenu-list-item-link" href="{{ route('prescription.today') }}">Today Prescription </a>

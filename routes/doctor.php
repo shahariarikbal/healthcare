@@ -18,13 +18,10 @@ Route::middleware('auth:doctor')->group(function(){
     Route::group(['prefix' => 'prescription'], function(){
        Route::get('/add', [PrescriptionController::class, 'addPrescription'])->name('prescription.add');
        Route::post('/store', [PrescriptionController::class, 'prescriptionStore'])->name('prescription.store');
-       Route::get('/all', [PrescriptionController::class, 'authUserPrescriptions'])->name('auth.doctor.prescription.list');
+       Route::get('/all', [PrescriptionController::class, 'authUserPrescriptions'])->name('prescription.auth.doctor.list');
        Route::get('/{instruction}/view', [PrescriptionController::class, 'viewPrescriptions'])->name('prescription.view');
        Route::get('/{instruction}/pdf-download', [PrescriptionController::class, 'downloadPrescriptions'])->name('prescription.download.pdf');
        Route::get('/{instruction}/delete', [PrescriptionController::class, 'deletePrescriptions'])->name('prescription.delete');
        Route::get('/today-list', [PrescriptionController::class, 'showTodayPrescriptions'])->name('prescription.today');
-
-       Route::get('/list', [PrescriptionController::class, 'allPrescriptions'])->name('prescription.all');
-       Route::get('/daily-list', [PrescriptionController::class, 'dailyPrescriptions'])->name('prescription.daily');
    });
 });

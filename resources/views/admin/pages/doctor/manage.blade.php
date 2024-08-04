@@ -109,7 +109,7 @@
                             // Replace ':id' placeholder with the actual id value
                             doctorActiveUrl = doctorActiveUrl.replace(':id', data.id);
                             doctorInactiveUrl = doctorInactiveUrl.replace(':id', data.id);
-                            @if(auth()->guard('web')->check())
+                            @if(auth()->guard('web')->check() || auth()->guard('receptionist')->check())
                             if (data.is_active === 1) {
                                 activeBtn = '<a href="' + doctorActiveUrl + '" class="badge-active">Active</a>';
                             } else {

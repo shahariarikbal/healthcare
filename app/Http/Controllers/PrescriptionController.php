@@ -91,7 +91,7 @@ class PrescriptionController extends Controller
         
     }
 
-    //Overall delete method
+    //Doctor delete method
     public function deletePrescriptions(Instruction $instruction)
      {
         $instruction->delete();
@@ -99,14 +99,50 @@ class PrescriptionController extends Controller
      }
 
     //******* For Admin view *******/
+
+    public function admin_deletePrescriptions(Instruction $instruction)
+     {
+        $instruction->delete();
+        return redirect()->back()->with('success', 'Prescription has been deleted');
+     }
     
     public function allPrescriptions()
     {
+        if(request()->ajax()){
+            $data = $this->prescriptionService->adminShowAllPrescriptions();
+            
+            $dataWithAction = $data->map(function($row){
+                $row->action = $this->prescriptionService->forAdminGenerateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithAction)->make(true);
+        }
         return view('admin.pages.prescriptions.all-prescriptions');
     }
 
     public function dailyPrescriptions()
     {
+        if(request()->ajax()){
+            $data = $this->prescriptionService->adminShowTodayPrescriptions();
+            
+            $dataWithAction = $data->map(function($row){
+                $row->action = $this->prescriptionService->forAdminGenerateActionButtons($row);
+                return $row;
+            });
+            return datatables()->of($dataWithAction)->make(true);
+        }
+
         return view('admin.pages.prescriptions.daily-prescriptions');
+    }
+
+    public function admin_viewPrescriptions(Instruction $instruction)
+    {
+        return view('admin.pages.prescriptions.prescriptions-view', compact('instruction'));
+    }
+
+    public function admin_downloadPrescriptions(Instruction $instruction)
+    {
+        $pdf = PDF::loadView('admin.pages.prescriptions.prescriptions-pdf', compact('instruction'));
+        return $pdf->download('Prescription.pdf');
     }
 }
