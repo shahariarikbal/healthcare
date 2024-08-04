@@ -12,16 +12,15 @@
                     <div class="card-body">
                         <table class="table table-hover table-data custom-font-size">
                           <thead>
-                              <tr>
-                                 <th class="sl-width">SL</th>
-                                 <th>Avatar</th>
-                                 <th>Name</th>
-                                 <th>Phone</th>
-                                 <th>Gender</th>
-                                 <th>Experience</th>
-                                 <th>Status</th>
-                                 <th>Action</th>
-                              </tr>
+                            <tr>
+                                <th class="sl-width">SL</th>
+                                <th class="sl-width">Date</th>
+                                <th>Patient name</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th class="sl-width">Action</th>
+                             </tr>
                          </thead>
                          <tbody>
 
@@ -34,5 +33,67 @@
 @endsection
 
 @push('script')
+<script type="text/javascript">
+    $(function () {
+            
+            var table = $('.table-data').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('prescription.all') }}",
+                columns: [
+                    {
+                      data: null, 
+                      name: 'id',
+                      render: function(data, type, row, meta){
+                        return meta.row + 1
+                      }
+                    },
 
+                    {
+                      data: null, 
+                      name: 'created_at',
+                      render: function(data, type, row){
+                        let dateTimeData = new Date(data.created_at);
+                        return dateTimeData.toLocaleDateString();
+                      }
+                    },
+
+                    {
+                      data: 'patient', 
+                      name: 'patient.name',
+                      render: function(data, type, row){
+                        return row.patient.name; '<strong> Call: ' + row.patient.phone +'</strong>'
+                      }
+                    },
+
+                    {
+                      data: 'patient', 
+                      name: 'patient.phone',
+                      render: function(data, type, row){
+                        return row.patient.phone;
+                      }
+                    },
+
+                    {
+                      data: null, 
+                      name: 'gender',
+                      render: function(data, type, row){
+                        return data.gender;
+                      }
+                    },
+
+                    {
+                      data: null, 
+                      name: 'age',
+                      render: function(data, type, row){
+                        return data.age + ' Years';
+                      }
+                    },
+
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+            
+          });
+</script>
 @endpush

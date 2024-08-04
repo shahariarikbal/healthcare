@@ -44,6 +44,7 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: "{{ route('patient.manage') }}",
                 columns: [
                     // Serial number column

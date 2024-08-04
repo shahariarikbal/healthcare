@@ -20,8 +20,8 @@
                         <h4 class="hc-header-title">
                             Sending E-mail list
                         </h4>
-                        <a href="{{ route('email.create') }}" class="btn btn-sm btn-manage">
-                            <i class="fa-solid fa-circle-plus"></i> Sent Email
+                        <a href="{{ route('email.create') }}" class="btn btn-sm btn-manage email-btn">
+                            <i class="fa-solid fa-circle-plus"></i> Compose
                         </a>
                     </div>
                     <div class="card-body">
@@ -53,6 +53,7 @@
             var table = $('.table-data').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive:true,
                 ajax: "{{ route('email.manage') }}",
                 columns: [
                     {data: 'id', name: 'id'},

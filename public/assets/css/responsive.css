@@ -59,6 +59,96 @@
     }
 }
 
+@media (min-width: 320px) and (max-width: 800px) {
+    .page-directory{
+        display: none;
+    }
+
+    .custom-profile-dropdown-name{
+        display: none;
+    }
+
+    .dropdown-toggle::after{
+        display: none;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter label{
+        margin-top: 5px !important;
+    }
+
+    .select2 {
+        width:100%!important;
+    }
+
+    li.paginate_button.previous {
+        display: inline;
+    }
+ 
+    li.paginate_button.next {
+        display: inline;
+    }
+ 
+    li.paginate_button {
+        display: none;
+    }
+
+    #from_date{
+        width: 100%;
+    }
+
+    #to_date{
+        width: 100%;
+        margin-top: 2px;
+    }
+
+    .date-filtering{
+        margin-bottom: 10px;
+    }
+
+    #filter-btn{
+        margin-top: 5px;
+    }
+
+    #refresh-btn{
+        margin-top: 5px;
+    }
+
+    #payment_type{
+        width: 100%;
+        margin-top: 2px;
+    }
+
+    .dashboard-chart{
+        height: 156px;
+    }
+
+    .hc-header-title{
+        font-size: 12px;
+    }
+
+    .expanse-box{
+        position: relative;
+        left: 14%;
+        width: 180px;
+        margin-bottom: 5px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .email-btn{
+        height: 30px;
+        font-size: 10px;
+    }
+
+    .admin-profile{
+        margin-top: 5px;
+    }
+
+    .total-card{
+        margin-top: 5px;
+    }
+}
+
 @media (max-width: 1600px){
     .avatar-title{
         height: 40px;

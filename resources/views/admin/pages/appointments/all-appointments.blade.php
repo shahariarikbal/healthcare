@@ -47,6 +47,7 @@
       var table = $('.table-data').DataTable({
           processing: true,
           serverSide: true,
+          responsive: true,
           ajax: {
             url: "{{ route('appointment.all') }}",
             data: function(d){
