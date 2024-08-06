@@ -140,7 +140,7 @@ class DoctorServices
 
      public function appointmentCount()
      {
-          $doctorId = auth()->guard('doctor')->user()->id;
+          $doctorId = auth()->guard('doctor')->user()->id ?? '';
           $data = [
                'totalAppointment' => Appointment::whereYear('appointment_date', date('Y'))->where('doctor_id', $doctorId)->select('id')->get()->count(),
                'todayTotalAppointment' => Appointment::whereDate('appointment_date', Carbon::today())->where('doctor_id', $doctorId)->select('id')->get()->count(),

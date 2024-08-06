@@ -3,13 +3,13 @@
 @section('content')
 <div class="row py-2">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 total-card">
-        <a href="{{ route('appointment.own.all') }}">
+        <a href="#">
             <div class="card dashboard-card">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Total Appointment</p>
-                            <h4 class="mb-2">0</h4>
+                            <h4 class="mb-2">{{ $totalAppointment ?? 0 }}</h4>
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title rounded-3">
@@ -22,13 +22,13 @@
         </a>
     </div><!-- end col -->
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 total-card">
-        <a href="{{ route('appointment.own.daily') }}">
+        <a href="#">
             <div class="card dashboard-card">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Today Appointment</p>
-                            <h4 class="mb-2">0</h4>
+                            <h4 class="mb-2">{{ $todayAppointment ?? 0 }}</h4>
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title rounded-3">
@@ -41,13 +41,13 @@
         </a>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-        <a href="{{ route('appointment.own.schedule') }}">
+        <a href="#">
             <div class="card dashboard-chart">
                 <div class="card-body">
                     <div class="d-flex">
                         <div class="flex-grow-1">
                             <p class="text-truncate mb-2">Schedule Appointment</p>
-                            <h4 class="mb-2">0</h4>
+                            <h4 class="mb-2">{{ $totalScheduleAppointment ?? 0 }}</h4>
                         </div>
                         <div class="avatar-sm">
                             <span class="avatar-title rounded-3">
@@ -63,13 +63,13 @@
 
     <div class="row py-2">
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 total-card">
-            <a href="{{ route('appointment.own.all') }}">
+            <a href="#">
                 <div class="card dashboard-card">
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate mb-2">Total Appointment</p>
-                                <span class="text-success">Own report: 0</span>
+                                <h4 class="mb-2">Own: 0</h4>
                             </div>
                             <div class="avatar-sm">
                                 <span class="avatar-title rounded-3">
@@ -82,13 +82,13 @@
             </a>
         </div><!-- end col -->
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 total-card">
-            <a href="{{ route('appointment.own.daily') }}">
+            <a href="#">
                 <div class="card dashboard-card">
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate mb-2">Today Appointment</p>
-                                <span class="text-success">Own report: 0</span>
+                                <h4 class="mb-2">Own: 0</h4>
                             </div>
                             <div class="avatar-sm">
                                 <span class="avatar-title rounded-3">
@@ -101,13 +101,13 @@
             </a>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <a href="{{ route('appointment.own.schedule') }}">
+            <a href="#">
                 <div class="card dashboard-chart">
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <p class="text-truncate mb-2">Schedule Appointment</p>
-                                <span class="text-success">Own report: 0</span>
+                                <h4 class="mb-2">Own: 0</h4>
                             </div>
                             <div class="avatar-sm">
                                 <span class="avatar-title rounded-3">
@@ -123,7 +123,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 mt-4 chart-card">
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-6 col-xl-4 col-xs-12 total-card">
-               <a href="{{ route('auth.doctor.prescription.list') }}">
+               <a href="#">
                    <div class="card dashboard-card">
                        <div class="card-body">
                            <div class="d-flex">
@@ -142,7 +142,7 @@
                </a>
            </div>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xl-4 col-xs-12 total-card">
-               <a href="{{ route('prescription.today') }}">
+               <a href="#">
                    <div class="card dashboard-card">
                        <div class="card-body">
                            <div class="d-flex">
@@ -161,7 +161,7 @@
                </a>
            </div><!-- end col -->
            <div class="col-lg-4 col-md-4 col-sm-6 col-xl-4 col-xs-12 total-card">
-               <a href="{{ route('doctor.manage') }}">
+               <a href="#">
                    <div class="card dashboard-card">
                        <div class="card-body">
                            <div class="d-flex">

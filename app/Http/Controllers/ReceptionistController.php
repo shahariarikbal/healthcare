@@ -8,7 +8,10 @@ use App\Http\Requests\ProfileSettingUpdate;
 use App\Http\Requests\ReceptionistStoreRequest;
 use App\Http\Requests\ReceptionistUpdateRequest;
 use App\Models\Receptionist;
+use App\Services\AppointmentServices;
+use App\Services\DoctorServices;
 use App\Services\MessageServices;
+use App\Services\PrescriptionServices;
 use App\Services\ReceptionServices;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,10 +21,19 @@ use Illuminate\Support\Facades\Hash;
 class ReceptionistController extends Controller
 {
     protected $receptionServices;
+    protected $prescriptionServices;
+    protected $doctorServices;
+    protected $appointmentServices;
     
-    public function __construct(ReceptionServices $receptionServices)
+    public function __construct(
+        ReceptionServices $receptionServices, 
+        PrescriptionServices $prescriptionServices, 
+        DoctorServices $doctorServices, AppointmentServices $appointmentServices)
     {
         $this->receptionServices = $receptionServices;
+        $this->prescriptionServices = $prescriptionServices;
+        $this->doctorServices = $doctorServices;
+        $this->appointmentServices = $appointmentServices;
     }
 
     public function showLoginForm()
@@ -59,7 +71,11 @@ class ReceptionistController extends Controller
     //Dashboard functionalities
     public function index()
     {
-        return view('receptionist.home.index');
+        $doctors = $this->doctorServices->getDoctorDataForDatatable()->count();
+        $totalAppointment = $this->appointmentServices->totalAppointmentCount();
+        $todayAppointment = $this->appointmentServices->todayTotalAppointmentCount();
+        $totalScheduleAppointment = $this->appointmentServices->getTotalScheduleAppointmentDataForDatatable();
+        return view('receptionist.home.index', compact(['doctors', 'totalAppointment', 'todayAppointment', 'totalScheduleAppointment']));
     }
 
     public function profileSetting()
