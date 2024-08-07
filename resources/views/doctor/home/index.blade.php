@@ -64,7 +64,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 mt-4 chart-card">
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-6 col-xl-4 col-xs-12 total-card">
-               <a href="{{ route('auth.doctor.prescription.list') }}">
+               <a href="{{ route('prescription.auth.doctor.list') }}">
                    <div class="card dashboard-card">
                        <div class="card-body">
                            <div class="d-flex">

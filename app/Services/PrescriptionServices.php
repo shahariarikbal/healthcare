@@ -164,6 +164,18 @@ class PrescriptionServices
             return $data;
      }
 
+     public function showAllPrescriptions()
+     {
+          $data = Prescription::whereYear('created_at', date('Y'))->select('id')->get()->count();
+          return $data;
+     }
+
+     public function showTodayAllPrescriptions()
+     {
+          $data = Prescription::whereYear('created_at', date('Y'))->whereDate('created_at', Carbon::today())->select('id')->get()->count();
+          return $data;
+     }
+
      public function adminShowTodayPrescriptions()
      {
           $query = Instruction::with('patient')->whereDate('created_at', Carbon::today())->orderBy('id', 'desc');

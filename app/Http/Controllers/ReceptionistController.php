@@ -75,7 +75,9 @@ class ReceptionistController extends Controller
         $totalAppointment = $this->appointmentServices->totalAppointmentCount();
         $todayAppointment = $this->appointmentServices->todayTotalAppointmentCount();
         $totalScheduleAppointment = $this->appointmentServices->getTotalScheduleAppointmentDataForDatatable();
-        return view('receptionist.home.index', compact(['doctors', 'totalAppointment', 'todayAppointment', 'totalScheduleAppointment']));
+        $totalPrescriptions = $this->prescriptionServices->showAllPrescriptions();
+        $todayTotalPrescriptions = $this->prescriptionServices->showTodayAllPrescriptions();
+        return view('receptionist.home.index', compact(['totalPrescriptions','todayTotalPrescriptions','doctors', 'totalAppointment', 'todayAppointment', 'totalScheduleAppointment']));
     }
 
     public function profileSetting()

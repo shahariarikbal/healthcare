@@ -51,12 +51,20 @@
           font-size: 15px;
           font-weight: 600;
       }
+
+      
  }
 
  @media (min-width: 360px) and (max-width: 1200px) {
     .total-card{
         margin-bottom: 5px;
     }
+}
+
+@media (min-width: 360px) and (max-width: 1800px) {
+    .prescription-add-btn i{
+        margin-left: 9px;
+      }
 }
 
 @media (min-width: 320px) and (max-width: 800px) {
@@ -146,6 +154,18 @@
 
     .total-card{
         margin-top: 5px;
+    }
+
+    .prescription-add-btn{
+       width: 63px;
+    }
+
+    .prescription-remove-btn{
+        width: 63px;
+    }
+
+    .prescription-remove-btn small{
+        margin-left: 12px !important;
     }
 }
 
