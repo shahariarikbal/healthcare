@@ -41,6 +41,7 @@
                                     </div>
                                 </div>
                                 <hr/>
+                                
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="patient_id" class="form-label">Patient name <span class="text-danger">*</span></label>
@@ -51,6 +52,7 @@
                                             @endforeach
                                        </select>
                                        <span class="text-danger">{{ $errors->has('patient_id') ? $errors->first('patient_id') : ' ' }}</span>
+                                       <input type="hidden" value="{{ $appointment->appointment_date }}" name="appointment_date" />
                                    </div>
                                    <div class="col-md-4">
                                     <label for="name" class="form-label">Gender <span class="text-danger">*</span></label>

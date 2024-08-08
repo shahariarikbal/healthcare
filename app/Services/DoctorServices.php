@@ -143,7 +143,7 @@ class DoctorServices
           $doctorId = auth()->guard('doctor')->user()->id ?? '';
           $data = [
                'totalAppointment' => Appointment::whereYear('appointment_date', date('Y'))->where('doctor_id', $doctorId)->select('id')->get()->count(),
-               'todayTotalAppointment' => Appointment::whereDate('appointment_date', Carbon::today())->where('doctor_id', $doctorId)->select('id')->get()->count(),
+               'todayTotalAppointment' => Appointment::whereDate('appointment_date', Carbon::today())->where('is_pay', Statics::IS_PAY)->where('doctor_id', $doctorId)->select('id')->get()->count(),
                'scheduleTotalAppointment' => Appointment::whereYear('appointment_date', date('Y'))->whereDate('appointment_date', '!=', Carbon::today())
                                              ->where('is_pay', Statics::IS_NOT_PAY)
                                              ->where('doctor_id', $doctorId)

@@ -40,10 +40,13 @@ class PrescriptionServices
                }
 
                //Appointments status update query
-               $appointment = Appointment::where('patient_id', $instruction->patient_id)->first();
-               $appointment->update([
-                    'status' => Statics::ACTIVE
-               ]);
+               $appointment = Appointment::where('patient_id', $request->patient_id)->where('appointment_date', $request->appointment_date)->first();
+               if($appointment){
+                    $appointment->update([
+                         'status' => Statics::DONE
+                    ]);
+               }
+               
 
                //commit the transaction
                DB::commit();

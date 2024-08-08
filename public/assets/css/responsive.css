@@ -37,23 +37,31 @@
    }
 }
 
- @media (max-width: 1400px) {
-     .balance-card{
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-          height: 120px;
-      }
-
-      .balance-card, h2{
-          font-size: 24px;
-      }
-
-      .balance-card, h5{
-          font-size: 15px;
-          font-weight: 600;
-      }
+ @media (min-width: 1300px) and (max-width: 1390px) {
+    .prescription-add-btn i {
+        margin-left: 1px;
+    }
 
       
  }
+
+ @media (max-width: 1400px) {
+    .balance-card{
+         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+         height: 120px;
+     }
+
+     .balance-card, h2{
+         font-size: 24px;
+     }
+
+     .balance-card, h5{
+         font-size: 15px;
+         font-weight: 600;
+     }
+
+     
+}
 
  @media (min-width: 360px) and (max-width: 1200px) {
     .total-card{

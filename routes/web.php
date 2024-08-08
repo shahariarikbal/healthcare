@@ -15,7 +15,9 @@ use App\Http\Controllers\NurseController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ReceptionistController;
+use App\Http\Controllers\SetupController;
 use App\Http\Controllers\SmtpSettingController;
+use App\Http\Middleware\SetupMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*

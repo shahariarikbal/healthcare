@@ -83,8 +83,9 @@
                         </ul>
                     </li>
                 @endif
-                @if(auth()->guard('web')->check() || auth()->guard('receptionist')->check() || auth()->guard('account')->check())
-                    <li class="nav-list-item has-submenu {{ Route::is('reception*') ? 'active' : '' }}">
+                @if(auth()->guard('web')->check() || auth()->guard('account')->check())
+
+                    <li class="nav-list-item has-submenu {{ Route::is('reception*') ? 'active open' : '' }}">
                         <a class="nav-list-item-link" href="javascript:void(0);">
                             <i class="fa-solid fa-user-tie"></i>
                             Receptionist  <i class="fa-solid fa-chevron-down float-end"></i>
@@ -95,7 +96,7 @@
                                     <a class="submenu-list-item-link" href="{{ route('reception.create') }}">Add</a>
                                 </li>
                             @endif
-                            @if(auth()->guard('web')->check() || auth()->guard('receptionist')->check() || auth()->guard('account')->check())
+                            @if(auth()->guard('web')->check() || auth()->guard('account')->check())
                                 <li class="submenu-list-item">
                                     <a class="submenu-list-item-link" href="{{ route('reception.manage') }}">Manage </a>
                                 </li>
