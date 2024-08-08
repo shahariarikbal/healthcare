@@ -52,7 +52,7 @@
                                             @endforeach
                                        </select>
                                        <span class="text-danger">{{ $errors->has('patient_id') ? $errors->first('patient_id') : ' ' }}</span>
-                                       <input type="hidden" value="{{ $appointment->appointment_date }}" name="appointment_date" />
+                                       <input type="hidden" value="{{ $appointments[0]->appointment_date ?? '' }}" name="appointment_date" />
                                    </div>
                                    <div class="col-md-4">
                                     <label for="name" class="form-label">Gender <span class="text-danger">*</span></label>
